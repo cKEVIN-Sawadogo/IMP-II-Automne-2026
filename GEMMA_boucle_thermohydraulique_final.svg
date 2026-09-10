@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0 0 1920 1200">
+<defs>
+  <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L12,6 L0,12 z" fill="#1f2937"/>
+  </marker>
+  <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L12,6 L0,12 z" fill="#2563eb"/>
+  </marker>
+  <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L12,6 L0,12 z" fill="#c62828"/>
+  </marker>
+  <style>
+    .t { font-family: Arial, Helvetica, sans-serif; fill:#111827; }
+    .title { font-size:34px; font-weight:700; }
+    .subtitle { font-size:18px; fill:#4b5563; }
+    .zone { font-size:24px; font-weight:700; }
+    .boxTitle { font-size:18px; font-weight:700; }
+    .body { font-size:15px; }
+    .small { font-size:13px; }
+    .tiny { font-size:12px; }
+    .arrow { fill:none; stroke:#1f2937; stroke-width:3; marker-end:url(#arrow); }
+    .arrowBlue { fill:none; stroke:#2563eb; stroke-width:3; marker-end:url(#arrowBlue); }
+    .arrowRed { fill:none; stroke:#c62828; stroke-width:4; marker-end:url(#arrowRed); }
+    .dashA { stroke:#4f83cc; stroke-width:2; stroke-dasharray:8 6; fill:#f7fbff; }
+    .dashF { stroke:#2f8f6b; stroke-width:2; stroke-dasharray:8 6; fill:#f7fffb; }
+    .dashD { stroke:#b7653b; stroke-width:2; stroke-dasharray:8 6; fill:#fffaf7; }
+    .boxA { fill:#eef5ff; stroke:#4f83cc; stroke-width:2; rx:14; ry:14; }
+    .boxF { fill:#eefbf4; stroke:#2f8f6b; stroke-width:2; rx:14; ry:14; }
+    .boxD { fill:#fff2ea; stroke:#c9794a; stroke-width:2; rx:14; ry:14; }
+    .boxDanger { fill:#fff0f0; stroke:#c62828; stroke-width:2; rx:14; ry:14; }
+  </style>
+</defs>
+
+<rect width="1920" height="1200" fill="white"/>
+
+<!-- Header -->
+<text x="960" y="48" text-anchor="middle" class="t title">GEMMA — Jumeau numérique d’une boucle thermohydraulique</text>
+<text x="960" y="78" text-anchor="middle" class="t subtitle">Surveillance de la température, de la pression et du débit — Projet académique d’ingénierie, méthodes et pratiques</text>
+
+<!-- Energy column -->
+<rect x="20" y="115" width="85" height="1025" fill="#fafafa" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="62" y="170" transform="rotate(-90 62 170)" class="t small" font-weight="700">ÉNERGIE</text>
+<path d="M45 1040 L45 220" stroke="#1f8f6d" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M80 220 L80 1040" stroke="#b45309" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="38" y="650" transform="rotate(-90 38 650)" class="t tiny">mise sous énergie / alimentation des services</text>
+<text x="87" y="650" transform="rotate(90 87 650)" class="t tiny">mise hors énergie / coupure sécurisée</text>
+
+<!-- A zone -->
+<rect x="125" y="115" width="820" height="470" class="dashA" rx="18" ry="18"/>
+<text x="155" y="150" class="t zone" fill="#234f8a">A — PROCÉDURES D’ARRÊT ET DE REMISE EN ROUTE</text>
+
+<!-- F zone -->
+<rect x="980" y="115" width="915" height="470" class="dashF" rx="18" ry="18"/>
+<text x="1010" y="150" class="t zone" fill="#1f6f55">F — PROCÉDURES DE FONCTIONNEMENT</text>
+
+<!-- D zone -->
+<rect x="125" y="620" width="1770" height="520" class="dashD" rx="18" ry="18"/>
+<text x="155" y="655" class="t zone" fill="#8b4a2b">D — PROCÉDURES EN DÉFAILLANCE</text>
+
+<!-- A6 -->
+<rect x="180" y="190" width="275" height="125" class="boxA"/>
+<text x="317" y="220" text-anchor="middle" class="t boxTitle">A6 — Mise P.O. dans l’état initial</text>
+<text x="205" y="252" class="t body">• Initialisation contrôlée des capteurs</text>
+<text x="205" y="276" class="t body">• Vérification T / P / débit</text>
+<text x="205" y="300" class="t body">• Retour vers état initial si conditions OK</text>
+
+<!-- A1 -->
+<rect x="520" y="190" width="310" height="125" class="boxA"/>
+<text x="675" y="220" text-anchor="middle" class="t boxTitle">A1 — Arrêt dans l’état initial</text>
+<text x="545" y="252" class="t body">• Boucle à l’arrêt, état sûr</text>
+<text x="545" y="276" class="t body">• Système prêt à être mis sous énergie</text>
+<text x="545" y="300" class="t body">• Attente d’un ordre de démarrage</text>
+
+<!-- A2 -->
+<rect x="520" y="370" width="310" height="125" class="boxA"/>
+<text x="675" y="400" text-anchor="middle" class="t boxTitle">A2 — Arrêt demandé en fin de cycle</text>
+<text x="545" y="432" class="t body">• Terminer l’acquisition en cours</text>
+<text x="545" y="456" class="t body">• Sauvegarder / journaliser</text>
+<text x="545" y="480" class="t body">• Retour vers A1</text>
+
+<!-- A5 -->
+<rect x="180" y="370" width="275" height="125" class="boxA"/>
+<text x="317" y="400" text-anchor="middle" class="t boxTitle">A5 — Préparation remise en route</text>
+<text x="205" y="432" class="t body">• Cause corrigée ou isolée</text>
+<text x="205" y="456" class="t body">• Alarmes acquittées</text>
+<text x="205" y="480" class="t body">• Autorisation de reprise</text>
+
+<!-- F1 -->
+<rect x="1060" y="230" width="470" height="220" class="boxF"/>
+<text x="1295" y="260" text-anchor="middle" class="t boxTitle">F1 — Production normale / surveillance</text>
+<text x="1090" y="293" class="t body">• Acquisition des mesures réelles : température, pression, débit</text>
+<text x="1090" y="319" class="t body">• Mise à jour du jumeau numérique</text>
+<text x="1090" y="345" class="t body">• Comparaison réel ↔ comportement attendu</text>
+<text x="1090" y="371" class="t body">• Calcul d’indicateurs de dérive / anomalie</text>
+<text x="1090" y="397" class="t body">• Affichage opérateur + journalisation</text>
+<text x="1090" y="423" class="t body">• Surveillance cybersécurité de la chaîne de données</text>
+
+<!-- F2 -->
+<rect x="1015" y="485" width="250" height="80" class="boxF"/>
+<text x="1140" y="513" text-anchor="middle" class="t boxTitle">F2 — Marche de préparation</text>
+<text x="1040" y="540" class="t body">Initialisation, connexions, auto-tests</text>
+
+<!-- F4 -->
+<rect x="1580" y="190" width="270" height="130" class="boxF"/>
+<text x="1715" y="220" text-anchor="middle" class="t boxTitle">F4 — Marches de vérification</text>
+<text x="1605" y="252" class="t body">• Vérification manuelle d’un capteur</text>
+<text x="1605" y="276" class="t body">• Test isolé d’une communication</text>
+<text x="1605" y="300" class="t body">• Dépannage / mise au point</text>
+
+<!-- F6 -->
+<rect x="1580" y="365" width="270" height="130" class="boxF"/>
+<text x="1715" y="395" text-anchor="middle" class="t boxTitle">F6 — Marche de test</text>
+<text x="1605" y="427" class="t body">• Injection d’anomalies simulées</text>
+<text x="1605" y="451" class="t body">• Test des alarmes et décisions</text>
+<text x="1605" y="475" class="t body">• Validation du prototype</text>
+
+<!-- D2 -->
+<rect x="250" y="750" width="355" height="155" class="boxD"/>
+<text x="427" y="782" text-anchor="middle" class="t boxTitle">D2 — Diagnostic / traitement de défaillance</text>
+<text x="275" y="816" class="t body">• Analyse des données T / P / débit</text>
+<text x="275" y="842" class="t body">• Analyse des journaux et communications</text>
+<text x="275" y="868" class="t body">• Recherche défaut / dérive / cyberévénement</text>
+<text x="275" y="894" class="t body">• Correction, isolement ou contournement</text>
+
+<!-- Decision diamond -->
+<polygon points="760,755 900,830 760,905 620,830" fill="#fff7df" stroke="#b8862f" stroke-width="2"/>
+<text x="760" y="820" text-anchor="middle" class="t boxTitle">Sévérité</text>
+<text x="760" y="844" text-anchor="middle" class="t boxTitle">critique ?</text>
+
+<!-- D1 -->
+<rect x="960" y="750" width="350" height="155" class="boxDanger"/>
+<text x="1135" y="782" text-anchor="middle" class="t boxTitle" fill="#9f1d1d">D1 — Mise en sécurité / arrêt d’urgence</text>
+<text x="985" y="816" class="t body">• Arrêt des fonctions dangereuses</text>
+<text x="985" y="842" class="t body">• Mise de la boucle dans un état sûr</text>
+<text x="985" y="868" class="t body">• Conservation des données utiles</text>
+<text x="985" y="894" class="t body">• Notification des intervenants</text>
+
+<!-- D3 -->
+<rect x="1460" y="750" width="335" height="155" class="boxD"/>
+<text x="1627" y="782" text-anchor="middle" class="t boxTitle">D3 — Production tout de même</text>
+<text x="1485" y="816" class="t body">• Fonctionnement dégradé autorisé</text>
+<text x="1485" y="842" class="t body">• Surveillance renforcée T / P / débit</text>
+<text x="1485" y="868" class="t body">• Restrictions de fonctionnement</text>
+<text x="1485" y="894" class="t body">• Décision / validation humaine</text>
+
+<!-- Core transitions -->
+<path d="M455 252 L520 252" class="arrow"/>
+<text x="487" y="237" text-anchor="middle" class="t small">État initial confirmé</text>
+
+<path d="M830 252 L1000 252 L1000 525 L1015 525" class="arrow"/>
+<text x="915" y="235" text-anchor="middle" class="t small">Mise sous énergie / démarrage</text>
+
+<path d="M1265 525 L1295 525 L1295 450" class="arrow"/>
+<text x="1275" y="510" class="t small">Préparation OK</text>
+
+<path d="M1295 230 C1295 175 1435 175 1435 230" class="arrow"/>
+<text x="1365" y="170" text-anchor="middle" class="t small">Aucune dérive → maintien en F1</text>
+
+<path d="M1060 340 L875 340 L875 432 L830 432" class="arrowBlue"/>
+<text x="915" y="325" class="t small" fill="#2563eb">Arrêt normal demandé</text>
+
+<path d="M675 370 L675 315" class="arrow"/>
+<text x="690" y="350" class="t small">Fin de cycle terminée</text>
+
+<path d="M1530 285 L1580 255" class="arrow"/>
+<text x="1545" y="245" class="t small">Vérification demandée</text>
+
+<path d="M1580 300 L1530 330" class="arrow"/>
+<text x="1540" y="345" class="t small">Vérification terminée</text>
+
+<path d="M830 252 L900 252 L900 430 L1580 430" class="arrow"/>
+<text x="1180" y="414" class="t small">Mode TEST autorisé depuis l’état initial</text>
+
+<path d="M1850 430 L1880 430 L1880 140 L675 140 L675 190" class="arrow"/>
+<text x="1430" y="130" class="t small">Fin des tests → retour A1</text>
+
+<!-- Anomaly to D2 -->
+<path d="M1060 405 L930 405 L930 690 L427 690 L427 750" class="arrowRed"/>
+<text x="700" y="676" class="t small" fill="#c62828">Dérive / anomalie confirmée en fonctionnement</text>
+
+<!-- Startup failure to D2 -->
+<path d="M1140 565 L1140 705 L530 705 L530 750" class="arrow"/>
+<text x="730" y="695" class="t small">Échec auto-test / anomalie au démarrage</text>
+
+<!-- D2 to decision -->
+<path d="M605 830 L620 830" class="arrow"/>
+<text x="610" y="812" text-anchor="end" class="t small">Évaluer la sévérité</text>
+
+<!-- Decision critical yes to D1 -->
+<path d="M900 830 L960 830" class="arrowRed"/>
+<text x="930" y="812" text-anchor="middle" class="t small" fill="#c62828">Oui</text>
+
+<!-- Decision no to D3 -->
+<path d="M760 905 L760 965 L1410 965 L1410 830 L1460 830" class="arrow"/>
+<text x="1060" y="952" text-anchor="middle" class="t small">Non critique + maintien sûr possible + autorisation opérateur</text>
+
+<!-- D3 back F1 -->
+<path d="M1627 750 C1627 650 1510 620 1430 560 C1380 525 1340 490 1315 450" class="arrow"/>
+<text x="1530" y="610" class="t small">Situation stabilisée / reprise supervisée</text>
+
+<!-- D3 to D2 if worsens -->
+<path d="M1460 880 L1315 880 L1315 1000 L427 1000 L427 905" class="arrow"/>
+<text x="960" y="988" text-anchor="middle" class="t small">Persistance / aggravation → diagnostic approfondi</text>
+
+<!-- D1 to D2 -->
+<path d="M1135 905 L1135 1035 L427 1035 L427 905" class="arrow"/>
+<text x="800" y="1022" text-anchor="middle" class="t small">Après sécurisation : diagnostic obligatoire</text>
+
+<!-- D2 to A5 -->
+<path d="M250 825 L145 825 L145 432 L180 432" class="arrow"/>
+<text x="155" y="610" class="t small">Cause traitée / isolée</text>
+
+<!-- A5 to A6 -->
+<path d="M317 370 L317 315" class="arrow"/>
+<text x="332" y="345" class="t small">Remise en route validée</text>
+
+<!-- Emergency global note -->
+<rect x="250" y="1065" width="1545" height="48" class="boxDanger"/>
+<text x="1022" y="1095" text-anchor="middle" class="t body" fill="#9f1d1d">
+DANGER IMMÉDIAT : depuis tout état actif → D1. Aucun redémarrage direct : D1 → D2 → A5 → A6 → A1 → F2 → F1.
+</text>
+
+<!-- Method note -->
+<text x="125" y="1165" class="t small">
+Note méthodologique : aucun seuil numérique arbitraire n’est fixé. Les critères de dérive et de criticité seront définis par l’analyse de risques et les essais du prototype.
+</text>
+</svg>
