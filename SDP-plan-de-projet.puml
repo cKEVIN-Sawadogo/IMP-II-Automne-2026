@@ -1,0 +1,97 @@
+@startwbs
+' =============================================================================
+'  SDP — STRUCTURE DE DÉCOUPAGE DU PROJET (Work Breakdown Structure)
+'  Projet IMP2 (6GEN135) — Jumeau numérique de surveillance
+'  Boucle thermohydraulique, scénario de remise en service de Gentilly-2
+'
+'  TRAÇABILITÉ
+'    Les mentions (A1), (F1), (D2)… renvoient aux états du GEMMA de l'équipe.
+'    Chaque lot de réalisation est rattaché à un mode de marche ou d'arrêt :
+'    c'est ce lien qui prouve que le découpage couvre le comportement spécifié.
+'    Les mentions L1 à L9 renvoient aux lots de la section 7 du plan de projet
+'    (estimation des ressources) et de la section 9 (échéancier).
+'
+'  RENDU
+'    java -jar plantuml.jar -charset UTF-8 -tsvg sdp.puml
+'    (le WBS ne nécessite PAS Graphviz, contrairement au diagramme d'états)
+' =============================================================================
+
+<style>
+wbsDiagram {
+  LineColor #555555
+  arrow {
+    LineColor #555555
+    LineThickness 1.2
+  }
+  node {
+    FontName    Arial
+    FontSize    13
+    FontColor   #111111
+    LineColor   #BBBBBB
+    LineThickness 1
+    BackGroundColor #E9E9E9
+    RoundCorner 0
+    Padding     10
+    Margin      6
+    MaximumWidth 150
+    HorizontalAlignment center
+  }
+  :depth(0) {
+    BackGroundColor #F5851F
+    FontColor       #FFFFFF
+    FontStyle       bold
+    FontSize        15
+    LineColor       #F5851F
+    MaximumWidth    230
+  }
+  :depth(1) {
+    BackGroundColor #FBD3A1
+    FontStyle       bold
+    LineColor       #8C8C8C
+    MaximumWidth    150
+  }
+}
+</style>
+
+* PROJET\nJumeau numérique de surveillance
+
+** 1. Gestion de projet
+*** Plan de projet\n<size:10>L1</size>
+*** Suivi et valeur acquise\n<size:10>L1</size>
+*** Assurance qualité et revues\n<size:10>L1</size>
+*** Comptes rendus et communication\n<size:10>L1</size>
+
+** 2. Ingénierie des exigences
+*** Analyse des besoins\n<size:10>L2</size>
+*** Analyse fonctionnelle\n<size:10>L2</size>
+*** GEMMA — modes de marche et d'arrêt\n<size:10>L2</size>
+*** Registre des exigences\n<size:10>L2</size>
+*** Normes et cadre réglementaire\n<size:10>L3</size>
+
+** 3. Conception
+*** Modèle de référence de la boucle\n<size:10>L4</size>
+*** Architecture logicielle\n<size:10>L5</size>
+*** Architecture de cybersécurité\n<size:10>L5</size>
+*** Conception de l'IHM\n<size:10>L8</size>
+
+** 4. Réalisation
+*** Noyau de simulation\n<size:10>L6 — F1</size>
+*** Chaîne d'acquisition et auto-tests\n<size:10>L6 — F2</size>
+*** Détection d'anomalies\n<size:10>L7 — F1 vers D2</size>
+*** Quantification de l'incertitude\n<size:10>L7 — F1</size>
+*** Arbitrage de sévérité et modes dégradés\n<size:10>L6 — D1 D2 D3</size>
+*** Séquences d'arrêt et de reprise\n<size:10>L6 — A1 A2 A5 A6</size>
+*** Interface d'aide à la décision\n<size:10>L8 — F1 F4 D3</size>
+
+** 5. Vérification et validation
+*** Plan de V&V\n<size:10>L9</size>
+*** Essais unitaires et d'intégration\n<size:10>L9</size>
+*** Marche de test et injection d'anomalies\n<size:10>L9 — F6</size>
+*** Campagne d'essais\n<size:10>L9</size>
+*** Analyse des résultats\n<size:10>L9</size>
+
+** 6. Clôture
+*** Recommandation d'ingénierie\n<size:10>L1</size>
+*** Rapport final\n<size:10>L1</size>
+*** Présentation orale\n<size:10>L1</size>
+@endwbs
