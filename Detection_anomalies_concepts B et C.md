@@ -134,3 +134,12 @@ graph TD
 
 **Forces et limites opérationnelles :** Ce concept élimine les fausses alertes dues aux pointes de bruit passagères et excelle dans la détection des cyberattaques furtives ou de l'usure progressive des composants. En contrepartie, l'accumulation introduit un léger délai de confirmation (quelques pas de temps pour une dérive faible) et détecte quelles variables dérivent sans nommer directement le composant défaillant si elle n'est pas couplée à une table de signatures.
 
+## 3. Synthèse Comparative pour le Lot L7
+
+| Critère d'ingénierie | Concept 1 : Décision par Signature | Concept 2 : Décision Séquentielle (SPRT / CUSUM) |
+| :--- | :--- | :--- |
+| **Logique de décision** | Spatiale et instantanée (comparaison à une table AMDEC). | Temporelle et cumulative (intégration jusqu'au seuil $B$). |
+| **Réponse aux sauts francs** | Immédiate (dès le premier dépassement de seuil). | Très rapide (1 à 3 pas de temps). |
+| **Réponse aux dérives lentes / cyber furtives** | Limitée (aveugle sous le seuil de bruit statique). | Excellente (cumul progressif des faibles écarts). |
+| **Expression de la confiance** | Proximité géométrique avec la signature du défaut. | Garantie statistique bornée par les risques $(\alpha, \beta)$. |
+| **Intérêt principal pour l'opérateur** | Explique **la cause** (isole panne physique vs attaque capteur). | Certifie **la fiabilité** de l'alerte et l'instant de début. |
