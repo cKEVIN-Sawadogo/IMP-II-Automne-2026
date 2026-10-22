@@ -1,259 +1,324 @@
-# Documentation Technique — Lot L7 : Décider si un résidu traduit une anomalie, et dire avec quelle confiance
+# Documentation Technique Complète — Lot L7 : Détection d'Anomalies et Quantification de l'Incertitude
 
-**Projet :** Jumeau numérique cyberrésilient — Boucle thermohydraulique simplifiée (inspirée du [circuit de caloportage primaire CANDU 6](https://canteach.candu.org/Content%20Library/20044212.pdf) de la centrale [Gentilly-2 d'Hydro-Québec](https://archives.bape.gouv.qc.ca/sections/mandats/gentilly-2/documents/DA22-1.pdf))
+**Projet :** Jumeau numérique cyberrésilient — Boucle thermohydraulique simplifiée (inspirée du [circuit de caloportage primaire CANDU 6](https://canteach.candu.org/Content%20Library/20044212.pdf) de la centrale [Gentilly-2 d'Hydro-Québec](https://archives.bape.gouv.qc.ca/sections/mandats/gentilly-2/documents/DA22-1.pdf))  
+**Fonction technique (Lot L7) :** *« Décider si un résidu traduit une anomalie, et dire avec quelle confiance. »*  
+**Référentiels normatifs :** [CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) (Cybersécurité pour les installations nucléaires), [CEI 62645](https://webstore.iec.ch/en/publication/32904) (Exigences pour les programmes de sécurité des systèmes d'I&C) et [CEI 62859](https://webstore.iec.ch/en/publication/26131) (Coordination entre la sûreté et la cybersécurité).
 
-**Fonction :** Décider si un résidu traduit une anomalie, et dire avec quelle confiance.
+## 1. Contexte d'Ingénierie et Modélisation des Résidus
 
-**Cadre normatif :** [CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) (Cybersécurité nucléaire), [CEI 62645](https://webstore.iec.ch/en/publication/32904) (Sécurité des systèmes d'I&C) et [CEI 62859](https://webstore.iec.ch/en/publication/26131) (Coordination sûreté et cybersécurité).
+À chaque pas d'échantillonnage $k$ ($\Delta t$ fixe), le jumeau numérique compare les mesures issues de l'instrumentation physique $\mathbf{y}(k)$ aux prédictions du modèle thermohydraulique de référence $\hat{\mathbf{y}}(k)$ afin de générer le vecteur de résidus bruts $\mathbf{r}(k) \in \mathbb{R}^3$ :
 
-## Concept A : Décision par budget d'incertitude
+$$\mathbf{r}(k) = \mathbf{y}(k) - \hat{\mathbf{y}}(k) = \begin{bmatrix} r_T(k) \\ r_Q(k) \\ r_P(k) \end{bmatrix} = \begin{bmatrix} T_{\text{mes}}(k) - T_{\text{mod}}(k) \\ Q_{\text{mes}}(k) - Q_{\text{mod}}(k) \\ P_{\text{mes}}(k) - P_{\text{mod}}(k) \end{bmatrix}$$
 
-### Présentation du concept
+En régime nominal sans défaillance ni attaque ($\mathcal{H}_0$), le vecteur de résidus est assimilé à un bruit blanc gaussien centré de matrice de covariance $\mathbf{\Sigma}_0 = \text{diag}(\sigma_T^2, \sigma_Q^2, \sigma_P^2)$, représentatif des incertitudes de mesure et de modélisation. Conformément à la norme [CEI 62859](https://webstore.iec.ch/en/publication/26131), le module du Lot L7 agit exclusivement en boucle ouverte consultative : il n'émet aucune commande directe vers les actionneurs et fournit à l'opérateur de salle de commande un diagnostic explicable assorti d'un niveau de confiance rigoureusement quantifié.
 
-Ce concept consiste à comparer chaque résidu $r$ à une limite calculée à partir des incertitudes connues. Le budget d'incertitude recense les contributions susceptibles d'expliquer un écart : incertitude des mesures, paramètres physiques, approximations du modèle et traitements numériques.
+## 2. Concept A : Décision par Budget d'Incertitude (Approche Métrologique NIST)
 
-L'objectif est d'éviter qu'un petit écart explicable soit systématiquement interprété comme une anomalie. À l'inverse, un résidu dépassant la limite retenue indique une incompatibilité avec le comportement attendu, compte tenu du budget établi.
+### 2.1 Présentation du concept et réponse au besoin
 
-Les contributions sont propagées jusqu'au résidu pour obtenir une incertitude-type composée $u_c(r)$. Une incertitude élargie $U_r$ peut ensuite être définie par :
+Ce concept consiste à comparer chaque résidu $r_i(k)$ ($i \in \{T, Q, P\}$) à une limite calculée à partir des incertitudes connues. Le budget d'incertitude recense les contributions susceptibles d'expliquer un écart en fonctionnement normal : incertitude des capteurs, tolérances sur les paramètres physiques, approximations du modèle thermohydraulique et erreurs de traitement numérique.
 
-$$
-U_r = k \cdot u_c(r)
-$$
+L'objectif est d'éviter qu'un petit écart explicable par l'imperfection des capteurs ou du modèle soit systématiquement interprété comme une anomalie. À l'inverse, un résidu dépassant la limite retenue indique une incompatibilité physique ou métrologique avec le comportement attendu, compte tenu du budget établi.
 
-où $k$ est un facteur de couverture choisi et justifié. Cette construction suit le principe de combinaison et d'élargissement des incertitudes décrit par le [NIST (Technical Note 1297)](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty). Les corrélations entre contributions doivent être prises en compte lorsqu'elles existent. L'utilisation de $U_r$ comme limite de décision constitue ici un choix de conception à valider par les essais.
+Les différentes sources d'incertitude sont propagées jusqu'au résidu par la loi de propagation des variances pour obtenir une incertitude-type composée $u_c(r_i)$. Une incertitude élargie $U_{r,i}$ est ensuite définie par :
 
-### Schéma de la solution
+$$U_{r,i} = k_{\text{couv}} \cdot u_c(r_i)$$
 
-```
+où $k_{\text{couv}}$ est un facteur de couverture choisi et justifié (typiquement $k_{\text{couv}} = 2$ pour un niveau de confiance d'environ $95\ \%$ ou $k_{\text{couv}} = 3$ pour $99{,}7\ \%$ sous hypothèse gaussienne). Cette construction suit le principe de combinaison et d'élargissement des incertitudes décrit par le [NIST (Technical Note 1297)](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty). Les corrélations entre contributions doivent être prises en compte lorsqu'elles existent. L'utilisation de $U_{r,i}$ comme limite de décision constitue ici un choix de conception à valider par les essais.
+
+### 2.2 Schéma de la solution
+
+```mermaid
 graph TD
-    A["Résidus calculés, variables concernées<br/>et qualité des données"] --> C{"Données et budget<br/>d'incertitude exploitables ?"}
+    A["Résidus calculés [r_T, r_Q, r_P],<br/>variables concernées et qualité des données"] --> C{"Données et budget<br/>d'incertitude exploitables ?"}
     B["Budget d'incertitude<br/>(mesures, modèle, corrélations)"] --> C
     C -->|"Oui"| D["Propagation des incertitudes u_c(r)<br/>et limite élargie U_r = k · u_c(r)"]
     C -->|"Non"| E["État Incertain :<br/>comparaison indisponible et motif"]
     D --> F["Comparaison |r| ≤ U_r ou |r| > U_r<br/>(Compatible vs Anomalie signalée)"]
     F --> G["Transmission de la décision, de la limite U_r<br/>et du niveau de couverture à l'interface"]
     E --> G
-
 ```
 
-### Description des composants
+### 2.3 Description des composants et du fonctionnement détaillé
 
-| Composant | Rôle | 
-| ----- | ----- | 
-| **Réception des résidus** | Recevoir les écarts calculés, les variables concernées et la qualité des données. | 
-| **Budget d'incertitude** | Recenser les contributions, leurs valeurs, leur origine et leurs éventuelles corrélations. | 
-| **Calculateur d'incertitude** | Propager les contributions pour obtenir une incertitude exprimée dans la même unité que le résidu. | 
-| **Module de décision** | Comparer le résidu à la limite retenue et produire le résultat. | 
-| **Gestion de l'incertitude** | Suspendre la conclusion lorsque les données ou le budget ne permettent pas une comparaison fiable. | 
-| **Explication du résultat** | Fournir le résidu, la limite, les variables impliquées et les conditions de validité. | 
+#### Composants clés du module logiciel
 
-### Description du fonctionnement
+| Composant | Rôle fonctionnel |
+| :--- | :--- |
+| **Réception des résidus** | Recevoir les écarts calculés ($r_T, r_Q, r_P$), les variables concernées et les indicateurs de qualité des données. |
+| **Budget d'incertitude** | Recenser les contributions élémentaires (capteurs, modèle, numérique), leurs valeurs, leur origine et leurs éventuelles corrélations. |
+| **Calculateur d'incertitude** | Propager les contributions pour obtenir une incertitude-type $u_c(r_i)$ et la limite élargie $U_{r,i}$ dans la même unité physique que le résidu ($^\circ\text{C}$, $\text{kg/s}$, $\text{kPa}$). |
+| **Module de décision** | Comparer la valeur absolue du résidu $\vert r_i \vert$ à la limite retenue $U_{r,i}$ et produire le résultat. |
+| **Gestion de l'incertitude** | Suspendre la conclusion et forcer l'état *Incertain* lorsque les données d'entrée ou le budget ne permettent pas une comparaison fiable. |
+| **Explication du résultat** | Fournir à l'opérateur la valeur du résidu, la limite $U_{r,i}$, les variables impliquées et les conditions de validité. |
 
-1. Le système reçoit un résidu $r$ et vérifie que les données ayant servi à son calcul sont utilisables.
+#### Déroulement séquentiel du traitement pas-à-pas
+1. **Étape 1 — Vérification d'exploitabilité :** Le système reçoit un résidu $r_i(k)$ et vérifie que les mesures ayant servi à son calcul sont valides et horodatées.
+2. **Étape 2 — Sélection du budget :** Il sélectionne le budget d'incertitude correspondant à la relation physique ($T, Q$ ou $P$) et au point de fonctionnement courant de la boucle.
+3. **Étape 3 — Calcul de la limite :** Il calcule l'incertitude composée $u_c(r_i)$ et la limite de décision élargie $U_{r,i} = k_{\text{couv}} \cdot u_c(r_i)$.
+4. **Étape 4 — Règle de décision et transmission :** Il applique la règle ci-dessous et transmet la décision ainsi que sa justification à l'interface, sans commander la boucle ([CEI 62859](https://webstore.iec.ch/en/publication/26131)).
 
-2. Il sélectionne le budget correspondant à la relation physique et aux conditions de fonctionnement.
+| Condition | Résultat |
+| :--- | :--- |
+| **Données ou budget non exploitables** | **Incertain :** aucune conclusion fiable possible (test suspendu). |
+| **$\vert r_i(k) \vert \le U_{r,i}$** | **Compatible avec les incertitudes :** aucune anomalie mise en évidence par ce test. |
+| **$\vert r_i(k) \vert > U_{r,i}$** | **Anomalie signalée :** écart non expliqué par le budget d'incertitude retenu. |
 
-3. Il calcule l'incertitude composée $u_c(r)$ du résidu et la limite de décision $U_r = k \cdot u_c(r)$.
+#### Exemple illustratif
+Supposons qu'un résidu de pression $r_P$ possède une limite de décision $U_{r,P} = 5\text{ kPa}$ (obtenue avec $u_c(r_P) = 2{,}5\text{ kPa}$ et un facteur de couverture $k_{\text{couv}} = 2$ validé par les essais) :
+- Un résidu de $3\text{ kPa}$ ($\vert r_P \vert \le 5\text{ kPa}$) reste compatible avec les incertitudes connues.
+- Un résidu de $8\text{ kPa}$ ($\vert r_P \vert > 5\text{ kPa}$) dépasse la limite et déclenche un signalement d'anomalie.
+- Si une mesure nécessaire au calcul manque ou est hors gamme, le résultat devient **Incertain**.
 
-4. Il applique la règle proposée :
+### 2.4 Expression de la confiance, limites et analyse critique
 
-| Condition | Résultat | 
-| ----- | ----- | 
-| **Données ou budget non exploitables** | **Incertain :** aucune conclusion fiable. | 
-| $\vert r \vert \le U_r$ | **Compatible avec les incertitudes :** aucune anomalie mise en évidence par ce test. | 
-| $\vert r \vert > U_r$ | **Anomalie signalée :** écart non expliqué par le budget retenu. | 
+- **Interprétation métrologique de la confiance :** L'interface présente le résidu, son incertitude élargie $U_{r,i}$ et le niveau de couverture associé (ex. $95\ \%$ pour $k_{\text{couv}} = 2$ selon le [NIST TN 1297](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-appendix-b-coverage-factors)). Un intervalle de couverture à $95\ \%$ ne signifie pas que le diagnostic est vrai à $95\ \%$ : il quantifie la bande dans laquelle le résidu doit se situer en l'absence d'anomalie sous les hypothèses du budget.
+- **Compromis de réglage et sensibilité :** Un budget sous-estimé ($U_{r,i}$ trop faible) provoque des fausses alertes au moindre bruit ; un budget surévalué ($U_{r,i}$ trop large) masque des anomalies réelles ou des cyberattaques furtives d'amplitude inférieure à $U_{r,i}$.
+- **Conformité sûreté ([CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) / [CEI 62859](https://webstore.iec.ch/en/publication/26131)) :** L'approche garantit une traçabilité physique totale de chaque seuil et protège l'opérateur contre les conclusions erronées grâce à l'état explicite *Incertain* lorsque les données sont dégradées.
 
-Il transmet la décision et sa justification à l'interface, sans commander la boucle ([CEI 62859](https://webstore.iec.ch/en/publication/26131)).
+## 3. Concept B (Concept 1) : Décision par Signature (Approche Spatiale AMDEC / FSM)
 
-### Exemple illustratif
+### 3.1 Présentation du concept et réponse au besoin
 
-Supposons qu'un résidu de pression possède une limite de décision $U_r = 5\text{ kPa}$, obtenue à partir d'un budget validé :
+#### Principe fondamental et formulation mathématique/logique
+Le concept de décision par signature repose sur le couplage multiphysique des équations de conservation (masse, quantité de mouvement, enthalpie) régissant la boucle thermohydraulique. Toute défaillance physique ou falsification de capteur projette une empreinte directionnelle spécifique dans l'espace tridimensionnel des résidus $\mathbf{r}(k) = [r_T(k), r_Q(k), r_P(k)]^\top$, formalisée à la conception au sein d'une [Matrice de Signatures de Défauts (FSM)](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html) issue de l'AMDEC (FMEA) et des relations de redondance analytique (ARR).
 
-* Un résidu de $3\text{ kPa}$ ($\vert r \vert \le 5\text{ kPa}$) reste compatible avec les incertitudes.
+À chaque instant $k$, chaque composante $r_i(k)$ ($i \in \{T, Q, P\}$) est normalisée par son écart-type nominal $\sigma_i$ (ou sa limite $U_{r,i}$), puis quantifiée selon une logique trivalente (codage directionnel signé) :
 
-* Un résidu de $8\text{ kPa}$ ($\vert r \vert > 5\text{ kPa}$) dépasse la limite et déclenche un signalement.
+$$s_i(k) = \begin{cases} +1 & \text{si } r_i(k) > +\tau_i \\ 0 & \text{si } \vert r_i(k) \vert \le \tau_i \\ -1 & \text{si } r_i(k) < -\tau_i \end{cases} \quad \text{et} \quad \tilde{r}_i(k) = \frac{r_i(k)}{\sigma_i}$$
 
-* Si une mesure nécessaire manque, le résultat devient incertain.
+où $\tau_i = \kappa \sigma_i$ (typiquement $\kappa = 3$). Le vecteur d'état observé $\mathbf{s}(k) = [s_T(k), s_Q(k), s_P(k)]^\top$ (ainsi que sa version continue normalisée $\tilde{\mathbf{r}}(k)$) est comparé aux $M$ vecteurs colonnes théoriques $\mathbf{S}_j = [S_{T,j}, S_{Q,j}, S_{P,j}]^\top$ de la matrice $\mathbf{M}_{\text{FSM}}$ associée aux modes de défaillance répertoriés $F_j$.
 
-Ces valeurs illustrent le mécanisme ; elles constituent des ordres de grandeur à calibrer lors des essais sur le prototype.
+#### Traitement spécifique des variables de la boucle (Température $T$, Débit $Q$, Pression $P$)
+La matrice de sensibilité exploite directement la cohérence thermodynamique entre $T$, $Q$ et $P$ pour isoler l'origine physique ou cyber de l'écart :
 
-### Expression de la confiance et limites
+| Code Défaut | Scénario d'anomalie (Physique ou Cyber) | Signature $S_T$ ($r_T$) | Signature $S_Q$ ($r_Q$) | Signature $S_P$ ($r_P$) | Justification physique / analytique |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **$F_0$** | Régime nominal (absence d'anomalie) | $0$ | $0$ | $0$ | Fluctuations aléatoires bornées dans la bande morte $\pm \tau_i$. |
+| **$F_1$** | Perte de réfrigérant primaire (fuite / brèche LOCA) | $+1$ | $-1$ | $-1$ | Dépressurisation rapide ($r_P < 0$), baisse du débit ($r_Q < 0$) et échauffement ($r_T > 0$). |
+| **$F_2$** | Dégradation / cavitation de pompe primaire | $+1$ | $-1$ | $0$ | Chute du débit volumique ($r_Q < 0$) réduisant l'extraction thermique ($r_T > 0$) à pression régulée. |
+| **$F_3$** | Encrassement / perte de puits froid (échangeur) | $+1$ | $0$ | $+1$ | Hausse de température primaire ($r_T > 0$) induisant une dilatation thermique ($r_P > 0$) à débit constant. |
+| **$F_4$** | Cyberattaque par injection sur capteur $T$ (*Spoofing* $T$) | $\pm 1$ | $0$ | $0$ | Écart isolé sur $r_T$ violant le couplage enthalpique avec $Q$ et $P$ demeurés nominaux. |
+| **$F_5$** | Cyberattaque par injection sur capteur $Q$ (*Spoofing* $Q$) | $0$ | $\pm 1$ | $0$ | Écart isolé sur $r_Q$ sans répercussion sur le bilan thermique $T$ ni sur la perte de charge $P$. |
+| **$F_6$** | Cyberattaque par injection sur capteur $P$ (*Spoofing* $P$) | $0$ | $0$ | $\pm 1$ | Écart isolé sur $r_P$ contredisant l'état thermodynamique observé sur $T$ et $Q$. |
 
-L'interface présente le résidu, son incertitude $U_r$ et, lorsqu'il est justifié, le niveau de couverture associé (par exemple $95\ \%$ pour $k = 2$ sous hypothèse gaussienne selon le [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-appendix-b-coverage-factors)). Un intervalle de couverture à $95\ \%$ ne signifie pas que le diagnostic est correct à $95\ \%$ : il renseigne sur l'incertitude évaluée, sous les hypothèses utilisées.
+#### Séparation bruit vs anomalie et explicabilité envers l'opérateur de conduite
+- **Séparation bruit vs anomalie physique/cyber :** Le bruit d'instrumentation est filtré par la zone morte $[-\tau_i, +\tau_i]$ et par l'évaluation de l'énergie globale du résidu via la distance de Mahalanobis $D_M^2(k) = \sum_{i \in \{T,Q,P\}} \tilde{r}_i(k)^2$. Une anomalie physique affecte simultanément au moins deux variables couplées selon les lois de conservation ($F_1, F_2, F_3$), tandis qu'une cyberattaque mono-capteur ou un biais de sonde génère une signature unitaire orthogonale aux lois physiques ($F_4, F_5, F_6$).
+- **Explicabilité opérateur :** L'opérateur visualise instantanément sur son IHM la juxtaposition du vecteur mesuré $[s_T, s_Q, s_P]$ et de la ligne correspondante de l'AMDEC. La justification est transparente (« *Alerte $F_2$ : Hausse de température combinée à une baisse de débit à pression stable* »), éliminant tout effet « boîte noire ».
 
-Un budget trop faible peut provoquer de fausses alertes ; un budget trop large peut masquer des anomalies. Son réglage devra donc être vérifié sur des scénarios normaux et défaillants. Enfin, un résultat compatible avec les incertitudes indique seulement que ce test n'a pas mis en évidence d'anomalie.
+### 3.2 Schéma de la solution
 
-**Articulation amont-aval :** La référence par relations invariantes produit les résidus physiques ; la décision par budget d'incertitude détermine si ces résidus sont explicables, anormaux ou impossibles à interpréter de façon fiable.
+```mermaid
+graph LR
+    subgraph Entrees ["1. Entrées (Résidus Temps Réel)"]
+        RT["Résidu Température r_T(k)"]
+        RQ["Résidu Débit r_Q(k)"]
+        RP["Résidu Pression r_P(k)"]
+    end
 
-## Concept B : Décision par signature (Matrice défaut-symptôme)
+    subgraph Traitement ["2. Prétraitement & Quantification"]
+        NORM["Normalisation Statistique<br/>r̃_i(k) = r_i(k) / σ_i"]
+        SEUIL["Seuillage Trivalent (±τ_i)<br/>Vecteur observé s(k) ∈ {-1, 0, +1}³"]
+        MAHA["Distance de Mahalanobis<br/>D_M²(k) = r(k)ᵀ Σ₀⁻¹ r(k)"]
+    end
 
-### Présentation du concept
+    subgraph Comparaison ["3. Comparaison & Base AMDEC"]
+        FSM[("Matrice de Signatures (FSM)<br/>Table AMDEC / Sensibilité S_j")]
+        MATCH["Similarité Directionnelle<br/>Sim_cos(r̃(k), S_j) & Appariement"]
+        CONF["Calculateur de Confiance<br/>Pondération Énergie × Alignement"]
+    end
 
-Ce concept consiste à comparer simultanément le vecteur des trois résidus $\mathbf{r} = [r_T, r_Q, r_P]$ (température, débit, pression) à une [matrice de signatures défaut-symptôme (FSM)](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html) établie à la conception à partir de l'AMDEC (FMEA) et des lois de conservation thermohydrauliques.
+    subgraph Sorties ["4. Sorties IHM Salle de Commande"]
+        DIAG["Diagnostic d'Anomalie Isolé<br/>(Mode F_j : Physique vs Cyber)"]
+        SCORE["Indice de Confiance C_j(k) [0-100 %]<br/>& Degré de Résidu Inexpliqué U(k)"]
+    end
 
-L'objectif est d'exploiter le couplage physique entre les variables de la boucle pour non seulement détecter une anomalie, mais aussi distinguer une défaillance matérielle d'une cyberattaque sur l'instrumentation ([CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/)). En effet, une anomalie physique modifie plusieurs variables couplées de manière cohérente, tandis qu'une falsification ou une panne d'un capteur isolé produit un écart sur une seule mesure, contredisant l'équilibre thermodynamique global.
-
-Chaque résidu est comparé à son seuil de tolérance $\tau_i$ pour former un vecteur de symptômes directionnels $\mathbf{s} \in \{-1, 0, +1\}^3$ :
-
-$$
-s_i = \begin{cases} +1 & \text{si } r_i > +\tau_i \\ 0 & \text{si } \vert r_i \vert \le \tau_i \\ -1 & \text{si } r_i < -\tau_i \end{cases} \quad \text{pour } i \in \{T, Q, P\}
-$$
-
-Le vecteur observé $\mathbf{s} = [s_T, s_Q, s_P]$ est ensuite comparé aux signatures théoriques $\mathbf{S}_j$ de la table AMDEC afin d'identifier le mode défaillant et de quantifier un indice de proximité.
-
-### Schéma de la solution
-
+    RT & RQ & RP --> NORM
+    NORM --> SEUIL
+    NORM --> MAHA
+    SEUIL --> MATCH
+    NORM --> MATCH
+    FSM --> MATCH
+    MATCH --> CONF
+    MAHA --> CONF
+    CONF --> DIAG
+    CONF --> SCORE
 ```
+
+### 3.3 Description des composants et du fonctionnement détaillé
+
+#### Composants clés du module logiciel
+
+| Composant | Rôle fonctionnel et paramètres |
+| :--- | :--- |
+| **Réception et Normalisation (`ResidualNormalizer`)** | Regrouper les trois résidus $[r_T, r_Q, r_P]$, vérifier leur simultanéité et les diviser par les écarts-types nominaux $\boldsymbol{\sigma} = [\sigma_T, \sigma_Q, \sigma_P]^\top$. |
+| **Générateur de Symptômes (`SymptomQuantizer`)** | Appliquer les seuils $\pm \tau_i$ avec une bande d'hystérésis $\delta_i$ ($0{,}2\,\sigma_i$) anti-bagottement pour produire le vecteur trivalent $\mathbf{s}(k) \in \{-1, 0, +1\}^3$. |
+| **Matrice de Signatures (`FSM_Repository`)** | Table statique en mémoire protégée par contrôle d'intégrité CRC-32 ([CEI 62645](https://webstore.iec.ch/en/publication/32904)) stockant les vecteurs théoriques $\mathbf{S}_j$ de l'AMDEC. |
+| **Moteur d'Appariement (`SignatureMatcher`)** | Comparer le vecteur observé aux signatures $\mathbf{S}_j$ et calculer la similarité angulaire $\mathcal{A}_j(k) = \cos(\theta_j)$. |
+| **Gestion des cas non résolus** | Signaler un état *Incertain* (si un capteur est en défaut de communication) ou une *Anomalie non répertoriée* $U(k)$ (si le motif ne correspond à aucun $\mathbf{S}_j$). |
+| **Explication du résultat (IHM)** | Afficher la signature observée, le mode $F_j$ identifié, le score de confiance $C_j(k)$ ($0\text{–}100\ \%$) et la justification physique. |
+
+#### Déroulement séquentiel du traitement pas-à-pas (à chaque pas de temps $k$)
+1. **Étape 1 — Acquisition et validation d'intégrité :** Réception du triplet $\mathbf{r}(k) = [r_T(k), r_Q(k), r_P(k)]^\top$ et vérification de la validité des trois capteurs.
+2. **Étape 2 — Normalisation adimensionnelle :** Calcul de $\tilde{r}_i(k) = r_i(k)/\sigma_i$ pour ramener les trois grandeurs ($^\circ\text{C}$, $\text{kg/s}$, $\text{MPa}$) sur une échelle statistique commune.
+3. **Étape 3 — Test d'énergie et génération du symptôme :** Calcul de l'énergie globale $D_M^2(k) = \sum \tilde{r}_i(k)^2$ et codage du vecteur $\mathbf{s}(k) \in \{-1, 0, +1\}^3$.
+4. **Étape 4 — Appariement directionnel et décision :** Évaluation pour chaque mode $F_j$ de la similarité cosinus restreinte au demi-espace positif :
+   $$\mathcal{A}_j(k) = \max\left(0, \frac{\tilde{\mathbf{r}}(k)^\top \mathbf{S}_j}{\|\tilde{\mathbf{r}}(k)\|_2 \cdot \|\mathbf{S}_j\|_2}\right) \in [0, 1]$$
+
+| Condition | Résultat |
+| :--- | :--- |
+| **Une ou plusieurs mesures indisponibles** | **Incertain :** vecteur de résidus incomplet, isolation par signature suspendue. |
+| **$\mathbf{s}(k) = [0, 0, 0]$ et $D_M^2(k) < \chi_{3, 1-\alpha}^2$** | **Compatible avec l'état nominal ($F_0$) :** aucun dépassement significatif. |
+| **$\mathbf{s}(k) = \mathbf{S}_j$ (signature répertoriée)** | **Anomalie identifiée ($F_j$) :** défaut physique ($F_1\text{–}F_3$) ou anomalie cyber/capteur ($F_4\text{–}F_6$) isolé avec confiance $C_j(k)$. |
+| **$\mathbf{s}(k) \neq [0, 0, 0]$ et $\mathbf{s}(k) \notin \{\mathbf{S}_j\}$** | **Anomalie non répertoriée :** écart énergétique fort dont la direction ne correspond à aucun mode connu (défaut multiple ou attaque coordonnée). |
+
+#### Méthode mathématique exacte pour calculer le score de confiance (0 à 100 %)
+Pour éviter qu'un résidu de faible amplitude mais fortuitement aligné avec une signature ne génère une confiance proche de $100\ \%$, le score de confiance combine deux facteurs multiplicatifs :
+1. **La probabilité d'existence d'une anomalie $\mathcal{P}_{\text{anom}}(k) = F_{\chi_3^2}(D_M^2(k)) \in [0, 1]$**, issue de la fonction de répartition de la loi du $\chi^2$ à $3$ degrés de liberté évaluée sur l'énergie globale du résidu.
+2. **La pureté d'alignement directionnel $\mathcal{A}_j(k)^2 = \cos^2(\theta_j) \in [0, 1]$**, mesurant la part de l'énergie du résidu expliquée par la direction propre de la signature $\mathbf{S}_j$.
+
+$$C_j(k) = 100 \times F_{\chi_3^2}\!\left(D_M^2(k)\right) \times \left[\max\left(0, \frac{\tilde{\mathbf{r}}(k)^\top \mathbf{S}_j}{\|\tilde{\mathbf{r}}(k)\|_2 \, \|\mathbf{S}_j\|_2}\right)\right]^2 \quad [\%]$$
+
+Un **indice de résidu inexpliqué** $U(k) = 100 \times F_{\chi_3^2}(D_M^2(k)) \times (1 - \max_j \mathcal{A}_j(k)^2)$ est affiché conjointement pour alerter l'opérateur en cas de mode non répertorié.
+
+#### Exemple illustratif
+Supposons que les seuils normalisés soient fixés à $\tau_i = 3\sigma_i$ :
+- Si les résidus normalisés valent $\tilde{\mathbf{r}} = [+4{,}2, \, -3{,}9, \, +0{,}2]^\top$, le vecteur trivalent vaut $\mathbf{s} = [+1, -1, 0]$, ce qui correspond exactement à la signature $\mathbf{S}_2$ (*Dégradation de pompe primaire*). Avec $D_M^2 = 32{,}9$ ($F_{\chi_3^2} \approx 1$) et $\mathcal{A}_2^2 = 0{,}997$, le système affiche : **« Anomalie $F_2$ (Pompe primaire) — Confiance : $99{,}7\ \%$ »**.
+- Si $\tilde{\mathbf{r}} = [+4{,}5, \, +0{,}1, \, -0{,}1]^\top$, le vecteur $\mathbf{s} = [+1, 0, 0]$ isole la signature $\mathbf{S}_4$ (*Anomalie / Spoofing capteur Température*) avec une confiance de $99{,}9\ \%$.
+
+### 3.4 Analyse critique (Forces, Faiblesses et conformité sûreté)
+
+- **Robustesse face au bruit de mesure et aux cyberattaques :**
+  - *Saut brutal (défaut franc ou attaque par échelon) :* Excellente réactivité ; dès que l'amplitude franchit le seuil $3\sigma$, l'isolation entre défaut physique multiphysique ($F_1\text{–}F_3$) et cyberattaque mono-capteur ($F_4\text{–}F_6$) est immédiate.
+  - *Falsification lente (attaque furtive en rampe ou dérive lente) :* Faiblesse structurelle. Tant que l'amplitude instantanée demeure sous le seuil $\tau_i$ (biais dissimulé dans la bande de bruit $\pm 3\sigma$), le concept est aveugle. De plus, un attaquant connaissant les équations de la boucle ([attaque furtive *Covert Attack*](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html)) pourrait falsifier simultanément $T, Q$ et $P$ en imitant une signature physique.
+- **Temps de latence de la décision vs taux de fausses alertes :**
+  - *Latence minimale ($1$ pas d'échantillonnage $\Delta t$) :* Évaluation purement instantanée sans mémoire temporelle.
+  - *Compromis fausses alertes :* Sans filtrage temporel, une pointe électromagnétique dépassant ponctuellement $3\sigma$ déclenche une alerte brève.
+- **Adéquation avec les exigences des normes CSA N290.7 / CEI 62859 :**
+  - **Conformité [CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) :** Algorithme déterministe, statique et vérifiable formellement ; l'indice de résidu inexpliqué $U(k)$ permet de détecter des combinaisons d'attaques inédites.
+  - **Conformité [CEI 62859](https://webstore.iec.ch/en/publication/26131) :** Très forte explicabilité causale pour l'opérateur grâce au lien direct avec l'AMDEC.
+
+## 4. Concept C (Concept 2) : Décision Séquentielle (Approche Temporelle SPRT / CUSUM)
+
+### 4.1 Présentation du concept et réponse au besoin
+
+#### Principe fondamental et formulation mathématique/logique
+Le concept de décision séquentielle repose sur le [Test Séquentiel du Rapport de Vraisemblance (SPRT) de Wald](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) et sa formulation récursive [CUSUM (Cumulative Sum) de Page](https://www.researchgate.net/publication/281567648_The_CuSum_algorithm_-_a_small_review). Plutôt que de trancher sur une mesure unique, l'algorithme accumule au fil du temps la quantité d'information statistique (rapport de log-vraisemblance) jusqu'à ce que l'évidence cumulée franchisse un seuil garantissant mathématiquement le respect des probabilités maximales de **fausse alarme ($\alpha$)** et de **non-détection ($\beta$)** déclarées.
+
+Pour chaque résidu $r_i(k)$ ($i \in \{T, Q, P\}$), on oppose l'hypothèse nominale $\mathcal{H}_0 : r_i(k) \sim \mathcal{N}(0, \sigma_i^2)$ aux hypothèses alternatives de dérive de moyenne $\mathcal{H}_{1,i}^{\pm} : r_i(k) \sim \mathcal{N}(\pm \mu_{i,m}, \sigma_i^2)$, où $\mu_{i,m} > 0$ désigne l'amplitude minimale de dérive à détecter. Le rapport de log-vraisemblance incrémental $s_i^{\pm}(k)$ et la fonction de décision cumulative $S_i^{\pm}(k)$ s'écrivent :
+
+$$s_i^{\pm}(k) = \ln \frac{f_{1,i}^{\pm}\!\left(r_i(k)\right)}{f_{0,i}\!\left(r_i(k)\right)} = \frac{\mu_{i,m}}{\sigma_i^2} \left( \pm r_i(k) - \frac{\mu_{i,m}}{2} \right) \quad \text{et} \quad S_i^{\pm}(k) = \max\!\left(0, \, S_i^{\pm}(k-1) + s_i^{\pm}(k)\right)$$
+
+Les seuils de décision de Wald $A$ (borne d'acceptation de $\mathcal{H}_0$, remise à zéro) et $B$ (borne d'acceptation de $\mathcal{H}_1$, déclenchement d'alarme) sont liés directement aux risques $(\alpha, \beta)$ :
+
+$$A = \ln\!\left(\frac{\beta}{1 - \alpha}\right) \le 0 \quad \text{et} \quad B = \ln\!\left(\frac{1 - \beta}{\alpha}\right) > 0$$
+
+#### Traitement spécifique des variables de la boucle (Température $T$, Débit $Q$, Pression $P$)
+Chaque variable physique dispose d'un filtre séquentiel adapté à sa dynamique propre dans le [circuit primaire CANDU](https://canteach.candu.org/Content%20Library/20044212.pdf) :
+- **Température ($r_T$) :** Forte inertie thermique. Réglage fin de $\mu_{T,m}$ (ex. $1{,}0\,\sigma_T$) pour détecter précocement un encrassement progressif d'échangeur ou une attaque furtive par dérive lente (*slow drift injection*).
+- **Débit ($r_Q$) :** Bruit hydraulique turbulent élevé. Réglage intermédiaire ($\mu_{Q,m} = 1{,}5\,\sigma_Q$) annulant la turbulence à moyenne nulle tout en intégrant toute perte continue de débit.
+- **Pression ($r_P$) :** Dynamique acoustique rapide. Double étage séquentiel permettant de détecter aussi bien les micro-fuites lentes ($\mu_{P,m_1} = 1{,}0\,\sigma_P$) que les brèches franches ($\mu_{P,m_2} = 3{,}0\,\sigma_P$, franchissant $B$ en 1 à 2 pas).
+- **Surveillance de la variance :** Un accumulateur complémentaire surveille la variance empirique des résidus pour détecter un signal anormalement figé ou rejoué (*replay attack*).
+
+#### Séparation bruit vs anomalie et explicabilité envers l'opérateur de conduite
+- **Séparation bruit vs anomalie physique/cyber :** Sous un bruit centré ($\mathcal{H}_0$), l'espérance de l'incrément est strictement négative ($\mathbb{E}_{\mathcal{H}_0}[s_i^{\pm}(k)] = -\frac{\mu_{i,m}^2}{2\sigma_i^2} < 0$), ce qui ramène systématiquement l'accumulateur $S_i^{\pm}(k)$ à zéro. Sous une dérive réelle ou cyberattaque furtive ($\mathcal{H}_1$), l'espérance devient positive et fait croître $S_i^{\pm}(k)$ de façon monotone jusqu'au seuil $B$.
+- **Explicabilité opérateur :** L'IHM présente l'évolution temporelle de la jauge $S_i^{\pm}(k)$ face au seuil $B$, l'instant estimé d'apparition du défaut $\hat{k}_0$ (dernier passage par zéro de l'accumulateur) et la garantie statistique $(1-\alpha)$.
+
+### 4.2 Schéma de la solution
+
+```mermaid
 graph TD
-    A["Vecteur de résidus [r_T, r_Q, r_P]<br/>et qualité des mesures"] --> C{"Trois résidus valides<br/>et table AMDEC disponible ?"}
-    B["Matrice de signatures (FSM)<br/>et seuils de tolérance τ_i"] --> C
-    C -->|"Oui"| D["Quantification directionnelle<br/>Vecteur symptôme s = [s_T, s_Q, s_P]"]
-    C -->|"Non"| E["État Incertain :<br/>vecteur incomplet et motif"]
-    D --> F["Comparaison du vecteur s<br/>aux signatures théoriques S_j"]
-    F --> G["Transmission du mode identifié,<br/>de la signature et du score de concordance"]
-    E --> G
+    subgraph Entrees ["1. Entrées (Résidus Temps Réel)"]
+        RT["Résidu Température r_T(k)"]
+        RQ["Résidu Débit r_Q(k)"]
+        RP["Résidu Pression r_P(k)"]
+    end
 
+    subgraph Traitement ["2. Calcul du Rapport de Vraisemblance (LLR)"]
+        PARAM["Paramètres de Conception<br/>(σ_i, dérive cible μ_i,m, risques α, β)"]
+        LLR["Incrément Log-Vraisemblance<br/>s_i±(k) = (μ_i,m / σ_i²) · (±r_i(k) - μ_i,m / 2)"]
+    end
+
+    subgraph Memoire ["3. Accumulation Temporelle & Seuils de Wald"]
+        ACC["Accumulateurs Récursifs à Mémoire<br/>S_i±(k) = max(0, S_i±(k-1) + s_i±(k))"]
+        HORODAT["Estimateur d'Instant de Rupture k̂₀<br/>(Dernier passage à zéro de S_i±)"]
+        COMP["Comparateur aux Seuils de Wald<br/>Seuil d'Alarme B = ln((1-β)/α)"]
+    end
+
+    subgraph Sorties ["4. Sorties IHM Salle de Commande"]
+        ETAT["Décision Séquentielle<br/>(H₀ Nominal / Pré-alerte / H₁ Anomalie Confirmée)"]
+        CONF["Confiance Bayésienne P(H₁ | S_i(k)) [0-100 %]<br/>& Garantie Statistique (α, β) + Instant k̂₀"]
+    end
+
+    RT & RQ & RP --> LLR
+    PARAM --> LLR
+    LLR --> ACC
+    ACC --> HORODAT
+    ACC --> COMP
+    PARAM --> COMP
+    COMP --> ETAT
+    COMP --> CONF
+    HORODAT --> CONF
 ```
 
-### Description des composants
+### 4.3 Description des composants et du fonctionnement détaillé
 
-| Composant | Rôle | 
-| ----- | ----- | 
-| **Réception du vecteur de résidus** | Regrouper à chaque pas de temps les écarts de température ($r_T$), débit ($r_Q$) et pression ($r_P$) et vérifier leur disponibilité simultanée. | 
-| **Générateur de symptômes** | Comparer chaque résidu à son seuil $\tau_i$ pour coder le sens de variation ($-1$ baisse, $0$ normal, $+1$ hausse). | 
-| **Matrice de signatures (AMDEC)** | Recenser les vecteurs théoriques $\mathbf{S}_j$ associés aux pannes physiques (fuite, pompe, échangeur) et aux compromissions de capteurs ([CEI 62645](https://webstore.iec.ch/en/publication/32904)). | 
-| **Module d'appariement** | Comparer le vecteur observé $\mathbf{s}$ aux signatures de référence et calculer le degré d'alignement. | 
-| **Gestion des cas non résolus** | Signaler un état incertain ou une anomalie non répertoriée lorsqu'un capteur est indisponible ou qu'aucune signature ne correspond. | 
-| **Explication du résultat** | Présenter à l'opérateur la signature observée, la signature théorique retenue et le score de concordance. | 
+#### Composants clés du module logiciel
 
-### Description du fonctionnement
+| Composant | Rôle fonctionnel et paramètres |
+| :--- | :--- |
+| **Réception séquentielle** | Recevoir les résidus horodatés $r_i(k)$ et contrôler la continuité temporelle de l'échantillonnage. |
+| **Calculateur de Vraisemblance (`LLR_Evaluator`)** | Calculer à chaque pas les incréments directionnels $s_i^+(k)$ et $s_i^-(k)$ à partir de $\sigma_i$ et $\mu_{i,m}$. |
+| **Registre d'Accumulation (`CUSUM_StateBuffer`)** | Mémoriser la somme cumulée $S_i^{\pm}(k-1)$ et le compteur de persistance $N_i^{\pm}(k)$ permettant d'estimer l'instant initial $\hat{k}_{0,i} = k - N_i^{\pm}(k)$. |
+| **Gestionnaire des Seuils (`WaldThresholdManager`)** | Fixer le seuil d'alarme $B = \ln((1-\beta)/\alpha)$ garantissant les probabilités d'erreur choisies (ex. $B = 9{,}21$ pour $\alpha = 10^{-4}, \beta = 10^{-3}$). |
+| **Module de décision séquentielle** | Comparer $S_i^{\pm}(k)$ au seuil $B$ pour classer l'état en *Nominal*, *Pré-alerte (accumulation)*, *Anomalie confirmée* ou *Incertain*. |
+| **Convertisseur de Confiance (`PosteriorConfidenceEngine`)** | Traduire $S_i^{\pm}(k)$ en probabilité bayésienne et en pourcentage de progression vers le seuil certifié $B$. |
 
-1. Le système reçoit le triplet de résidus $[r_T, r_Q, r_P]$ et vérifie que les trois voies de mesure sont valides au même instant.
+#### Déroulement séquentiel du traitement pas-à-pas (à chaque pas de temps $k$)
+1. **Étape 1 — Acquisition et contrôle de continuité :** Réception de $\mathbf{r}(k) = [r_T(k), r_Q(k), r_P(k)]^\top$ et vérification de l'absence de trou d'échantillonnage.
+2. **Étape 2 — Évaluation des log-vraisemblances :** Calcul de $s_i^{\pm}(k) = \frac{\mu_{i,m}}{\sigma_i^2}(\pm r_i(k) - \mu_{i,m}/2)$ sur chaque voie.
+3. **Étape 3 — Mise à jour des accumulateurs et de l'horodatage d'origine :**
+   - Si $S_i^{\pm}(k-1) + s_i^{\pm}(k) \le 0$ : réinitialisation $S_i^{\pm}(k) = 0$ et remise à zéro du compteur $N_i^{\pm}(k) = 0$.
+   - Sinon : maintien $S_i^{\pm}(k) = S_i^{\pm}(k-1) + s_i^{\pm}(k)$, incrémentation $N_i^{\pm}(k) = N_i^{\pm}(k-1) + 1$ et calcul de l'instant de début $\hat{k}_{0,i} = k - N_i^{\pm}(k)$.
+4. **Étape 4 — Règle d'arrêt de Wald :**
 
-2. Il applique les seuils $\pm \tau_i$ pour construire le vecteur symptôme observé $\mathbf{s} = [s_T, s_Q, s_P]$.
+| Condition | Résultat |
+| :--- | :--- |
+| **Perte de continuité temporelle des mesures** | **Incertain :** accumulation interrompue, décision suspendue jusqu'à réinitialisation. |
+| **$S_i^{\pm}(k) = 0$** | **Compatible avec l'état nominal ($\mathcal{H}_0$) :** fluctuations aléatoires résorbées par la moyenne nulle. |
+| **$0 < S_i^{\pm}(k) < B$** | **Zone d'indécision (Pré-alerte) :** dérive suspectée mais évidence encore insuffisante pour garantir $(\alpha, \beta)$ ; poursuite de l'accumulation. |
+| **$S_i^{\pm}(k) \ge B$** | **Anomalie confirmée ($\mathcal{H}_1$) :** dérive persistante détectée avec risque de fausse alarme borné par $\alpha$ et de non-détection borné par $\beta$. |
 
-3. Il compare ce vecteur aux colonnes $\mathbf{S}_j$ de la matrice de signatures AMDEC.
+#### Méthode mathématique exacte pour calculer le score de confiance (0 à 100 %)
+Le cadre [SPRT de Wald](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) fournit deux métriques complémentaires pour l'IHM :
+1. **Confiance bayésienne a posteriori (sous a priori neutre $P(\mathcal{H}_1) = P(\mathcal{H}_0) = 0{,}5$) :** Avec $S_i(k) = \max(S_i^+(k), S_i^-(k))$, la probabilité a posteriori vaut :
+   $$P(\mathcal{H}_1 \mid S_i(k)) = \frac{e^{S_i(k)}}{1 + e^{S_i(k)}} = \frac{1}{1 + e^{-S_i(k)}}$$
+2. **Indice de confiance opérationnel normalisé sur $[0, 100\ \%]$ :** Afin que $S_i(k) = 0$ affiche $0\ \%$ et que le franchissement du seuil $S_i(k) = B$ affiche le niveau de confiance certifié $(1 - \alpha) \times 100\ \%$ :
 
-4. Il applique la règle de décision suivante :
+$$C_i(k) = 100 \times (1 - \alpha) \times \min\!\left(1, \, \frac{S_i(k)}{B}\right) = 100 \times (1 - \alpha) \times \min\!\left(1, \, \frac{S_i(k)}{\ln\!\left(\frac{1-\beta}{\alpha}\right)}\right) \quad [\%]$$
 
-| Condition | Résultat | 
-| ----- | ----- | 
-| **Une ou plusieurs mesures indisponibles** | **Incertain :** vecteur incomplet, isolation par signature impossible. | 
-| $\mathbf{s} = [0, 0, 0]$ | **Compatible avec l'état nominal :** aucun dépassement de seuil observé. | 
-| $\mathbf{s} = \mathbf{S}_j$ **(signature répertoriée)** | **Anomalie identifiée (**$F_j$**) :** défaut physique (multi-variables) ou anomalie capteur/cyber (mono-variable) isolé. | 
-| $\mathbf{s} \neq [0, 0, 0]$ **et** $\mathbf{s} \notin \{\mathbf{S}_j\}$ | **Anomalie non répertoriée :** écart réel dont le motif ne correspond à aucun scénario connu (défaut multiple ou attaque inédite). | 
+#### Exemple illustratif
+Pour un réglage $\alpha = 1\ \%$ et $\beta = 1\ \%$ donnant un seuil d'alarme $B = \ln(0{,}99 / 0{,}01) \approx 4{,}6$ :
+- Une pointe de bruit isolée fait monter ponctuellement $S(k)$ à $1{,}8$ (pré-alerte à $38\ \%$ du seuil), puis les mesures suivantes normales ramènent $S(k)$ à $0$ sans déclencher d'alarme sonore.
+- Une cyberattaque furtive créant un léger biais constant fait croître $S(k)$ pas après pas ($1{,}2 \rightarrow 2{,}5 \rightarrow 3{,}9 \rightarrow 4{,}8$) : au quatrième pas, $S(k) \ge 4{,}6$ déclenche l'alarme avec une confiance garantie de $99\ \%$ et indique que l'anomalie a débuté $4$ pas plus tôt ($\hat{k}_0 = k - 4$).
 
-Il transmet le diagnostic et le motif observé à l'interface opérateur, sans action directe sur le procédé ([CEI 62859](https://webstore.iec.ch/en/publication/26131)).
+### 4.4 Analyse critique (Forces, Faiblesses et conformité sûreté)
 
-### Exemple illustratif
+- **Robustesse face au bruit de mesure et aux cyberattaques :**
+  - *Bruit de mesure et transitoires impulsifs :* Immunité maximale ; les pointes isolées sont absorbées sans fausse alarme.
+  - *Cyberattaques furtives (biais faible / dérive lente / rejeu) :* Avantage décisif ; même un biais inférieur à $1\sigma_i$ (invisible pour les Concepts A et B) est intégré dans le temps jusqu'à franchir $B$.
+  - *Limite d'isolation :* Pris voie par voie, le test détecte *quelle* variable dérive et *depuis quand* ($\hat{k}_0$), mais nécessite un couplage inter-voies pour nommer le composant physique défaillant.
+- **Temps de latence de la décision vs taux de fausses alertes :**
+  - *Optimalité de Wald-Wolfowitz :* Pour un couple $(\alpha, \beta)$ donné, le SPRT minimise le temps moyen avant détection :
+    $$\mathbb{E}[N_{\text{détection}}] \approx \frac{2 \sigma_i^2 \ln\!\left(\frac{1-\beta}{\alpha}\right)}{\mu_{i,m} \left(2 |\mu_{\text{réel}}| - \mu_{i,m}\right)}$$
+    La détection prend $1$ à $3$ pas sur un défaut franc ($>4\sigma_i$) et environ $10$ à $20$ pas sur une dérive très faible ($\approx 1\sigma_i$).
+- **Adéquation avec les exigences des normes CSA N290.7 / CEI 62859 :**
+  - **Conformité [CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) :** Détection spécifique des compromissions lentes d'intégrité (*Data Integrity Attacks*).
+  - **Conformité [CEI 62859](https://webstore.iec.ch/en/publication/26131) :** Maîtrise formelle des probabilités $(\alpha, \beta)$ évitant la fatigue d'alarme en salle de commande.
 
-Supposons que la matrice AMDEC définisse la signature $[+1, -1, 0]$ pour une dégradation de pompe primaire (hausse de température et baisse de débit à pression stable) et $[+1, 0, 0]$ pour un biais ou une attaque sur le capteur de température :
+## 5. Définition de l'Évaluation des Concepts (Grille Pondérée, Barèmes et Spécifications)
 
-* Si les résidus codés donnent $[0, 0, 0]$, le comportement est jugé nominal.
-
-* Si le vecteur observé vaut $[+1, -1, 0]$, le système signale une anomalie physique compatible avec une perte de débit de pompage.
-
-* Si le vecteur observé vaut $[+1, 0, 0]$, le système signale une anomalie isolée sur la chaîne de mesure de température (suspicion de dérive capteur ou de falsification cyber).
-
-Ces signatures illustrent la logique d'isolation ; la table complète dépend des modes retenus lors de l'AMDEC du prototype.
-
-### Expression de la confiance et limites
-
-L'interface présente le vecteur observé à côté de la signature théorique retenue, accompagné d'un indice de concordance (calculé par similarité angulaire entre le vecteur de résidus normalisés et la signature idéale). Une concordance élevée indique que la direction des écarts correspond fidèlement au scénario AMDEC, mais ne constitue pas une preuve absolue en cas d'attaque coordonnée imitant une signature physique.
-
-Ce concept permet un diagnostic causal immédiat et très explicable lors d'un défaut franc. En revanche, étant purement instantané, il est sensible aux pointes de bruit passagères et ne détecte pas les dérives lentes tant qu'elles restent inférieures aux seuils $\tau_i$.
-
-## Concept C : Décision séquentielle (Accumulation temporelle SPRT / CUSUM)
-
-### Présentation du concept
-
-Ce concept consiste à accumuler l'information statistique des résidus au fil du temps avant de prendre une décision, en s'appuyant sur le [test séquentiel du rapport de vraisemblance (SPRT) de Wald](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) ou la [somme cumulée (CUSUM)](https://www.researchgate.net/publication/281567648_The_CuSum_algorithm_-_a_small_review).
-
-L'objectif est double : éliminer les fausses alertes provoquées par des pointes de bruit isolées et détecter des anomalies de faible amplitude mais persistantes (usure progressive ou cyberattaque furtive par dérive lente). Plutôt que d'utiliser un seuil instantané fixe, le concept définit la règle d'arrêt à partir des risques d'erreur déclarés : la probabilité maximale de **fausse alarme (**$\alpha$**)** et la probabilité maximale de **non-détection (**$\beta$**)**.
-
-À chaque pas de temps $k$, le résidu alimente une somme cumulée positive $S(k)$ qui évalue la persistance d'un écart par rapport au bruit nominal :
-
-$$
-S(k) = \max\!\big(0, \, S(k-1) + s(k)\big) \quad \text{avec un seuil d'alarme } B = \ln\!\left(\frac{1 - \beta}{\alpha}\right)
-$$
-
-où $s(k)$ est l'incrément de log-vraisemblance (négatif en moyenne sous un bruit centré, positif en présence d'une dérive persistante).
-
-### Schéma de la solution
-
-```
-graph TD
-    A["Résidus horodatés r(k)<br/>et continuité de l'échantillonnage"] --> C{"Séquence temporelle valide<br/>et paramètres (α, β) définis ?"}
-    B["Paramètres statistiques du bruit<br/>et risques tolérés (α, β)"] --> C
-    C -->|"Oui"| D["Mise à jour de l'accumulateur<br/>S(k) = max(0, S(k-1) + s(k))"]
-    C -->|"Non"| E["État Incertain :<br/>historique interrompu et motif"]
-    D --> F["Comparaison de S(k)<br/>au seuil d'alarme B = ln((1-β)/α)"]
-    F --> G["Transmission de l'état (Normal, Pré-alerte, Anomalie)<br/>et des garanties (α, β) à l'interface"]
-    E --> G
-
-```
-
-### Description des composants
-
-| Composant | Rôle | 
-| ----- | ----- | 
-| **Réception séquentielle** | Recevoir les résidus horodatés et vérifier la continuité temporelle de l'échantillonnage. | 
-| **Calculateur d'incrément** | Évaluer à chaque pas de temps le score élémentaire $s(k)$ comparant l'hypothèse de dérive à l'hypothèse de bruit centré. | 
-| **Accumulateur à mémoire** | Mettre à jour la somme cumulée $S(k)$ à partir de la valeur précédente $S(k-1)$ et mémoriser l'instant de début d'accumulation. | 
-| **Gestionnaire des seuils (**$\alpha, \beta$**)** | Calculer la limite de décision $B = \ln((1-\beta)/\alpha)$ garantissant le respect des taux d'erreur choisis. | 
-| **Module de décision séquentielle** | Déterminer si l'état est normal ($S(k) = 0$), en observation ($0 < S(k) < B$) ou en anomalie confirmée ($S(k) \ge B$). | 
-| **Explication du résultat** | Afficher l'évolution de la somme cumulée $S(k)$, la limite $B$, l'instant de début de dérive et les risques $(\alpha, \beta)$ garantis. | 
-
-### Description du fonctionnement
-
-1. Le système reçoit le résidu à l'instant $k$ et vérifie l'absence de perte prolongée d'échantillons.
-
-2. Il calcule l'incrément statistique $s(k)$ à partir des caractéristiques nominales du bruit.
-
-3. Il met à jour l'accumulateur $S(k) = \max(0, S(k-1) + s(k))$ et le compare au seuil $B$ fixé par $(\alpha, \beta)$.
-
-4. Il applique la règle de décision séquentielle :
-
-| Condition | Résultat | 
-| ----- | ----- | 
-| **Perte de continuité temporelle des mesures** | **Incertain :** accumulation interrompue, décision suspendue. | 
-| $S(k) = 0$ | **Compatible avec l'état nominal :** fluctuations aléatoires résorbées par la moyenne nulle. | 
-| $0 < S(k) < B$ | **Zone d'indécision (Pré-alerte) :** dérive suspectée mais information encore insuffisante pour garantir $(\alpha, \beta)$ ; poursuite de l'accumulation. | 
-| $S(k) \ge B$ | **Anomalie confirmée :** dérive persistante détectée au niveau de risque déclaré $(\alpha, \beta)$. | 
-
-Il transmet l'état séquentiel, la progression $S(k)/B$ et l'horodatage de début de dérive à l'interface, sans commander le système ([CEI 62859](https://webstore.iec.ch/en/publication/26131)).
-
-### Exemple illustratif
-
-Supposons que l'on fixe un risque de fausse alarme $\alpha = 1\ \%$ et de non-détection $\beta = 1\ \%$, ce qui conduit à un seuil d'alarme $B = \ln(0{,}99 / 0{,}01) \approx 4{,}6$ :
-
-* Une pointe de bruit isolée fait monter ponctuellement $S(k)$ à $1{,}8$, puis les mesures suivantes normales ramènent $S(k)$ à $0$ sans déclencher d'alerte.
-
-* Une cyberattaque furtive ou une micro-fuite créant un léger biais constant fait croître $S(k)$ pas après pas ($1{,}2 \rightarrow 2{,}5 \rightarrow 3{,}9 \rightarrow 4{,}8$) : au quatrième pas, $S(k)$ dépasse $4{,}6$ et déclenche l'alarme confirmée.
-
-* Si la communication capteur est coupée durant la séquence, l'état bascule en incertain.
-
-Ces valeurs illustrent l'accumulation temporelle ; les risques $\alpha$ et $\beta$ seront fixés selon les objectifs de sûreté du prototype.
-
-### Expression de la confiance et limites
-
-L'interface présente le ratio de progression $S(k)/B$ ainsi que les probabilités d'erreur $(\alpha, \beta)$ associées au seuil $B$. Lorsque le seuil $B$ est franchi, la confiance s'exprime directement par le niveau de garantie statistique $(1 - \alpha)$ (soit $99\ \%$ dans l'exemple ci-dessus), sous réserve que le modèle de bruit nominal soit valide.
-
-Un choix de risques $(\alpha, \beta)$ très stricts augmente le seuil $B$, ce qui réduit fortement les fausses alertes mais rallonge le temps d'accumulation avant déclaration d'une anomalie faible. Enfin, ce concept détecte avec une grande finesse *quand* une variable commence à dériver ([CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/)), mais nécessite d'analyser conjointement les trois voies $(T, Q, P)$ pour identifier le composant physique en cause.
-
-## Synthèse comparative et articulation des trois concepts (Lot L7)
-
-| Critère de comparaison | Concept A : Budget d'incertitude ([NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty)) | Concept B : Décision par signature ([AMDEC / FSM](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html)) | Concept C : Décision séquentielle ([SPRT](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) / [CUSUM](https://www.researchgate.net/publication/281567648_The_CuSum_algorithm_-_a_small_review)) | 
-| ----- | ----- | ----- | ----- | 
-| **Principe de décision** | Comparaison d'un résidu $r$ à son incertitude élargie $U_r = k \cdot u_c(r)$. | Comparaison du triplet $[r_T, r_Q, r_P]$ à une table de signatures défaut-symptôme. | Accumulation temporelle $S(k)$ jusqu'au seuil $B = \ln((1-\beta)/\alpha)$. | 
-| **Expression de la confiance** | Intervalle de couverture métrologique (ex. $95\ \%$ pour $k=2$). | Degré de concordance directionnelle avec une signature connue. | Garantie statistique bornée par les probabilités d'erreur $(\alpha, \beta)$. | 
-| **Force principale** | Rigueur métrologique et justification physique directe du seuil $U_r$. | Isolation causale immédiate (distingue panne physique vs attaque capteur). | Immunité aux pointes de bruit et détection des dérives lentes furtives. | 
-| **Limite principale** | Aveugle aux dérives inférieures à $U_r$ et sensible aux pics dépassant $U_r$. | Nécessite une base AMDEC exhaustive ; pas de mémoire temporelle. | Introduit un délai d'accumulation ; n'identifie pas seul la cause physique. | 
-
-
-## Définition de l'évaluation des concepts (Grille de critères, pondérations et barèmes)
-
-Afin de comparer objectivement les **Concepts A, B et C** pour la fonction *« Décider si un résidu traduit une anomalie, et dire avec quelle confiance »*, la grille suivante définit les critères d'évaluation, leur pondération (total de **100 points**), les barèmes de notation gradués ainsi que les spécifications minimales et maximales exigées par le cadre de sûreté ([CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/), [CEI 62645](https://webstore.iec.ch/en/publication/32904), [CEI 62859](https://webstore.iec.ch/en/publication/26131)).
+La grille suivante définit les critères d'évaluation, leur pondération (total de **100 points**), les barèmes gradués et les spécifications minimales et maximales permettant d'évaluer les **Concepts A, B et C** pour le Lot L7.
 
 | Critères | Pondération | Barèmes | Spécification min. | Spécification max. |
 | :--- | :---: | :--- | :---: | :---: |
@@ -272,16 +337,9 @@ Afin de comparer objectivement les **Concepts A, B et C** pour la fonction *« D
 | ↳ Effort de paramétrage et mise en œuvre logicielle | 10 | • $\le 3$ paramètres par voie (calcul récursif direct) $\rightarrow 100\ \%$<br>• $4$ à $6$ paramètres (table AMDEC ou budget simple) $\rightarrow 75\ \%$<br>• $> 6$ paramètres avec corrélations complexes $\rightarrow 50\ \%$<br>• Algorithme non déterministe $\rightarrow \text{rejet}$ | Algorithme déterministe | — |
 | **TOTAL** | **100** | | | |
 
-### Justification des pondérations et application aux trois concepts
+### Résultat de l'évaluation pondérée et synthèse comparative
 
-1. **Performance de détection et diagnostic (40 pts) :** Cœur fonctionnel du Lot L7. Le système doit réagir vite sur un défaut franc ($15\text{ pts}$) tout en décelant les dérives lentes ou cyberattaques furtives ($15\text{ pts}$) et en aidant à distinguer une panne thermohydraulique d'un défaut de capteur ($10\text{ pts}$).
-2. **Fiabilité et quantification de la confiance (35 pts) :** Répond directement à la seconde moitié de la fonction (*« dire avec quelle confiance »*). Un système nucléaire ([CEI 62859](https://webstore.iec.ch/en/publication/26131)) doit borner le risque de fausses alertes ($10\text{ pts}$), fonder mathématiquement son niveau de confiance ($15\text{ pts}$) et suspendre sa conclusion lorsque les mesures sont incomplètes ($10\text{ pts}$).
-3. **Sûreté de conduite et explicabilité (15 pts) :** Garantit l'absence d'automatisme aveugle ($5\text{ pts}$, critère éliminatoire en cas de commande directe) et la transparence du diagnostic présenté à l'opérateur ($10\text{ pts}$).
-4. **Simplicité d'implantation et de calibration (10 pts) :** Évalue la facilité de réglage et de vérification formelle du module logiciel dans le prototype ([CEI 62645](https://webstore.iec.ch/en/publication/32904)).
-
-### Résultat de l'évaluation pondérée des trois concepts
-
-| Sous-critère | Poids | Concept A : Budget d'incertitude | Concept B : Décision par signature | Concept C : Décision séquentielle |
+| Sous-critère d'évaluation | Poids | Concept A : Budget d'incertitude ([NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty)) | Concept B : Décision par signature ([AMDEC / FSM](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html)) | Concept C : Décision séquentielle ([SPRT](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) / [CUSUM](https://www.researchgate.net/publication/281567648_The_CuSum_algorithm_-_a_small_review)) |
 | :--- | :---: | :---: | :---: | :---: |
 | Détection des dérives lentes / cyber furtives | 15 | $50\ \%$ ($7{,}5\text{ pts}$) | $50\ \%$ ($7{,}5\text{ pts}$) | $100\ \%$ ($15{,}0\text{ pts}$) |
 | Temps de latence sur anomalie franche | 15 | $100\ \%$ ($15{,}0\text{ pts}$) | $100\ \%$ ($15{,}0\text{ pts}$) | $75\ \%$ ($11{,}25\text{ pts}$) |
@@ -293,3 +351,9 @@ Afin de comparer objectivement les **Concepts A, B et C** pour la fonction *« D
 | Clarté et justification à l'interface | 10 | $75\ \%$ ($7{,}5\text{ pts}$) | $100\ \%$ ($10{,}0\text{ pts}$) | $75\ \%$ ($7{,}5\text{ pts}$) |
 | Effort de paramétrage et d'implantation | 10 | $50\ \%$ ($5{,}0\text{ pts}$) | $75\ \%$ ($7{,}5\text{ pts}$) | $100\ \%$ ($10{,}0\text{ pts}$) |
 | **Total pondéré (sur 100 points)** | **100** | **73,75 / 100** | **77,50 / 100** | **91,25 / 100** |
+
+### Recommandation d'architecture hybride pour le prototype Gentilly-2
+Pour combiner les forces des trois approches au sein du Lot L7 :
+1. **Calibration des seuils par le budget d'incertitude (Concept A) :** Utiliser l'incertitude composée $u_c(r_i)$ du [NIST TN 1297](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty) pour dimensionner rigoureusement l'écart-type de référence $\sigma_i = u_c(r_i)$ de chaque voie $(T, Q, P)$.
+2. **Détection et garantie probabiliste $(\alpha, \beta)$ par test séquentiel (Concept C) :** Appliquer l'accumulateur [SPRT/CUSUM](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) sur les résidus normalisés afin de filtrer les pointes de bruit et détecter les dérives lentes avec une confiance garantie $(1-\alpha)$.
+3. **Isolation causale par matrice de signatures AMDEC (Concept B) :** Dès qu'un accumulateur franchit son seuil $B$, projeter le vecteur des accumulateurs $[\text{sign}(r_T)S_T, \text{sign}(r_Q)S_Q, \text{sign}(r_P)S_P]^\top$ sur la [Matrice de Signatures FSM](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html) pour indiquer à l'opérateur s'il s'agit d'une défaillance physique ($F_1\text{–}F_3$) ou d'une cyberattaque capteur ($F_4\text{–}F_6$).
