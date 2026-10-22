@@ -4,6 +4,50 @@
 **Fonction technique (Lot L7) :** *« Décider si un résidu traduit une anomalie, et dire avec quelle confiance. »*  
 **Cadre normatif :** [CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) (Cybersécurité pour les installations nucléaires), [CEI 62645](https://webstore.iec.ch/en/publication/32904) (Sécurité des systèmes d'instrumentation et de contrôle) et [CEI 62859](https://webstore.iec.ch/en/publication/26131) (Coordination entre la sûreté et la cybersécurité).
 
+
+## Sommaire
+
+* [1. Contexte et Rôle de la Fonction de Décision](#1-contexte-et-rôle-de-la-fonction-de-décision)
+
+* [2. Concept A : Décision par Budget d'Incertitude (Approche Métrologique)](#2-concept-a-décision-par-budget-dincertitude-approche-métrologique)
+
+  * [2.1 Présentation du concept et réponse au besoin](#21-présentation-du-concept-et-réponse-au-besoin)
+
+  * [2.2 Schéma de la solution](#22-schéma-de-la-solution)
+
+  * [2.3 Description des composants](#23-description-des-composants)
+
+  * [2.4 Description du fonctionnement et évaluation de la confiance](#24-description-du-fonctionnement-et-évaluation-de-la-confiance)
+
+  * [2.5 Expression de la confiance, limites et conformité sûreté](#25-expression-de-la-confiance-limites-et-conformité-sûreté)
+
+* [3. Concept B : Décision par Signature (Approche Spatiale AMDEC / FSM)](#3-concept-b-décision-par-signature-approche-spatiale-amdec--fsm)
+
+  * [3.1 Présentation du concept et réponse au besoin](#31-présentation-du-concept-et-réponse-au-besoin)
+
+  * [3.2 Schéma de la solution](#32-schéma-de-la-solution)
+
+  * [3.3 Description des composants](#33-description-des-composants)
+
+  * [3.4 Description du fonctionnement et évaluation de la confiance](#34-description-du-fonctionnement-et-évaluation-de-la-confiance)
+
+  * [3.5 Expression de la confiance, limites et conformité sûreté](#35-expression-de-la-confiance-limites-et-conformité-sûreté)
+
+* [4. Concept C : Décision Séquentielle (Approche Temporelle SPRT / CUSUM)](#4-concept-c-décision-séquentielle-approche-temporelle-sprt--cusum)
+
+  * [4.1 Présentation du concept et réponse au besoin](#41-présentation-du-concept-et-réponse-au-besoin)
+
+  * [4.2 Schéma de la solution](#42-schéma-de-la-solution)
+
+  * [4.3 Description des composants](#43-description-des-composants)
+
+  * [4.4 Description du fonctionnement et évaluation de la confiance](#44-description-du-fonctionnement-et-évaluation-de-la-confiance)
+
+  * [4.5 Expression de la confiance, limites et conformité sûreté](#45-expression-de-la-confiance-limites-et-conformité-sûreté)
+
+* [5. Définition de l'Évaluation des Concepts (Grille de Critères, Barèmes et Spécifications)](#5-définition-de-lévaluation-des-concepts-grille-de-critères-barèmes-et-spécifications)
+
+
 ## 1. Contexte et Rôle de la Fonction de Décision
 
 À chaque pas de temps $k$, le jumeau numérique compare les mesures issues des capteurs de la boucle aux valeurs prédites par le modèle thermohydraulique de référence. Il produit ainsi trois résidus correspondant aux variables physiques surveillées :
