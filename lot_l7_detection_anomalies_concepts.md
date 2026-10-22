@@ -24,7 +24,7 @@ où $k$ est un facteur de couverture choisi et justifié. Cette construction sui
 
 ### Schéma de la solution
 
-```
+```mermaid
 graph TD
     A["Résidus calculés, variables concernées<br/>et qualité des données"] --> C{"Données et budget<br/>d'incertitude exploitables ?"}
     B["Budget d'incertitude<br/>(mesures, modèle, corrélations)"] --> C
@@ -103,7 +103,7 @@ Le vecteur observé $\mathbf{s} = [s_T, s_Q, s_P]$ est ensuite comparé aux sign
 
 ### Schéma de la solution
 
-```
+```mermaid
 graph TD
     A["Vecteur de résidus [r_T, r_Q, r_P]<br/>et qualité des mesures"] --> C{"Trois résidus valides<br/>et table AMDEC disponible ?"}
     B["Matrice de signatures (FSM)<br/>et seuils de tolérance τ_i"] --> C
@@ -181,7 +181,7 @@ où $s(k)$ est l'incrément de log-vraisemblance (négatif en moyenne sous un br
 
 ### Schéma de la solution
 
-```
+```mermaid
 graph TD
     A["Résidus horodatés r(k)<br/>et continuité de l'échantillonnage"] --> C{"Séquence temporelle valide<br/>et paramètres (α, β) définis ?"}
     B["Paramètres statistiques du bruit<br/>et risques tolérés (α, β)"] --> C
