@@ -18,10 +18,11 @@ Deux conventions, reprises du gabarit du cours. Un barème à **0 %** signifie q
 | | | obtenu par une règle ajoutée et vérifiable par essai -> 75 % | | |
 | | | rendu par une simple absence d'alarme -> 0 % | | |
 | | | aucun état « incertain » possible -> rejet | | |
-| Traçabilité de la conclusion affichée | 12 | hypothèses écartées et motifs affichés, détail à 1 geste -> 100 % | | 1 geste |
-| | | variables contributrices affichées, détail à 1 geste -> 75 % | | |
-| | | variables contributrices affichées, détail au-delà de 1 geste -> 50 % | | |
-| | | conclusion affichée sans chemin vers son origine -> rejet | | |
+| Adéquation entre ce que le concept conclut et ce qu'il justifie | 12 | tout élément affiché que l'opérateur pourrait prendre pour une conclusion est accompagné de son fondement, accessible en 1 geste, y compris les éléments écartés lorsque le concept en écarte -> 100 % | | 1 geste |
+| | | toute conclusion affichée est accompagnée de son fondement en 1 geste, mais les éléments écartés ne sont pas montrés -> 75 % | | |
+| | | le fondement existe mais demande plus de 1 geste -> 50 % | | |
+| | | le fondement n'est consultable que dans le code ou la documentation -> 0 % | | |
+| | | une conclusion est affichée sans aucun fondement consultable -> rejet | | |
 | Résistance à l'erreur d'interprétation | 8 | jamais une seule conclusion affichée, ex aequo non départagés -> 100 % | 2 hypothèses | 5 hypothèses |
 | | | plusieurs conclusions affichées mais ex aequo départagés -> 75 % | | |
 | | | une seule conclusion affichée, ordre non fondé sur la gravité -> 50 % | | |
@@ -74,11 +75,13 @@ Deux conventions, reprises du gabarit du cours. Un barème à **0 %** signifie q
 
 Le barème n'a pas été écrit pour favoriser le concept dont j'ai la charge, et deux lignes le montrent.
 
-Sur la **traçabilité de la conclusion affichée**, le concept C atteint 100 % parce qu'il affiche les hypothèses écartées avec leur motif, ce que les concepts A et B n'ont pas à faire puisqu'ils ne concluent pas ou concluent moins. Mais c'est aussi le seul des trois pour lequel la ligne « conclusion affichée sans chemin vers son origine » constitue un risque réel de rejet, parce qu'il est le seul à produire une conclusion de haut niveau.
+Sur l'**adéquation entre ce que le concept conclut et ce qu'il justifie**, les trois concepts peuvent atteindre 100 %, mais chacun par un travail différent. Le concept A y parvient en n'affichant aucune conclusion qu'il ne puisse justifier, ses variables et leurs écarts étant déjà à l'écran. Le concept C doit en faire bien davantage, puisqu'il est le seul à produire une conclusion de haut niveau : il lui faut afficher les hypothèses écartées avec leur motif pour atteindre le même niveau. Le critère est donc le plus exigeant pour le concept C, et c'est volontaire.
+
+Une version antérieure de cette ligne donnait 100 % à « hypothèses écartées et motifs affichés », ce que seul le concept C pouvait offrir, et plafonnait le concept A à 75 % pour une raison qui n'est pas un défaut, puisqu'il n'a aucune conclusion à tracer. Le critère a été reformulé pour mesurer l'adéquation plutôt que la quantité de justification.
 
 Sur la **résistance à l'erreur d'interprétation**, le concept C part avec le handicap le plus lourd des trois, l'ancrage sur la première hypothèse, et il ne peut atteindre 100 % qu'au prix des quatre dispositions décrites dans sa définition. Le concept A, qui n'affiche aucune conclusion, y est bon sans effort.
 
-Autrement dit, ce barème récompense la traçabilité que le concept C est seul à pouvoir offrir, et il le pénalise sur le risque qu'il est seul à créer. C'est la condition pour que la comparaison tienne devant l'équipe.
+Autrement dit, ce barème n'avantage le concept C sur aucun critère, et il le pénalise sur le risque qu'il est seul à créer. C'est la condition pour que la comparaison tienne devant l'équipe.
 
 ---
 
