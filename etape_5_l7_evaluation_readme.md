@@ -1,0 +1,54 @@
+# Étape 5 — Analyse des Solutions par Caractéristiques Voulues (Lot L7)
+
+**Projet :** Jumeau numérique cyberrésilient — Boucle thermohydraulique simplifiée (inspirée du [circuit de caloportage primaire CANDU 6](https://canteach.candu.org/Content%20Library/20044212.pdf) de la centrale [Gentilly-2 d'Hydro-Québec](https://archives.bape.gouv.qc.ca/sections/mandats/gentilly-2/documents/DA22-1.pdf))  
+**Fonction évaluée (Lot L7) :** *« Décider si un résidu traduit une anomalie, et dire avec quelle confiance. »*  
+**Fichier Excel associé :** `Etape_5_L7_Evaluation_remplie.xlsx`  
+**Cadre normatif de référence :** [CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/) (Cybersécurité pour les installations nucléaires), [CEI 62645](https://webstore.iec.ch/en/publication/32904) (Sécurité des systèmes d'I&C) et [CEI 62859](https://webstore.iec.ch/en/publication/26131) (Coordination entre la sûreté et la cybersécurité).
+
+## 1. Synthèse du Classement Global
+
+*Notes et poids repris de la grille de définition de l'évaluation (Section 5 du document des concepts). Évaluation de conception a priori, sans résultats d'essais expérimentaux fournis.*
+
+| Indicateur de synthèse | A — Budget d'incertitude ([NIST TN 1297](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty)) | B — Décision par signature ([AMDEC / FSM](https://drops.dagstuhl.de/storage/01oasics/oasics-vol136-dx2025/html/OASIcs.DX.2025.15/OASIcs.DX.2025.15.html)) | C — Décision séquentielle ([SPRT](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) / [CUSUM](https://www.researchgate.net/publication/281567648_The_CuSum_algorithm_-_a_small_review)) |
+| :--- | :---: | :---: | :---: |
+| **Score global pondéré** | **73,75 %** ($0{,}7375$) | **77,50 %** ($0{,}7750$) | **91,25 %** ($0{,}9125$) |
+| **Classement selon le README** | **3** | **2** | **1** |
+| **Solution préférée selon les notes** | — | — | **C — Décision séquentielle** |
+| **Statut d'admissibilité (critères éliminatoires)** | Admissible ($0$ rejet) | Admissible ($0$ rejet) | Admissible ($0$ rejet) |
+
+## 2. Grille Complète d'Analyse des Solutions par Caractéristiques Voulues
+
+| Priorité | N° | Critère de décision | Poids | Pointage /10 (A) | Résultat pondéré (A) | Commentaires et justification (A — Budget d'incertitude) | Pointage /10 (B) | Résultat pondéré (B) | Commentaires et justification (B — Décision par signature) | Pointage /10 (C) | Résultat pondéré (C) | Commentaires et justification (C — Décision séquentielle) |
+| :---: | :---: | :--- | :---: | :---: | :---: | :--- | :---: | :---: | :--- | :---: | :---: | :--- |
+| — | — | **Performance de détection et diagnostic** | **40 %** | — | **27,50 %** | — | — | **32,50 %** | — | — | **33,75 %** | — |
+| 1 | 1 | Détection des dérives lentes et cyberattaques furtives | 15 % | 5,0 | 7,50 % | Seuil statique ($2{,}5\,\sigma < \text{écart} \le 3{,}5\,\sigma$) : faible dérive sous la limite $U_r$ non signalée. | 5,0 | 7,50 % | Seuils statiques ($\pm \tau_i \approx 3\,\sigma$) : dérives lentes sous les tolérances non détectées. | 10,0 | 15,00 % | Accumulation temporelle détectant un biais $\le 1{,}5\,\sigma$ sur un horizon $\le 20\,\Delta t$. Sensibilité à mesurer. |
+| 1 | 2 | Temps de latence sur anomalie franche | 15 % | 10,0 | 15,00 % | Comparaison instantanée à chaque pas ; latence d'un pas ($t \le 1\,\Delta t$) sur saut franc. | 10,0 | 15,00 % | Appariement instantané à chaque pas ; latence d'un pas ($t \le 1\,\Delta t$) sur saut franc. | 7,5 | 11,25 % | Détection en $1$ à $3\,\Delta t$ sur saut franc ($> 4\,\sigma$) ; délai plus long sur faible dérive à mesurer. |
+| 2 | 3 | Capacité d'isolation physique ou cyber capteur | 10 % | 5,0 | 5,00 % | Localise la variable en dépassement ($T, Q$ ou $P$), sans attribution causale. | 10,0 | 10,00 % | Signatures AMDEC prévues pour isoler panne physique et attaque mono-capteur (hors attaque coordonnée). | 7,5 | 7,50 % | Identifie la variable en dérive et l'instant initial $\hat{k}_0$ ; pas d'isolation causale seule. |
+| — | — | **Fiabilité et quantification de la confiance** | **35 %** | — | **28,75 %** | — | — | **22,50 %** | — | — | **35,00 %** | — |
+| 1 | 4 | Rigueur de l'indice de confiance | 15 % | 7,5 | 11,25 % | Couverture métrologique $U_r = k \cdot u_c(r)$ ([NIST TN 1297](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty)) ; distincte d'une probabilité de diagnostic. | 5,0 | 7,50 % | Score de concordance géométrique $[0\text{–}100\ \%]$ ; ce pourcentage n'est pas une probabilité calibrée. | 10,0 | 15,00 % | Progression $S(k)/B$ vers le seuil de Wald $B = \ln((1-\beta)/\alpha)$ garantissant $(\alpha, \beta)$ sous $\mathcal{H}_0/\mathcal{H}_1$. |
+| 2 | 5 | Taux de fausses alertes en régime bruité | 10 % | 7,5 | 7,50 % | Facteur $k = 2$ à $3$ ($0{,}1\ \% < \alpha \le 1\ \%$ sous bruit gaussien) ; sensible aux pointes isolées. | 5,0 | 5,00 % | Combinaison de 3 voies sans filtrage temporel ($1\ \% < \alpha \le 5\ \%$ sans hystérésis temporelle). | 10,0 | 10,00 % | Seuil $B$ paramétrable pour garantir $\alpha \le 0{,}1\ \%$ ; les pointes isolées sont résorbées par la moyenne nulle. |
+| 2 | 6 | Gestion des données invalides ou manquantes | 10 % | 10,0 | 10,00 % | État *Incertain* et suspension prévus si le budget ou les données sont invalides. | 10,0 | 10,00 % | État *Incertain* prévu si le vecteur de résidus $[r_T, r_Q, r_P]$ est incomplet. | 10,0 | 10,00 % | État *Incertain* prévu lors d'une rupture de continuité temporelle des mesures. |
+| — | — | **Sûreté de conduite et explicabilité** | **15 %** | — | **12,50 %** | — | — | **15,00 %** | — | — | **12,50 %** | — |
+| 3 | 7 | Non-ingérence sur le contrôle de la boucle | 5 % | 10,0 | 5,00 % | Aide passive à l'opérateur prévue ; aucune commande directe ([CEI 62859](https://webstore.iec.ch/en/publication/26131)). | 10,0 | 5,00 % | Aide passive à l'opérateur prévue ; aucune commande directe ([CEI 62859](https://webstore.iec.ch/en/publication/26131)). | 10,0 | 5,00 % | Aide passive à l'opérateur prévue ; aucune commande directe ([CEI 62859](https://webstore.iec.ch/en/publication/26131)). |
+| 2 | 8 | Clarté et justification du résultat à l'interface | 10 % | 7,5 | 7,50 % | Résidu, limite $U_r$ et conditions de validité prévus à l'interface. | 10,0 | 10,00 % | Vecteur observé, ligne AMDEC et hypothèse d'origine expliqués clairement à l'opérateur. | 7,5 | 7,50 % | Progression $S(k)/B$, seuil $B$, estimation du début $\hat{k}_0$ et garantie $(1-\alpha)$ affichés. |
+| — | — | **Simplicité d'implantation et calibration** | **10 %** | — | **5,00 %** | — | — | **7,50 %** | — | — | **10,00 %** | — |
+| 2 | 9 | Effort de paramétrage et d'implantation | 10 % | 5,0 | 5,00 % | Établissement du budget complet et des corrélations plus exigeant ; inventaire à confirmer. | 7,5 | 7,50 % | Table de signatures AMDEC et 3 seuils $\tau_i$ simples à implanter ; effort réel modéré. | 10,0 | 10,00 % | Calcul récursif direct à 3 paramètres par voie ($\sigma_i, \mu_{i,m}, B$) ; calibration statistique simple. |
+| — | — | **TOTAL** | **100 %** | — | **73,75 %** | — | — | **77,50 %** | — | — | **91,25 %** | — |
+
+## 3. Utilisation et Provenance
+
+- **Source :** Section 5 du document de définition des concepts (`Lot_L7_Detection_Anomalies_Concepts.md`). Notes et pondérations conservées intégralement dans le classeur `Etape_5_L7_Evaluation_remplie.xlsx`.
+- **Formule de calcul :** Pour chaque sous-critère $i$, la contribution est obtenue par :
+  $$\text{Résultat pondéré}_i = \text{Poids}_i \times \frac{\text{Pointage}_i}{10}$$
+- **Règle de conversion des barèmes :** $100\ \% = 10$ ; $75\ \% = 7{,}5$ ; $50\ \% = 5$ ; $25\ \% = 2{,}5$ ; $0\ \% = 0$.
+- **Priorités proposées :** Priorité **1** pour les critères de poids $15\ \%$, Priorité **2** pour les critères de poids $10\ \%$, Priorité **3** pour les critères de poids $5\ \%$. Ces niveaux hiérarchisent l'analyse sans multiplier une seconde fois le score. Dans le fichier Excel, les cellules sur fond jaune (`Priorité`, `Poids`, `Pointage /10`) sont les cellules d'entrée modifiables.
+- **Portée de l'analyse :** Le classement reproduit l'analyse théorique des concepts ; il ne remplace pas les essais de validation sur le prototype ni la démonstration expérimentale de conformité aux normes citées ([CSA N290.7](https://www.csagroup.org/fr/store/product/2428461/), [CEI 62645](https://webstore.iec.ch/en/publication/32904), [CEI 62859](https://webstore.iec.ch/en/publication/26131)).
+
+## 4. Points à Valider avant Sélection Définitive
+
+1. **Fausses alertes et latence (Critères 1, 2 et 5) :** Les valeurs constituent des hypothèses de notation issues du comportement théorique des algorithmes sous bruit gaussien stationnaire. Il est nécessaire de fixer les scénarios de test (sauts francs $> 4\,\sigma$ et dérives en rampe de $0{,}5\,\sigma$ à $3\,\sigma$), l'horizon d'observation ($20\,\Delta t$) et la méthode de mesure avant les essais.
+2. **Concept B (Décision par signature) :** La capacité à distinguer une panne physique d'une cyberattaque est effective pour une falsification mono-capteur, mais reste à démontrer face à des attaques coordonnées multi-capteurs imitant une signature physique de l'AMDEC.
+3. **Concept C (Décision séquentielle) :** Le concept combine la récursivité à réinitialisation du [CUSUM de Page](https://www.researchgate.net/publication/281567648_The_CuSum_algorithm_-_a_small_review) ($S(k) = \max(0, S(k-1)+s(k))$) et le seuil haut d'arrêt du [SPRT de Wald](https://www.me.psu.edu/ray/journalAsokRay/1983/020RayDesaiDeyst1983.pdf) ($B = \ln((1-\beta)/\alpha)$). Le choix exact des paramètres ($\sigma_i$, dérive minimale cible $\mu_{i,m}$) devra être justifié par essais avant de présenter les taux $(\alpha, \beta)$ comme garantis.
+4. **Nature de l'indice de confiance (Critère 4) :** Un intervalle de couverture métrologique ($U_r$), un score de concordance géométrique ($\cos^2\theta$) et une progression d'accumulateur ($S(k)/B$) ne sont pas des probabilités interchangeables de diagnostic exact. Leur signification respective doit être clairement explicitée sur l'interface opérateur.
+5. **Continuité du barème de dérive lente (Critère 1) :** Le barème retenu découpe l'espace des écarts en intervalles continus sans trou ni chevauchement ($\le 1{,}5\,\sigma$ ; $]1{,}5 \, ; \, 2{,}5]\,\sigma$ ; $]2{,}5 \, ; \, 3{,}5]\,\sigma$ ; $]3{,}5 \, ; \, 5{,}0]\,\sigma$ ; $> 5{,}0\,\sigma$) sur une durée d'observation définie ($20\,\Delta t$).
+6. **Contrôle séparé de l'admissibilité :** Les conditions éliminatoires (`-> rejet`) du barème doivent être contrôlées indépendamment du score global, car un score pondéré élevé ne compense jamais le non-respect d'une exigence critique de sûreté (telle que l'absence de commande directe ou la suspension de la décision en cas de données invalides).
