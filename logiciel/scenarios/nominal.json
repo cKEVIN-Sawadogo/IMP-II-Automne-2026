@@ -1,0 +1,13 @@
+{
+  "nom": "Fonctionnement normal",
+  "version": "0.1",
+  "description": "Essai d'endurance de durée D = 120 min, sans défaut (EX-F-02, EX-Q-01, EX-Q-02).",
+  "graine": 2026,
+  "cycles": 7200,
+  "consignes_initiales": {
+    "vitesse_pompe": 1.0,
+    "puissance_W": 1000.0
+  },
+  "changements_consignes": [],
+  "defauts": []
+}

@@ -1,0 +1,9 @@
+[project]
+name = "jumeau"
+version = "0.1.0"
+description = "Jumeau numérique de surveillance d'une boucle thermohydraulique (IMP2, 6GEN135, UQAC)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
