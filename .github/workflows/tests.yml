@@ -1,0 +1,26 @@
+name: Tests du prototype
+
+# Lancé à chaque demande de fusion qui touche le logiciel, et à chaque envoi
+# sur main. Une demande de fusion dont ce test échoue ne doit pas être fusionnée.
+on:
+  pull_request:
+    paths: ["logiciel/**", ".github/workflows/tests.yml"]
+  push:
+    branches: [main]
+    paths: ["logiciel/**", ".github/workflows/tests.yml"]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: logiciel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: Essai de démonstration
+        run: python lancer.py scenarios/derive_lente.json --silencieux

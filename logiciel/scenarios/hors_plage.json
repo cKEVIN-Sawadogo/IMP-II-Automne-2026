@@ -1,0 +1,20 @@
+{
+  "nom": "Valeur hors plage du capteur de débit",
+  "version": "0.1",
+  "description": "Valeur hors de l'étendue du capteur pendant 10 s à partir de 1 200 s. Rejet et journalisation attendus (EX-Q-04).",
+  "graine": 2026,
+  "cycles": 1500,
+  "consignes_initiales": {
+    "vitesse_pompe": 1.0,
+    "puissance_W": 1000.0
+  },
+  "changements_consignes": [],
+  "defauts": [
+    {
+      "type": "hors_plage",
+      "variable": "Q",
+      "debut_s": 1200,
+      "duree_s": 10
+    }
+  ]
+}
