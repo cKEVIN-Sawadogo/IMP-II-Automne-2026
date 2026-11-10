@@ -73,11 +73,91 @@ class AcquisitionMesures(SousSysteme):
 
     nom = "SS-2"
 
+    @staticmethod
+    def valider_defaut(defaut: dict) -> tuple[bool, str | None]:
+        """Vérifie les paramètres d'un défaut de mesure."""
+
+        if not isinstance(defaut, dict):
+            return False, "format_defaut_invalide"
+
+        type_defaut = defaut.get("type")
+
+        if type_defaut not in (
+            "derive",
+            "saut",
+            "perte_communication",
+            "hors_plage",
+        ):
+            return False, "type_defaut_invalide"
+
+        if defaut.get("variable") not in (
+            "T", "P", "Q", "toutes"
+        ):
+            return False, "variable_invalide"
+
+        def nombre_valide(cle: str, strictement_positif=False) -> bool:
+            valeur = defaut.get(cle)
+
+            if not valider_valeur_brute(valeur):
+                return False
+
+            valeur = float(valeur)
+
+            return (
+                valeur > 0
+                if strictement_positif
+                else valeur >= 0
+            )
+
+        if not nombre_valide("debut_s"):
+            return False, "debut_invalide"
+
+        if type_defaut in ("perte_communication", "hors_plage"):
+            if not nombre_valide("duree_s", strictement_positif=True):
+                return False, "duree_invalide"
+
+        elif type_defaut == "derive":
+            if not nombre_valide(
+                "pente_sigma_par_cycle", strictement_positif=True
+            ):
+                return False, "pente_invalide"
+
+            if not nombre_valide(
+                "amplitude_max_pct_etendue", strictement_positif=True
+            ):
+                return False, "amplitude_max_invalide"
+
+        elif type_defaut == "saut":
+            if not valider_valeur_brute(
+                defaut.get("amplitude_sigma")
+            ):
+                return False, "amplitude_invalide"
+
+            if float(defaut["amplitude_sigma"]) == 0:
+                return False, "amplitude_nulle"
+
+        return True, None
+
+
     def demarrer(self, contexte: dict) -> None:
-        """Initialise le générateur et charge les défauts du scénario."""
+        """Initialise le générateur et contrôle les défauts du scénario."""
         self.rng = np.random.default_rng([contexte["graine"], 2])
-        self.defauts = contexte["scenario"].get("defauts", [])
+
+        self.defauts = []
+        self.defauts_refuses = []
         self._annonces: set[int] = set()
+
+        for i, defaut in enumerate(contexte["scenario"].get("defauts", [])):
+            valide, motif = self.valider_defaut(defaut)
+
+            if valide:
+                self.defauts.append(defaut)
+            else:
+                self.defauts_refuses.append({
+                    "type": "defaut_refuse",
+                    "index_defaut": i,
+                    "motif": motif,
+                })
 
     def _actif(self, defaut: dict, t: float) -> bool:
         """Indique si un défaut est actif au temps simulé t."""
@@ -94,6 +174,7 @@ class AcquisitionMesures(SousSysteme):
         """Vérifie si un défaut concerne la variable étudiée."""
         return defaut["variable"] in ("toutes", variable.value)
 
+   
     def etape(self, k: int, entrees: dict) -> dict:
         """Effectue un cycle d'acquisition et de qualification."""
 
@@ -104,7 +185,11 @@ class AcquisitionMesures(SousSysteme):
         evenements = []
         mesures = {}
 
-        # Annoncer une seule fois chaque défaut lorsqu'il commence.
+        # 0. Transmettre une seule fois les défauts refusés (CU2).
+        if k == 0:
+            evenements.extend(self.defauts_refuses)
+
+        # 1. Annoncer chaque défaut valide lorsqu'il commence.
         for i, defaut in enumerate(self.defauts):
             if self._actif(defaut, t) and i not in self._annonces:
                 self._annonces.add(i)
@@ -114,11 +199,11 @@ class AcquisitionMesures(SousSysteme):
                     **defaut,
                 })
 
-        # Traiter successivement les trois capteurs.
+        # 2. Traiter successivement les trois capteurs.
         for var in Variable:
             sigma = SIGMA_BRUIT[var]
 
-            # 1. Validation de la donnée provenant de SS-1.
+            # Validation de la donnée provenant de SS-1.
             valeur_brute = vraies.get(var)
 
             if not valider_valeur_brute(valeur_brute):
@@ -140,7 +225,7 @@ class AcquisitionMesures(SousSysteme):
 
                 continue
 
-            # 2. Modèle d'erreur additive.
+            # 3. Modèle d'erreur additive : biais + bruit.
             valeur = (
                 float(valeur_brute)
                 + BIAIS[var]
@@ -149,7 +234,7 @@ class AcquisitionMesures(SousSysteme):
 
             statut = Statut.VALIDE
 
-            # 3. Application des défauts prévus dans le scénario.
+            # 4. Application des défauts valides du scénario.
             for defaut in self.defauts:
                 if not (
                     self._actif(defaut, t)
@@ -160,7 +245,9 @@ class AcquisitionMesures(SousSysteme):
                 type_ = defaut["type"]
 
                 if type_ == "derive":
-                    cycles = (t - defaut["debut_s"]) / T_CYCLE
+                    cycles = (
+                        t - defaut["debut_s"]
+                    ) / T_CYCLE
 
                     bas, haut = PLAGES[var]
 
@@ -192,7 +279,7 @@ class AcquisitionMesures(SousSysteme):
                 elif type_ == "hors_plage":
                     valeur = PLAGES[var][1] * 2
 
-            # 4. Qualification de la valeur après les défauts.
+            # 5. Qualification de la valeur après les défauts.
             bas, haut = PLAGES[var]
 
             if statut is Statut.VALIDE:
@@ -217,7 +304,7 @@ class AcquisitionMesures(SousSysteme):
                         "motif": "hors_plage",
                     })
 
-            # 5. Création de la mesure selon le contrat collectif.
+            # 6. Création de la mesure selon le contrat collectif.
             mesures[var] = Mesure(
                 k=k,
                 t=t,
@@ -231,6 +318,7 @@ class AcquisitionMesures(SousSysteme):
                 statut=statut,
             )
 
+        # 7. Transmission des mesures et événements.
         return {
             "mesures": mesures,
             "evenements": evenements,
