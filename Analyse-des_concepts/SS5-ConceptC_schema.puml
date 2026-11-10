@@ -1,0 +1,43 @@
+@startuml
+' Schéma du concept C de SS-5 — présentation par hypothèse de défaillance
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg SS5-ConceptC_schema.puml
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "Entrées" {
+  [SS-4 : état estimé, confiance,\nvariables contributrices] as E1
+  [SS-2 : indices de qualité\npar mesure] as E2
+  [SS-3 : relations physiques\nsatisfaites ou violées] as E3
+}
+
+package "SS-5 — Présentation par hypothèse de défaillance" {
+  [1. Binarisation\nen symptômes] as B
+  database "2. Table cause-symptôme\nétablie à la conception" as T
+  [3. Moteur\nd'appariement] as M
+  [4. Arbitrage et insertion\nde l'hypothèse « indéterminé »] as A
+  [5. Vue à trois zones] as V
+  [6. Garde\nde non-commande] as G
+}
+
+actor "Opérateur" as OP
+[SS-6 : journal\nd'événements] as J
+
+E1 --> B
+E2 --> B
+E3 --> B
+B --> M
+T --> M
+M --> A
+A --> V
+V --> G
+G --> OP : hypothèses, symptômes,\nhypothèses écartées
+OP --> G : confirmation explicite\n(mode dégradé)
+G --> J : AFF, CNF
+
+note right of G
+  Aucune sortie vers l'installation.
+  Aucune bibliothèque de commande
+  n'est liée au module (EX-F-08).
+end note
+@enduml

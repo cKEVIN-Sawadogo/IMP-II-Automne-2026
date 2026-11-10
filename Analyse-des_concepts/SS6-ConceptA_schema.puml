@@ -1,0 +1,47 @@
+@startuml
+' Schéma du concept A de SS-6 — journal d'événements
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg SS6-ConceptA_schema.puml
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+package "Émetteurs d'événements" {
+  [SS-2 Acquisition] as S2
+  [SS-3 Comparaison] as S3
+  [SS-4 Décision] as S4
+  [SS-5 Présentation] as S5
+}
+
+package "SS-6 — Journal d'événements" {
+  [1. Vocabulaire fermé\nde types d'événements] as VOC
+  [2. Format d'entrée\n(champs obligatoires)] as FMT
+  [3. Collecteur à ajout seul\n(un seul écrivain)] as COL
+  [4. Chaîne d'empreintes\nh(i) = H(h(i-1) + entrée i)] as CH
+  [5. Horloge monotone\net horodatage daté] as CLK
+  folder "Journal\n(ajout seul)" as LOG
+  [7. Rotation\net scellement] as ROT
+}
+
+[6. Vérificateur indépendant] as VER
+actor "Auditeur" as AUD
+
+S2 --> COL : ACQ, REJ
+S3 --> COL : RES
+S4 --> COL : DET, ETA
+S5 --> COL : AFF, CNF
+VOC .right.> FMT
+FMT .right.> COL
+CLK --> COL
+COL --> CH
+CH --> LOG
+LOG --> ROT
+ROT --> LOG : SCL
+LOG --> VER
+AUD --> VER : exécute sur un poste neutre
+
+note bottom of VER
+  Recalcule la chaîne entrée par entrée,
+  vérifie la continuité des numéros de
+  séquence et compare au condensé scellé.
+end note
+@enduml
