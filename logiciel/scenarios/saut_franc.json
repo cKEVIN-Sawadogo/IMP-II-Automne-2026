@@ -1,0 +1,20 @@
+{
+  "nom": "Saut franc du capteur de débit",
+  "version": "0.1",
+  "description": "Saut de 6 σ à partir de 1 200 s. État anomalie attendu (tableau 8-8).",
+  "graine": 2026,
+  "cycles": 1500,
+  "consignes_initiales": {
+    "vitesse_pompe": 1.0,
+    "puissance_W": 1000.0
+  },
+  "changements_consignes": [],
+  "defauts": [
+    {
+      "type": "saut",
+      "variable": "Q",
+      "debut_s": 1200,
+      "amplitude_sigma": 6
+    }
+  ]
+}
