@@ -1,0 +1,48 @@
+@startuml Cas-utilisation
+' Diagramme des cas d'utilisation du prototype
+' Rapport d'ingénierie de concept, section 2.1
+left to right direction
+skinparam shadowing false
+skinparam dpi 200
+skinparam defaultFontName "Liberation Serif"
+skinparam defaultFontSize 13
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #4F4F4F
+}
+skinparam rectangle {
+  BorderColor #4F4F4F
+}
+
+actor "Opérateur" as OP
+actor "Responsable\ndes essais" as RE
+actor "Vérificateur" as VE
+actor "Administrateur\ndu prototype" as AD
+
+rectangle "Prototype de jumeau numérique (entièrement simulé)" {
+  usecase "CU1 Lancer un scénario d'essai" as CU1
+  usecase "CU2 Injecter un défaut de mesure" as CU2
+  usecase "CU3 Surveiller l'état de la boucle" as CU3
+  usecase "CU4 Consulter les variables\ncontributrices" as CU4
+  usecase "CU5 Confirmer le passage\nen fonctionnement dégradé" as CU5
+  usecase "CU6 Arrêter la surveillance" as CU6
+  usecase "CU7 Vérifier l'intégrité du journal" as CU7
+  usecase "CU8 Rejouer un diagnostic\nà partir du journal" as CU8
+  usecase "CU9 Gérer les rôles\net la clé de scellement" as CU9
+}
+
+RE --> CU1
+RE --> CU2
+RE --> CU6
+OP --> CU3
+OP --> CU4
+OP --> CU5
+VE --> CU7
+VE --> CU8
+AD --> CU9
+
+CU2 .> CU1 : <<extend>>
+CU4 .> CU3 : <<extend>>
+CU8 .> CU7 : <<include>>
+@enduml

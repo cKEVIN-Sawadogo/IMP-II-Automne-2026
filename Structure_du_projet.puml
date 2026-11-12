@@ -1,0 +1,83 @@
+@startwbs
+' SDP — Structure de découpage du projet
+' Projet IMP2 — Jumeau numérique de surveillance
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg sdp.puml
+
+<style>
+wbsDiagram {
+  LineColor #555555
+  arrow {
+    LineColor #555555
+    LineThickness 1.2
+  }
+  node {
+    FontName    Arial
+    FontSize    13
+    FontColor   #111111
+    LineColor   #BBBBBB
+    BackGroundColor #E9E9E9
+    RoundCorner 0
+    Padding     10
+    Margin      6
+    MaximumWidth 150
+    HorizontalAlignment center
+  }
+  :depth(0) {
+    BackGroundColor #F5851F
+    FontColor       #FFFFFF
+    FontStyle       bold
+    FontSize        15
+    LineColor       #F5851F
+    MaximumWidth    230
+  }
+  :depth(1) {
+    BackGroundColor #FBD3A1
+    FontStyle       bold
+    LineColor       #8C8C8C
+    MaximumWidth    150
+  }
+}
+</style>
+
+* PROJET\nJumeau numérique de surveillance
+
+** 1. Gestion de projet
+*** Plan de projet
+*** Suivi et valeur acquise
+*** Assurance qualité et revues
+*** Comptes rendus et communication
+
+** 2. Ingénierie des exigences
+*** Analyse des besoins
+*** Analyse fonctionnelle
+*** GEMMA — modes de marche et d'arrêt
+*** Registre des exigences
+*** Normes et cadre réglementaire
+
+** 3. Conception
+*** Modèle de référence de la boucle
+*** Architecture logicielle
+*** Architecture de cybersécurité
+*** Conception de l'IHM
+
+** 4. Réalisation
+*** Noyau de simulation
+*** Chaîne d'acquisition et auto-tests
+*** Détection d'anomalies
+*** Quantification de l'incertitude
+*** Arbitrage de sévérité et modes dégradés
+*** Séquences d'arrêt et de reprise
+*** Interface d'aide à la décision
+
+** 5. Vérification et validation
+*** Plan de V&V
+*** Essais unitaires et d'intégration
+*** Marche de test et injection d'anomalies
+*** Campagne d'essais
+*** Analyse des résultats
+
+** 6. Clôture
+*** Recommandation d'ingénierie
+*** Rapport final
+*** Présentation orale
+@endwbs

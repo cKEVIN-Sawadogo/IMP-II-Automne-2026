@@ -1,0 +1,48 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam noteFontSize 11
+
+[Scénario EX-F-02\n(normal, dérive lente,\nperte de communication,\nhors plage)] as SC
+
+package "Chaîne retenue" {
+  [SS-1  A\nModèle 0D\n5 à 6 volumes, pas fixe] as S1
+  [SS-2  A amendé\nErreur additive\n+ dérive + perte de communication] as S2
+  [SS-3  A\nRéférence en boucle ouverte\nmodèle 0D réduit] as S3
+  [SS-4\nDécision séquentielle] as S4
+  [SS-5  B\nPrésentation par état] as S5
+}
+[SS-6  B\nJournal de données\n+ scellement signé] as S6
+actor "Opérateur" as OP
+
+SC --> S1 : consignes
+SC --> S2 : défauts de mesure
+S1 --> S2 : grandeurs vraies
+S2 --> S3 : mesures qualifiées
+S3 --> S4 : résidus
+S4 --> S5 : état, confiance,\nvariables contributrices
+S5 --> OP : affichage
+
+S2 ..> S6
+S3 ..> S6
+S4 ..> S6
+S5 ..> S6
+
+note right of S3
+  Condition C1 : biais du résidu
+  en régime normal inférieur au
+  décalage minimal détectable.
+  Calage sur les mesures de SS-2,
+  jamais sur SS-1.
+end note
+note left of S1
+  Indépendance SO-1 par
+  granularité différente
+  de celle de SS-3.
+end note
+note right of S5
+  Aucune sortie vers
+  l'installation (EX-F-08).
+end note
+@enduml

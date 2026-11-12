@@ -1,0 +1,52 @@
+@startuml Architecture-retenue
+' Architecture retenue au terme de l'analyse des concepts
+' Rapport d'ingénierie de concept, section 8.1
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam dpi 200
+skinparam defaultFontName "Liberation Serif"
+skinparam defaultFontSize 13
+skinparam noteFontSize 12
+
+[Scénario d'essai\n(EX-F-02)] as SC
+
+package "Chaîne de surveillance" {
+  [SS-1  concept A\nModèle 0D, 5 à 6 volumes\npas de temps fixe] as S1
+  [SS-2  concept A amendé\nErreur additive, dérive\net perte de communication] as S2
+  [SS-3  concept A\nRéférence en boucle ouverte\nmodèle 0D réduit] as S3
+  [SS-4\nDécision séquentielle\n(somme cumulée)] as S4
+  [SS-5  concept B\nPrésentation par état] as S5
+}
+[SS-6  concept B\nJournal de données\net scellement signé] as S6
+actor "Opérateur" as OP
+
+SC --> S1 : consignes
+SC --> S2 : défauts de mesure
+S1 --> S2 : grandeurs vraies
+S2 --> S3 : mesures qualifiées
+S3 --> S4 : résidus
+S4 --> S5 : état, confiance,\nvariables contributrices
+S5 --> OP : affichage
+
+S2 ..> S6
+S3 ..> S6
+S4 ..> S6
+S5 ..> S6
+
+note left of S1
+  Indépendance (SO-1) :
+  granularité différente
+  de celle de SS-3.
+end note
+note right of S3
+  Condition C1 : résidu centré
+  sur le biais des essais sains,
+  biais résiduel au plus 0,1 σ.
+  Calage sur les mesures de SS-2,
+  jamais sur SS-1.
+end note
+note right of S5
+  Aucune sortie vers
+  l'installation (EX-F-08).
+end note
+@enduml

@@ -1,0 +1,20 @@
+{
+  "nom": "Perte de communication du capteur de pression",
+  "version": "0.1",
+  "description": "Coupure franche de 60 s à partir de 1 200 s. État incertain attendu au troisième cycle.",
+  "graine": 2026,
+  "cycles": 1500,
+  "consignes_initiales": {
+    "vitesse_pompe": 1.0,
+    "puissance_W": 1000.0
+  },
+  "changements_consignes": [],
+  "defauts": [
+    {
+      "type": "perte_communication",
+      "variable": "P",
+      "debut_s": 1200,
+      "duree_s": 60
+    }
+  ]
+}

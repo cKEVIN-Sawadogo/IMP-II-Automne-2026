@@ -1,0 +1,21 @@
+{
+  "nom": "Dérive lente du capteur de température",
+  "version": "0.1",
+  "description": "Dérive de 0,01 σ par cycle à partir de 1 200 s, plafonnée à 2,5 % de l'étendue (tableau 8-8).",
+  "graine": 2026,
+  "cycles": 2400,
+  "consignes_initiales": {
+    "vitesse_pompe": 1.0,
+    "puissance_W": 1000.0
+  },
+  "changements_consignes": [],
+  "defauts": [
+    {
+      "type": "derive",
+      "variable": "T",
+      "debut_s": 1200,
+      "pente_sigma_par_cycle": 0.01,
+      "amplitude_max_pct_etendue": 2.5
+    }
+  ]
+}
