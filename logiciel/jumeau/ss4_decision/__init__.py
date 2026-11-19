@@ -61,7 +61,7 @@ class DecisionSequentielle(SousSysteme):
                 # même cycle, le seuil instantané l'emporte : c'est un saut.
                 if abs(r) > SEUIL_INSTANT:
                     self.alarme[var] = Etat.ANOMALIE
-                elif max(self.haut[var], self.bas[var]) > SEUIL_H:
+                elif max(self.haut[var], self.bas[var]) >= SEUIL_H:
                     self.alarme[var] = Etat.DERIVE
 
         if Etat.ANOMALIE in self.alarme.values():
