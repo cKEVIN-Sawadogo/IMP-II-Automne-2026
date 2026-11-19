@@ -4,6 +4,10 @@ Version minimale du concept B : une entrée par cycle dans une base SQLite,
 en ajout seul. Chaque entrée contient l'empreinte SHA-256 de la précédente,
 si bien qu'une modification après coup est détectée par verifier_journal().
 
+La base est en mode WAL et chaque cycle est validé aussitôt : le scelleur et
+l'interface peuvent la lire pendant que l'orchestrateur écrit, et un arrêt
+brutal ne fait perdre au plus que le cycle en cours.
+
 Entrées par cycle (préparées par l'orchestrateur) :
   contenu  dict   mesures, résidus, état, événements du cycle (sérialisables)
 
@@ -39,6 +43,8 @@ class JournalDonnees(SousSysteme):
         if self.chemin.exists():
             raise FileExistsError(f"Le journal {self.chemin} existe déjà : il ne doit jamais être écrasé.")
         self.cx = sqlite3.connect(self.chemin)
+        self.cx.execute("PRAGMA journal_mode=WAL")
+        self.cx.execute("PRAGMA synchronous=NORMAL")
         self.cx.execute(
             "CREATE TABLE journal (sequence INTEGER PRIMARY KEY, k INTEGER NOT NULL, "
             "contenu TEXT NOT NULL, empreinte_precedente TEXT NOT NULL, empreinte TEXT NOT NULL)"
@@ -51,8 +57,7 @@ class JournalDonnees(SousSysteme):
         empreinte = _empreinte(self.derniere, contenu)
         self.cx.execute("INSERT INTO journal VALUES (?, ?, ?, ?, ?)",
                         (self.sequence, k, contenu, self.derniere, empreinte))
-        if self.sequence % 100 == 0:
-            self.cx.commit()
+        self.cx.commit()  # validé à chaque cycle : le journal d'abord, l'affichage ensuite
         sortie = {"sequence": self.sequence, "empreinte": empreinte}
         self.derniere = empreinte
         self.sequence += 1

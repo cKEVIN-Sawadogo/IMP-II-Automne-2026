@@ -25,7 +25,7 @@ py -3.13 -m venv .venv
 
 Chaque essai écrit dans `sorties\<scénario>_<date>\` :
 
-- `journal.sqlite` : le journal de SS-6, une entrée par cycle, chaînée par SHA-256.
+- `journal.sqlite` : le journal de SS-6, une entrée par cycle, chaînée par SHA-256. La première entrée contient l'en-tête de l'essai : versions de Python et des bibliothèques, commit, graine et empreinte du scénario.
 - `verite.csv` : les grandeurs vraies de SS-1, réservées au banc d'essai pour la validation.
 - `resume.json` : les changements d'état et l'état final.
 
@@ -49,13 +49,15 @@ logiciel/
     contrat.py          Contrat de données (tableau 7-2) : Mesure, Statut, Etat, T_CYCLE
     interface.py        Classe SousSysteme : demarrer, etape, arreter
     orchestrateur.py    Boucle à pas fixe et acheminement des données
+    etat_partage.py     Cache lu par l'interface et file des confirmations de l'opérateur
     scenario.py         Lecture et contrôle d'un scénario
     ss1_boucle/         Ibrahima    modèle 0D à cinq volumes (repris de son dossier de validation)
     ss2_mesures/        Sidiki      bruit, biais et défauts d'EX-F-02
-    ss3_reference/      Raouf       PROVISOIRE : moyenne de calage au lieu du modèle 0D réduit
+    ss3_reference/      Raouf       modèle 0D réduit en boucle ouverte, calé sur 600 cycles
     ss4_decision/       Rayane      somme cumulée, seuil instantané, état incertain
-    ss5_interface/      Jérémie     PROVISOIRE : affichage texte au lieu de Plotly Dash
-    ss6_journal/        Wilson      SQLite, chaînage SHA-256 ; scellement signé à faire
+    ss5_interface/      Jérémie     PROVISOIRE : affichage texte, Plotly Dash en cours (lit le cache)
+    ss6_journal/        Ibrahima    SQLite en mode WAL, chaînage SHA-256 ; scelleur séparé en cours
+                                    (à partir du prototype de Wilson)
   scenarios/            Un fichier JSON par scénario
   tests/                Test de bout en bout et règles d'architecture
   lancer.py             Point d'entrée
@@ -84,14 +86,39 @@ Tout module peut ajouter une clé `evenements` (liste de dict) : l'orchestrateur
 4. **On ajoute ses propres tests** dans `tests/test_<module>.py`. Ils servent aussi de preuves pour la section « Calculs et tests réalisés » du rapport.
 5. **Le réviseur coche la liste de vérification en 6 points**, puis le chargé de projet fusionne.
 
-## Choix techniques retenus pour le squelette
+## Architecture d'exécution (décidée le 19 novembre)
 
-Ces choix tranchent les variantes que le rapport de concept laissait ouvertes. Ils sont à faire valider par l'équipe et à consigner comme changements par rapport au plan de projet.
+```
+                  ┌──────────────── Processus principal ────────────────┐
+ Scénario ──────► │ Orchestrateur (T = 1 s) : SS-1 → SS-2 → SS-3 → SS-4 → SS-5 │
+                  └─────┬──────────────────────────┬───────────▲─────────┘
+               ① écrit le cycle             ② publie         │ ③ prend la réponse
+                        ▼                          ▼           │   au cycle suivant
+             journal.sqlite (SS-6)         CacheEtat        FileConfirmations
+             seule source de vérité        (600 cycles)           ▲
+                        │ lecture seule          │ lu chaque seconde │ réponse de l'opérateur
+                        ▼                        ▼                   │
+             Scelleur (processus séparé,   Interface Plotly Dash ────┘
+             seul à lire la clé privée)
+```
+
+1. **Une seule source de vérité : le journal de SS-6.** Le cache n'en est qu'une copie partielle.
+2. **Le journal d'abord, le cache ensuite.** L'orchestrateur publie un cycle dans le cache seulement après l'avoir écrit au journal : l'opérateur ne voit jamais rien qui ne soit déjà journalisé.
+3. **Le cache est jetable.** Il garde les 600 derniers cycles (10 minutes). Quand l'interface redémarre, `CacheEtat.recharger_depuis_journal()` le remplit depuis le journal, sans perte d'historique.
+4. **L'interface ne parle jamais aux sous-systèmes.** Elle lit `orchestrateur.cache` et dépose les réponses de l'opérateur avec `orchestrateur.confirmations.deposer(...)`. L'orchestrateur les prend au début du cycle suivant et les journalise (`confirmation_operateur`, EX-F-09). Aucune commande ne sort du poste.
+5. **Les accès au cache passent par un verrou**, et l'interface reçoit des copies.
+6. **Le journal est en mode WAL et validé à chaque cycle.** Le scelleur et l'interface peuvent le lire pendant l'écriture, et un arrêt brutal ne fait perdre que le cycle en cours.
+7. **Le scelleur sera un processus séparé**, lancé par `lancer.py`, seul à connaître la clé privée. Il lira le journal en lecture seule et posera un sceau tous les 60 cycles, plus un sceau final à l'arrêt. Intégration en cours (Ibrahima, issue #90) ; le mode WAL ci-dessus le permet déjà.
+
+Ce que l'architecture ne fait pas : redémarrer l'orchestrateur en cours d'essai reprend un **nouvel** essai. L'historique est conservé et l'arrêt brutal est détecté, mais les sommes cumulées et le calage, gardés en mémoire, repartent de zéro.
+
+## Choix techniques retenus
 
 1. **Tout en Python, y compris SS-1 et SS-3.** SS-1 existait déjà en Python, et l'orchestrateur unique est en Python. OpenModelica peut servir à vérifier SS-1 hors ligne, pas à tourner dans la boucle.
-2. **SQLite pour le journal.** Un seul fichier, sans serveur.
+2. **SQLite pour le journal**, en mode WAL. Un seul fichier, sans serveur.
 3. **T = 1 s.**
-4. **SS-5 en mode texte pour l'instant.** Plotly Dash viendra ensuite, dans le même processus.
+4. **Interface Plotly Dash dans le même processus**, qui lit le cache (voir l'architecture ci-dessus). La version texte reste pour les essais en mode accéléré.
+5. **Versions exactes dans `requirements.txt`.** Toute nouvelle bibliothèque y entre avec sa version exacte (`pip freeze` pour la connaître). Docker est optionnel.
 
 ## Premiers constats d'essai
 
@@ -103,6 +130,6 @@ Ces chiffres viennent du squelette, sur 20 graines différentes. Ils sont à rep
 
 ## Points à confirmer en équipe
 
-- **Flux des consignes vers SS-3.** Une référence en boucle ouverte doit connaître les commandes. Ce flux n'apparaît pas au tableau 7-1 du rapport de concept.
+- **Flux des consignes vers SS-3.** Confirmé : c'est le flux F7 du rapport 12 (figure 2-1). À faire approuver formellement par l'équipe.
 - **Priorité entre une alarme confirmée et l'état incertain** (SS-4).
 - **Nombre d'entrées au journal.** Le squelette écrit une entrée par cycle, avec les événements à l'intérieur, pour respecter EX-Q-02. Le tableau 4-5 parlait d'une entrée de plus par événement.
