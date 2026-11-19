@@ -116,6 +116,24 @@ class Orchestrateur:
         self.cache = cache if cache is not None else CacheEtat()
         self.confirmations = confirmations if confirmations is not None else FileConfirmations()
 
+    def _transmettre_reponse(self, reponse: dict) -> str | None:
+        """Transmet une réponse de l'opérateur à SS-5. Renvoie le motif si elle reste sans effet.
+
+        Une réponse ne s'applique qu'à la demande encore en cours : une réponse à une demande
+        retirée entre-temps (changement d'état, état devenu critique) est journalisée sans effet.
+        """
+        ss5 = self.modules["ss5"]
+        demande = getattr(ss5, "demande", None)
+        if demande is None:
+            return "aucune_demande_en_cours"
+        if reponse.get("k_demande") != demande["k"]:
+            return "demande_perimee"
+        try:
+            ss5.repondre(reponse.get("decision"))
+        except ValueError:
+            return "reponse_invalide"
+        return None
+
     def _appel(self, cle: str, k: int, entrees: dict, evenements: list) -> dict:
         module = self.modules[cle]
         try:
@@ -151,8 +169,14 @@ class Orchestrateur:
                     if k == 0:
                         evenements.append(entete_essai(self.scenario))
                     # Réponses de l'opérateur déposées depuis le cycle précédent (EX-F-09).
+                    # La réception est journalisée telle quelle, puis transmise à SS-5, qui
+                    # journalise la réponse avec l'instantané de l'écran (reponse_operateur).
                     for reponse in self.confirmations.prendre_toutes():
                         evenements.append({"type": "confirmation_operateur", **reponse})
+                        motif = self._transmettre_reponse(reponse)
+                        if motif:
+                            evenements.append({"type": "confirmation_sans_effet", "motif": motif,
+                                               "k_demande": reponse.get("k_demande")})
 
                     consignes = consignes_a(self.scenario, t)
                     if consignes != consignes_prec:
@@ -207,7 +231,8 @@ class Orchestrateur:
                     self.cache.publier({**contenu, "sequence": s6.get("sequence"),
                                         "empreinte": s6.get("empreinte"),
                                         "attendus": _serialiser(s3.get("attendus", {})),
-                                        "affichage": s5.get("affichage", "")})
+                                        "affichage": s5.get("affichage", ""),
+                                        "demande_en_cours": _serialiser(getattr(self.modules["ss5"], "demande", None))})
 
                     if self.temps_reel:
                         time.sleep(max(0.0, T_CYCLE - (time.monotonic() - debut)))
