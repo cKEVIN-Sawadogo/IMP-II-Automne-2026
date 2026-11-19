@@ -1,0 +1,33 @@
+name: Rappels Discord
+
+# Chaque matin vers 8 h (heure de l'Est), publie sur Discord les tâches en retard,
+# celles du jour et celles des deux prochains jours ; le lundi, toute la semaine.
+# Les tâches viennent des issues ouvertes qui portent l'étiquette « ingénierie détaillée ».
+on:
+  schedule:
+    - cron: "23 12 * * *"   # 12 h 23 UTC, soit 7 h 23 à Saguenay en hiver
+  workflow_dispatch:
+    inputs:
+      essai:
+        description: "Afficher le message sans l'envoyer sur Discord"
+        type: boolean
+        default: false
+
+permissions:
+  issues: read
+
+jobs:
+  rappels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Publier les rappels
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_IDS: ${{ secrets.DISCORD_IDS }}
+          ESSAI: ${{ inputs.essai && '1' || '0' }}
+        run: python outils/rappels/rappels.py
