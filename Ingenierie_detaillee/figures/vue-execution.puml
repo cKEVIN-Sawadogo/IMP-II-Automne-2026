@@ -1,0 +1,57 @@
+@startuml vue-execution
+' Vue d'exécution et de déploiement (rapport 13, section 3.5). Décisions du 19 novembre.
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng vue-execution.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ArrowColor #4A5F7A
+skinparam node {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam component {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+}
+skinparam database {
+  BorderColor #4A5F7A
+  BackgroundColor #FFF4E8
+}
+
+node "Poste de l'opérateur (Python, versions exactes de requirements.txt)" {
+  node "Processus principal (lancer.py)" {
+    component "Orchestrateur\nT = 1 s\nSS-1 → SS-5" as ORCH
+    component "CacheEtat\n600 derniers cycles\nverrou, copies" as CACHE
+    component "FileConfirmations" as FILE
+    component "Interface Plotly Dash\n(SS-5, fil séparé)" as DASH
+  }
+  node "Processus scelleur (SS-6)" {
+    component "Scelleur\nseul détenteur\nde la clé privée" as SCEL
+  }
+  database "journal.sqlite\n(mode WAL)\nseule source de vérité" as J
+  file "verite.csv\n(hors du chemin\nde l'opérateur)" as V
+  file "Clé privée" as CLE
+}
+actor "Opérateur" as OP
+
+ORCH --> J : ① écrit le cycle et le valide
+ORCH --> CACHE : ② publie une copie
+DASH --> CACHE : lit chaque seconde
+DASH --> FILE : dépose la réponse
+FILE --> ORCH : ③ prise au cycle suivant
+ORCH --> V : grandeurs vraies (validation)
+SCEL ..> J : lecture seule ; sceau tous les 60 cycles\net sceau final à l'arrêt
+SCEL --> CLE
+DASH --> OP : navigateur local
+OP --> DASH : confirme ou refuse
+
+note right of CACHE
+  Rechargé depuis le journal
+  quand l'interface redémarre.
+end note
+note as N1
+  Aucune commande ne sort du poste (EX-F-08).
+  Redémarrer l'orchestrateur commence un nouvel essai.
+end note
+N1 .. ORCH
+@enduml

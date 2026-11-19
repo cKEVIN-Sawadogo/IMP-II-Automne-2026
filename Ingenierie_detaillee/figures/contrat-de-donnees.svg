@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="744px" preserveAspectRatio="none" style="width:2094px;height:744px;background:#FFFFFF;" version="1.1" viewBox="0 0 2094 744" width="2094px" zoomAndPan="magnify" xmlns:c2pa="http://c2pa.org/manifest"><defs/><g><!--MD5=[83cb294312b9e24a5db3844fc43d1d08]
+cluster Types communs (contrat.py)--><g id="cluster_Types communs (contrat.py)"><path d="M1656.5,286 L1827.5,286 A3.75,3.75 0 0 1 1830,288.5 L1837,306.5195 L2084.5,306.5195 A2.5,2.5 0 0 1 2087,309.0195 L2087,687 A2.5,2.5 0 0 1 2084.5,689.5 L1656.5,689.5 A2.5,2.5 0 0 1 1654,687 L1654,288.5 A2.5,2.5 0 0 1 1656.5,286 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="1654" x2="1837" y1="306.5195" y2="306.5195"/><text fill="#000000" font-family="Arial" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="170" x="1658" y="299.625">Types communs (contrat.py)</text></g><!--MD5=[a20ba209fc7e805c7333c39eb3fde3d5]
+cluster Flux par cycle--><g id="cluster_Flux par cycle"><path d="M8.5,6 L90.5,6 A3.75,3.75 0 0 1 93,8.5 L100,26.5195 L1147.5,26.5195 A2.5,2.5 0 0 1 1150,29.0195 L1150,734.5 A2.5,2.5 0 0 1 1147.5,737 L8.5,737 A2.5,2.5 0 0 1 6,734.5 L6,8.5 A2.5,2.5 0 0 1 8.5,6 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="100" y1="26.5195" y2="26.5195"/><text fill="#000000" font-family="Arial" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="81" x="10" y="19.625">Flux par cycle</text></g><!--MD5=[1e667c6ad6db7468aaf1f24fbbf1ec5d]
+class Variable--><g id="elem_Variable"><rect codeLine="18" fill="#FFFFFF" height="76.0781" id="Variable" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="287" x="1673.5" y="597.5"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="287" x="1673.5" y="597.5"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="287" x="1673.5" y="619.5195"/><rect codeLine="18" fill="none" height="76.0781" id="Variable" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="287" x="1673.5" y="597.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="47" x="1793.5" y="614.125">Variable</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="1674.5" x2="1959.5" y1="622.0195" y2="622.0195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="275" x="1679.5" y="637.6445">T : température en sortie de V1, °C, plage 0 à 100</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="223" x="1679.5" y="652.1641">P : pression absolue, MPa, plage 0 à 0,5</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="212" x="1679.5" y="666.6836">Q : débit massique, kg/s, plage 0 à 0,5</text></g><!--MD5=[d3b193a28c12641ff0b3b7ad2a0412a5]
+class Statut--><g id="elem_Statut"><rect codeLine="23" fill="#FFFFFF" height="76.0781" id="Statut" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="73" x="1995.5" y="597.5"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="73" x="1995.5" y="597.5"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="73" x="1995.5" y="619.5195"/><rect codeLine="23" fill="none" height="76.0781" id="Statut" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="73" x="1995.5" y="597.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="34" x="2015" y="614.125">Statut</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="1996.5" x2="2067.5" y1="622.0195" y2="622.0195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="34" x="2001.5" y="637.6445">valide</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="38" x="2001.5" y="652.1641">absent</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="61" x="2001.5" y="666.6836">hors_plage</text></g><!--MD5=[d7a86c142fdde356f8ae5a8b885bc91c]
+class Etat--><g id="elem_Etat"><rect codeLine="28" fill="#FFFFFF" height="90.5977" id="Etat" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="64" x="1670" y="359"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="64" x="1670" y="359"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="64" x="1670" y="381.0195"/><rect codeLine="28" fill="none" height="90.5977" id="Etat" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="64" x="1670" y="359"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="22" x="1691" y="375.625">Etat</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="1671" x2="1733" y1="383.5195" y2="383.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="40" x="1676" y="399.1445">normal</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="36" x="1676" y="413.6641">derive</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="52" x="1676" y="428.1836">anomalie</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="50" x="1676" y="442.7031">incertain</text></g><!--MD5=[48346046f9d3e7e7a1529de5a6eac666]
+class Mesure--><g id="elem_Mesure"><rect codeLine="34" fill="#FFFFFF" height="171.1953" id="Mesure" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="302" x="1769" y="319"/><rect fill="#E6EBF2" height="39.0391" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="302" x="1769" y="319"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="302" x="1769" y="355.5391"/><rect codeLine="34" fill="none" height="171.1953" id="Mesure" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="302" x="1769" y="319"/><text fill="#000000" font-family="Arial" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="70" x="1885" y="335.625">«immuable»</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="43" x="1898.5" y="350.1445">Mesure</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="1770" x2="2070" y1="358.0391" y2="358.0391"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="114" x="1775" y="373.6641">k : int — cycle, k ≥ 0</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="157" x="1775" y="388.1836">t : float — s, t = k × T, T = 1 s</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="180" x="1775" y="402.7031">horodatage_utc : str — ISO 8601</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="102" x="1775" y="417.2227">variable : Variable</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="110" x="1775" y="431.7422">valeur : float | None</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="75" x="1775" y="446.2617">statut : Statut</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="1770" x2="2070" y1="453.1563" y2="453.1563"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="290" x="1775" y="468.7813">Règle : valeur finie si et seulement si statut = valide.</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="237" x="1775" y="483.3008">Une absence n'est jamais codée par zéro.</text></g><!--MD5=[9ecc50c45578ee469dd58869eb1e485e]
+class Consignes--><g id="elem_Consignes"><rect codeLine="50" fill="#FFFFFF" height="84.0781" id="Consignes" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="320" x="22" y="39"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="320" x="22" y="39"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="320" x="22" y="61.0195"/><rect codeLine="50" fill="none" height="84.0781" id="Consignes" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="320" x="22" y="39"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="111" x="126.5" y="55.625">F1 et F7 · Consignes</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="23" x2="341" y1="63.5195" y2="63.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="308" x="28" y="79.1445">vitesse_pompe : float — fraction de la vitesse nominale</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="108" x="28" y="93.6641">puissance_W : float</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="23" x2="341" y1="100.5586" y2="100.5586"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="154" x="28" y="116.1836">F1 vers SS-1 ; F7 vers SS-3</text></g><!--MD5=[75e6ff5f482c0b3a406f7c036d3b45e5]
+class Vraies--><g id="elem_Vraies"><rect codeLine="56" fill="#FFFFFF" height="69.5586" id="Vraies" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="237" x="377.5" y="46"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="237" x="377.5" y="46"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="237" x="377.5" y="68.0195"/><rect codeLine="56" fill="none" height="69.5586" id="Vraies" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="237" x="377.5" y="46"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="121" x="435.5" y="62.625">F2 · Grandeurs vraies</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="378.5" x2="613.5" y1="70.5195" y2="70.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="214" x="383.5" y="86.1445">grandeurs_vraies : dict[Variable, float]</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="378.5" x2="613.5" y1="93.0391" y2="93.0391"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="225" x="383.5" y="108.6641">SS-1 vers SS-2 seulement, et verite.csv</text></g><!--MD5=[1d35d17b7e8788f2ae0ce718073aa35b]
+class Mesures--><g id="elem_Mesures"><rect codeLine="61" fill="#FFFFFF" height="69.5586" id="Mesures" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="195" x="649.5" y="46"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="195" x="649.5" y="46"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="195" x="649.5" y="68.0195"/><rect codeLine="61" fill="none" height="69.5586" id="Mesures" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="195" x="649.5" y="46"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="160" x="667" y="62.625">F3 et F8 · Mesures qualifiées</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="650.5" x2="843.5" y1="70.5195" y2="70.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="183" x="655.5" y="86.1445">mesures : dict[Variable, Mesure]</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="650.5" x2="843.5" y1="93.0391" y2="93.0391"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="158" x="655.5" y="108.6641">F3 vers SS-3 ; F8 vers SS-5</text></g><!--MD5=[1ded1217a9405dfa681882538a71ecc7]
+class Residus--><g id="elem_Residus"><rect codeLine="66" fill="#FFFFFF" height="61.5586" id="Residus" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="254" x="880" y="50"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="254" x="880" y="50"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="254" x="880" y="72.0195"/><rect codeLine="66" fill="none" height="61.5586" id="Residus" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="254" x="880" y="50"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="133" x="940.5" y="66.625">F4 · Résidus normalisés</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="881" x2="1133" y1="74.5195" y2="74.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="197" x="886" y="90.1445">residus : dict[Variable, float | None]</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="242" x="886" y="104.6641">pret : bool — calage de 600 cycles terminé</text></g><!--MD5=[398cc6ece1856df3b71d53fbdff2fbf0]
+class Attendus--><g id="elem_Attendus"><rect codeLine="70" fill="#FFFFFF" height="47.0391" id="Attendus" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="217" x="484.5" y="197.5"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="217" x="484.5" y="197.5"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="217" x="484.5" y="219.5195"/><rect codeLine="70" fill="none" height="47.0391" id="Attendus" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="217" x="484.5" y="197.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="125" x="530.5" y="214.125">F9 · Valeurs attendues</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="485.5" x2="700.5" y1="222.0195" y2="222.0195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="205" x="490.5" y="237.6445">attendus : dict[Variable, float | None]</text></g><!--MD5=[3db53164d4ddbdea4156eda8a776d7e7]
+class Decision--><g id="elem_Decision"><rect codeLine="73" fill="#FFFFFF" height="76.0781" id="Decision" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="171" x="736.5" y="183"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="171" x="736.5" y="183"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="171" x="736.5" y="205.0195"/><rect codeLine="73" fill="none" height="76.0781" id="Decision" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="171" x="736.5" y="183"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="72" x="786" y="199.625">F5 · Décision</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="737.5" x2="906.5" y1="207.5195" y2="207.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="53" x="742.5" y="223.1445">etat : Etat</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="151" x="742.5" y="237.6641">confiance : float — de 0 à 1</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="159" x="742.5" y="252.1836">contributrices : list[Variable]</text></g><!--MD5=[dbb7ba3d0d21354681a0e7a6e103d486]
+class Presentation--><g id="elem_Presentation"><rect codeLine="78" fill="#FFFFFF" height="61.5586" id="Presentation" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="191" x="942.5" y="190"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="191" x="942.5" y="190"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="191" x="942.5" y="212.0195"/><rect codeLine="78" fill="none" height="61.5586" id="Presentation" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="191" x="942.5" y="190"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="95" x="990.5" y="206.625">F6 · Présentation</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="943.5" x2="1132.5" y1="214.5195" y2="214.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="77" x="948.5" y="230.1445">affichage : str</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="179" x="948.5" y="244.6641">demande_en_cours : dict | None</text></g><!--MD5=[9fe7c132f383bebaa24d83281b6c42fc]
+class Evenement--><g id="elem_Evenement"><rect codeLine="82" fill="#FFFFFF" height="171.1953" id="Evenement" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="261" x="656.5" y="550"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="261" x="656.5" y="550"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="261" x="656.5" y="572.0195"/><rect codeLine="82" fill="none" height="171.1953" id="Evenement" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="261" x="656.5" y="550"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="80" x="747" y="566.625">E · Événement</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="657.5" x2="916.5" y1="574.5195" y2="574.5195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="49" x="662.5" y="590.1445">type : str</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="30" x="662.5" y="604.6641">k : int</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="152" x="662.5" y="619.1836">...  champs propres au type</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="657.5" x2="916.5" y1="626.0781" y2="626.0781"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="240" x="662.5" y="641.7031">entete_essai, consignes, changement_etat,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="200" x="662.5" y="656.2227">calage_termine, defaut_composant,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="209" x="662.5" y="670.7422">demande_confirmation, etat_critique,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="176" x="662.5" y="685.2617">demande_confirmation_retiree,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="249" x="662.5" y="699.7813">confirmation_operateur, reponse_operateur,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="134" x="662.5" y="714.3008">confirmation_sans_effet</text></g><!--MD5=[262c1d5b83fc5c204bd2fc70755833ce]
+class Entree--><g id="elem_Entree"><rect codeLine="94" fill="#FFFFFF" height="142.1563" id="Entree" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="304" x="635" y="333.5"/><rect fill="#E6EBF2" height="24.5195" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="304" x="635" y="333.5"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="304" x="635" y="355.5195"/><rect codeLine="94" fill="none" height="142.1563" id="Entree" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="304" x="635" y="333.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="136" x="719" y="350.125">Entrée de journal (SS-6)</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="636" x2="938" y1="358.0195" y2="358.0195"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="78" x="641" y="373.6445">sequence : int</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="30" x="641" y="388.1641">k : int</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="88" x="641" y="402.6836">contenu : JSON</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="222" x="641" y="417.2031">empreinte_precedente : str — SHA-256</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="152" x="641" y="431.7227">empreinte : str — SHA-256</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="636" x2="938" y1="438.6172" y2="438.6172"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="287" x="641" y="454.2422">contenu : k, t, horodatage_utc, consignes, mesures,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="292" x="641" y="468.7617">residus, etat, confiance, contributrices, evenements</text></g><g id="elem_GMN30"><path d="M1166,616 L1166,655.0391 A0,0 0 0 0 1166,655.0391 L1638,655.0391 A0,0 0 0 0 1638,655.0391 L1638,626 L1628,616 L1356.15,616 L939.02,462.11 L1348.15,616 L1166,616 A0,0 0 0 0 1166,616 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M1628,616 L1628,626 L1638,626 L1628,616 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="431" x="1172" y="632.625">Une entrée par cycle, écrite en dernier (mode WAL, validée à chaque cycle).</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="451" x="1172" y="647.1445">Le journal est la seule source de vérité ; le cache de l'interface en est une copie.</text></g><!--MD5=[76c6c5454f0b785c9bc2cbe15b595c71]
+link Mesure to Variable--><g id="link_Mesure_Variable"><path codeLine="45" d="M1881.94,490.12 C1866.23,525.05 1848.73,563.97 1835.85,592.59 " fill="none" id="Mesure-to-Variable" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="1833.67,597.45,1841.0015,590.8736,1835.7153,592.8875,1833.7015,587.6012,1833.67,597.45" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[3651f7efaac3101103738732f714c230]
+link Mesure to Statut--><g id="link_Mesure_Statut"><path codeLine="46" d="M1961.39,490.12 C1978.54,525.19 1997.66,564.29 2011.67,592.94 " fill="none" id="Mesure-to-Statut" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="2013.88,597.45,2013.5336,587.6072,2011.6899,592.9552,2006.3419,591.1115,2013.88,597.45" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[474b825c4bc3daecb334e70e4b381392]
+link Mesures to Mesure--><g id="link_Mesures_Mesure"><path codeLine="106" d="M839.01,116.08 C847.07,118.59 855.15,120.94 863,123 C1250.98,224.63 1383.71,119.19 1752,278 C1774.88,287.87 1797.53,301.43 1818.44,316 " fill="none" id="Mesures-to-Mesure" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="1822.6,318.93,1817.5366,310.4824,1818.5092,316.055,1812.9366,317.0276,1822.6,318.93" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[5f81d12f68713b4bf1bd21a51bdb28b9]
+link Decision to Etat--><g id="link_Decision_Etat"><path codeLine="107" d="M907.75,254.84 C913.54,256.43 919.32,257.84 925,259 C1064.57,287.6 1104.43,254.79 1245,278 C1404.27,304.3 1587.83,364 1664.9,390.46 " fill="none" id="Decision-to-Etat" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="1669.83,392.15,1662.6231,385.4373,1665.1025,390.5218,1660.018,393.0012,1669.83,392.15" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[ed792567e58e74b7d3526f97ac6a0d9f]
+link Decision to Variable--><g id="link_Decision_Variable"><path codeLine="108" d="M907.72,254.36 C1090.96,323.74 1515.49,485.72 1656,550 C1685.97,563.71 1718.28,580.29 1746.03,595.13 " fill="none" id="Decision-to-Variable" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="1750.44,597.49,1744.3956,589.7141,1746.0326,595.1289,1740.6178,596.7659,1750.44,597.49" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[cdb4af44392607fcb53f4f0cd9fa7dc4]
+reverse link Entree to Evenement--><g id="link_Entree_Evenement"><path codeLine="109" d="M787,488.92 C787,508.76 787,529.96 787,549.86 " fill="none" id="Entree-backto-Evenement" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="787,475.76,783,481.76,787,487.76,791,481.76,787,475.76" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="5" x="781.7422" y="495.4743">1</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="20" x="766.1094" y="539.2487">0..*</text></g><!--MD5=[c6eabb7088c72d2a70483730765ca6db]
+link Consignes to Vraies--><!--MD5=[9eb0b9434af250f98c25dcff6cef8cee]
+link Vraies to Mesures--><!--MD5=[92a984594b2399127f78fd3b94b0de76]
+link Mesures to Residus--><!--MD5=[e733fc0df58b4512d08ed4c6e664065f]
+link Consignes to Attendus--><!--MD5=[d78aa0b05457ee952242675bcebd071c]
+link Attendus to Decision--><!--MD5=[1eae52314a395cf8b8ede3e05aba5615]
+link Decision to Presentation--><!--MD5=[1bd866c906035145f9b2afdefe44f534]
+link Attendus to Entree--><!--MD5=[89230b7e6699adc41739aa28aa65153b]
+@startuml contrat-de-donnees
+' Contrat de données (tableau 2-1 du rapport 12, tableau 7-2 du rapport de concept).
+' Traduit logiciel/jumeau/contrat.py et les entrées et sorties de chaque sous-système.
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng contrat-de-donnees.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam ArrowColor #4A5F7A
+hide empty methods
+hide circle
+
+package "Types communs (contrat.py)" {
+  enum Variable {
+    T : température en sortie de V1, °C, plage 0 à 100
+    P : pression absolue, MPa, plage 0 à 0,5
+    Q : débit massique, kg/s, plage 0 à 0,5
+  }
+  enum Statut {
+    valide
+    absent
+    hors_plage
+  }
+  enum Etat {
+    normal
+    derive
+    anomalie
+    incertain
+  }
+  class Mesure <<immuable>> {
+    k : int — cycle, k ≥ 0
+    t : float — s, t = k × T, T = 1 s
+    horodatage_utc : str — ISO 8601
+    variable : Variable
+    valeur : float | None
+    statut : Statut
+    - -
+    Règle : valeur finie si et seulement si statut = valide.
+    Une absence n'est jamais codée par zéro.
+  }
+  Mesure - -> Variable
+  Mesure - -> Statut
+}
+
+package "Flux par cycle" {
+  class "F1 et F7 · Consignes" as Consignes {
+    vitesse_pompe : float — fraction de la vitesse nominale
+    puissance_W : float
+    - -
+    F1 vers SS-1 ; F7 vers SS-3
+  }
+  class "F2 · Grandeurs vraies" as Vraies {
+    grandeurs_vraies : dict[Variable, float]
+    - -
+    SS-1 vers SS-2 seulement, et verite.csv
+  }
+  class "F3 et F8 · Mesures qualifiées" as Mesures {
+    mesures : dict[Variable, Mesure]
+    - -
+    F3 vers SS-3 ; F8 vers SS-5
+  }
+  class "F4 · Résidus normalisés" as Residus {
+    residus : dict[Variable, float | None]
+    pret : bool — calage de 600 cycles terminé
+  }
+  class "F9 · Valeurs attendues" as Attendus {
+    attendus : dict[Variable, float | None]
+  }
+  class "F5 · Décision" as Decision {
+    etat : Etat
+    confiance : float — de 0 à 1
+    contributrices : list[Variable]
+  }
+  class "F6 · Présentation" as Presentation {
+    affichage : str
+    demande_en_cours : dict | None
+  }
+  class "E · Événement" as Evenement {
+    type : str
+    k : int
+    ...  champs propres au type
+    - -
+    entete_essai, consignes, changement_etat,
+    calage_termine, defaut_composant,
+    demande_confirmation, etat_critique,
+    demande_confirmation_retiree,
+    confirmation_operateur, reponse_operateur,
+    confirmation_sans_effet
+  }
+  class "Entrée de journal (SS-6)" as Entree {
+    sequence : int
+    k : int
+    contenu : JSON
+    empreinte_precedente : str — SHA-256
+    empreinte : str — SHA-256
+    - -
+    contenu : k, t, horodatage_utc, consignes, mesures,
+    residus, etat, confiance, contributrices, evenements
+  }
+}
+
+Mesures - -> Mesure
+Decision - -> Etat
+Decision - -> Variable
+Entree "1" *- - "0..*" Evenement
+
+Consignes -[hidden]right-> Vraies
+Vraies -[hidden]right-> Mesures
+Mesures -[hidden]right-> Residus
+Consignes -[hidden]down-> Attendus
+Attendus -[hidden]right-> Decision
+Decision -[hidden]right-> Presentation
+Attendus -[hidden]down-> Entree
+
+note bottom of Entree
+  Une entrée par cycle, écrite en dernier (mode WAL, validée à chaque cycle).
+  Le journal est la seule source de vérité ; le cache de l'interface en est une copie.
+end note
+@enduml
+
+@startuml contrat-de-donnees
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam ArrowColor #4A5F7A
+hide empty methods
+hide circle
+
+package "Types communs (contrat.py)" {
+  enum Variable {
+    T : température en sortie de V1, °C, plage 0 à 100
+    P : pression absolue, MPa, plage 0 à 0,5
+    Q : débit massique, kg/s, plage 0 à 0,5
+  }
+  enum Statut {
+    valide
+    absent
+    hors_plage
+  }
+  enum Etat {
+    normal
+    derive
+    anomalie
+    incertain
+  }
+  class Mesure <<immuable>> {
+    k : int — cycle, k ≥ 0
+    t : float — s, t = k × T, T = 1 s
+    horodatage_utc : str — ISO 8601
+    variable : Variable
+    valeur : float | None
+    statut : Statut
+    - -
+    Règle : valeur finie si et seulement si statut = valide.
+    Une absence n'est jamais codée par zéro.
+  }
+  Mesure - -> Variable
+  Mesure - -> Statut
+}
+
+package "Flux par cycle" {
+  class "F1 et F7 · Consignes" as Consignes {
+    vitesse_pompe : float — fraction de la vitesse nominale
+    puissance_W : float
+    - -
+    F1 vers SS-1 ; F7 vers SS-3
+  }
+  class "F2 · Grandeurs vraies" as Vraies {
+    grandeurs_vraies : dict[Variable, float]
+    - -
+    SS-1 vers SS-2 seulement, et verite.csv
+  }
+  class "F3 et F8 · Mesures qualifiées" as Mesures {
+    mesures : dict[Variable, Mesure]
+    - -
+    F3 vers SS-3 ; F8 vers SS-5
+  }
+  class "F4 · Résidus normalisés" as Residus {
+    residus : dict[Variable, float | None]
+    pret : bool — calage de 600 cycles terminé
+  }
+  class "F9 · Valeurs attendues" as Attendus {
+    attendus : dict[Variable, float | None]
+  }
+  class "F5 · Décision" as Decision {
+    etat : Etat
+    confiance : float — de 0 à 1
+    contributrices : list[Variable]
+  }
+  class "F6 · Présentation" as Presentation {
+    affichage : str
+    demande_en_cours : dict | None
+  }
+  class "E · Événement" as Evenement {
+    type : str
+    k : int
+    ...  champs propres au type
+    - -
+    entete_essai, consignes, changement_etat,
+    calage_termine, defaut_composant,
+    demande_confirmation, etat_critique,
+    demande_confirmation_retiree,
+    confirmation_operateur, reponse_operateur,
+    confirmation_sans_effet
+  }
+  class "Entrée de journal (SS-6)" as Entree {
+    sequence : int
+    k : int
+    contenu : JSON
+    empreinte_precedente : str — SHA-256
+    empreinte : str — SHA-256
+    - -
+    contenu : k, t, horodatage_utc, consignes, mesures,
+    residus, etat, confiance, contributrices, evenements
+  }
+}
+
+Mesures - -> Mesure
+Decision - -> Etat
+Decision - -> Variable
+Entree "1" *- - "0..*" Evenement
+
+Consignes -[hidden]right-> Vraies
+Vraies -[hidden]right-> Mesures
+Mesures -[hidden]right-> Residus
+Consignes -[hidden]down-> Attendus
+Attendus -[hidden]right-> Decision
+Decision -[hidden]right-> Presentation
+Attendus -[hidden]down-> Entree
+
+note bottom of Entree
+  Une entrée par cycle, écrite en dernier (mode WAL, validée à chaque cycle).
+  Le journal est la seule source de vérité ; le cache de l'interface en est une copie.
+end note
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 14:12:26 EDT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo3MmRjOGQxMi05YzFmLTQ0NjQtYmRkMy1hMmU3YWYzZWE5YjYAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaG31J9AnhLJqGE+EIB+yd2oAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo1YzJjNTUxZi03N2Y5LTQ5MWMtOTA0Ny1lMWU3YjllZWVhN2JscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoyEq51Pj/I8nNByxsnZEnwgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggEzKGKWKrUWFqtOQfjjavU2RCS8Ag64vhn+32neGsPIukZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAGysJUtQu5O/ING3V4bUM8AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIK3WFcT+gyxgvY53o8PIKjN5jqEQr/4897ovU/UDtPZkZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GX9GZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjcyZGM4ZDEyLTljMWYtNDQ2NC1iZGQzLWEyZTdhZjNlYTliNi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmRjZTFhMTVjLWU0Y2QtNGFmNy05MWUyLTU0NzU3OGQxNmY5NHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCATMoYpYqtRYWq05B+ONq9TZEJLwCDri+Gf7fad4aw8i6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggJ4MOsngDF8TWH0FLay9FXDpQmZeasmxErXXhWDr0rbKiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggisvL5/jku7gRz7M6pIq9Hcg7PwyEv3u99u8FwEKj5fh0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQEmkcc/BibLoB6CY7OrundaFG0d6CtQihZmxJVfhJMDynINqT8CSp3Aa0/q+cRLo5XStUAkLNd0XL5PqUywH2XI=</c2pa:manifest></metadata></svg>
