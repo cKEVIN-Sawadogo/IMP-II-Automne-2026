@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1112px" preserveAspectRatio="none" style="width:682px;height:1112px;background:#FFFFFF;" version="1.1" viewBox="0 0 682 1112" width="682px" zoomAndPan="magnify" xmlns:c2pa="http://c2pa.org/manifest"><defs/><g><!--MD5=[b0f19e166a6d6034c6a681d4a725ee62]
+cluster PROTO--><g id="cluster_PROTO"><rect fill="#FFFFFF" height="827" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:1.0;" width="514" x="7" y="133"/><text fill="#000000" font-family="Arial" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="135" x="196.5" y="146.625">Périmètre du prototype</text></g><!--MD5=[1427ba243378a42d8ddfce16c7207d5a]
+entity ORCH--><g id="elem_ORCH"><rect fill="#F5F5F5" height="63.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="154" x="176" y="711"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="80" x="186" y="732.625">Orchestrateur</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="88" x="186" y="747.1445">cadence T = 1 s</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="134" x="186" y="761.6641">SS-1 → SS-5, puis SS-6</text></g><!--MD5=[be81b4d6f21dd033bb84b6b5594864bb]
+entity SS1--><g id="elem_SS1"><rect fill="#FFFFFF" height="49.0391" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="106" x="39" y="166"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="27" x="49" y="187.625">SS-1</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="86" x="49" y="202.1445">Boucle simulée</text></g><!--MD5=[346275a8706a6444666387e186393fc8]
+entity SS2--><g id="elem_SS2"><rect fill="#FFFFFF" height="63.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="96" x="153" y="291"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="29" x="163" y="312.625">SS-2</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="76" x="163" y="327.1445">Acquisition et</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="69" x="163" y="341.6641">qualification</text></g><!--MD5=[788dcc5fec93f8321c3878551e49f591]
+entity SS3--><g id="elem_SS3"><rect fill="#FFFFFF" height="63.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="158" x="122" y="431"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="29" x="132" y="452.625">SS-3</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="59" x="132" y="467.1445">Référence</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="138" x="132" y="481.6641">(comportement attendu)</text></g><!--MD5=[3b10853504ea6d98b0c4e4725b002ec1]
+entity SS4--><g id="elem_SS4"><rect fill="#FFFFFF" height="49.0391" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="105" x="139.5" y="571"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="30" x="149.5" y="592.625">SS-4</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="85" x="149.5" y="607.1445">Décision d'état</text></g><!--MD5=[d19992ff6b9a24295b67b29a5492d271]
+entity SS5--><g id="elem_SS5"><rect fill="#FFFFFF" height="49.0391" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="139" x="365.5" y="718.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="29" x="375.5" y="740.125">SS-5</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="119" x="375.5" y="754.6445">Présentation par état</text></g><!--MD5=[b3159d26a2aa58443d964bab4da7f386]
+entity SS6--><g id="elem_SS6"><rect fill="#FFFFFF" height="78.0781" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="130" x="67" y="866"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="29" x="77" y="887.625">SS-6</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="43" x="77" y="902.1445">Journal</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="110" x="77" y="916.6641">chaînage SHA-256,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="95" x="77" y="931.1836">scellement signé</text></g><!--MD5=[9f29bfc9cc03bf442e3967b60c32f352]
+entity SCN--><g id="elem_SCN"><rect fill="#F5F5F5" height="63.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="179" x="133.5" y="7"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="94" x="143.5" y="28.625">Scénario d'essai</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="159" x="143.5" y="43.1445">(consignes, défauts injectés,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="40" x="143.5" y="57.6641">graine)</text></g><!--MD5=[69d8d45188bfd87ac85d18be3b70c704]
+entity OP--><g id="elem_OP"><ellipse cx="594" cy="876" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M594,884 L594,911 M581,892 L607,892 M594,911 L581,926 M594,911 L607,926 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="58" x="565" y="939.125">Opérateur</text></g><!--MD5=[de6c1d6447224c595004e616e26772dd]
+link SCN to SS1--><g id="link_SCN_SS1"><path d="M155.3,71.08 C142.57,79.35 130.34,89.31 121,101 C107.25,118.2 99.92,142.15 96.08,160.8 " fill="none" id="SCN-to-SS1" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="95.08,165.91,100.7268,157.8407,96.0359,161.0022,92.8744,156.3113,95.08,165.91" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="74" x="122" y="113.625">F1 Consignes</text></g><!--MD5=[7e5e7ef01fcfb4232c75803b2f4791ce]
+link SCN to SS2--><g id="link_SCN_SS2"><path d="M220.56,71.26 C216.46,123.77 208.22,229.43 203.86,285.35 " fill="none" id="SCN-to-SS2" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="203.45,290.6,208.1323,281.9353,203.8357,285.6149,200.1561,281.3183,203.45,290.6" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="126" x="217" y="195.125">F1' Défauts de mesure</text></g><!--MD5=[75aaec8a5556c5a9fccd3b121ccfe974]
+link SS1 to SS2--><g id="link_SS1_SS2"><path d="M80.2,215.26 C74.93,229.46 71.59,247.34 80,261 C94.92,285.23 122.74,300.18 147.95,309.21 " fill="none" id="SS1-to-SS2" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="152.96,310.94,145.7531,304.2273,148.2325,309.3118,143.148,311.7912,152.96,310.94" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="115" x="81" y="257.625">F2 Grandeurs vraies</text></g><!--MD5=[64b90b670298ed29c2941b196807b7b4]
+link SS2 to SS3--><g id="link_SS2_SS3"><path d="M201,355.31 C201,376.22 201,403.79 201,425.66 " fill="none" id="SS2-to-SS3" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="201,430.81,205,421.81,201,425.81,197,421.81,201,430.81" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="123" x="202" y="397.625">F3 Mesures qualifiées</text></g><!--MD5=[0edc786cd71d04cc2a5ee8694b42b78d]
+link SS3 to SS4--><g id="link_SS3_SS4"><path d="M186.09,495.3 C182.36,504.64 178.89,515.05 177,525 C174.44,538.49 176.94,553.38 180.58,565.9 " fill="none" id="SS3-to-SS4" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="182.08,570.76,183.2317,560.9787,180.5976,565.9848,175.5915,563.3506,182.08,570.76" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="127" x="178" y="537.625">F4 Résidus normalisés</text></g><!--MD5=[01d128fa7920f543e6f03dcff43ac902]
+link SS4 to SS5--><g id="link_SS4_SS5"><path d="M186.62,620.21 C183.86,638.98 183.61,664.67 198,681 C242.94,732.02 282.47,692.88 348,711 C354.28,712.74 360.76,714.7 367.22,716.78 " fill="none" id="SS4-to-SS5" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="372.15,718.39,364.8468,711.7822,367.3995,716.8303,362.3513,719.383,372.15,718.39" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="104" x="200" y="662.625">F5 État, confiance,</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="106" x="199" y="677.1445">variables en cause</text></g><!--MD5=[213fb9daf6d3176f4d01a9a8c29f8998]
+link SS5 to OP--><g id="link_SS5_OP"><path d="M504.69,762.21 C528.11,771.5 552.46,785.18 569,805 C582.19,820.8 588.55,842.63 591.58,861.77 " fill="none" id="SS5-to-OP" style="stroke:#4A5F7A;stroke-width:1.4;"/><polygon fill="#4A5F7A" points="592.34,867.09,595.0117,857.6104,591.6249,862.1414,587.0939,858.7546,592.34,867.09" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="89" x="585" y="825.125">F6 Présentation</text></g><!--MD5=[6a61920e58466d33f49aef95f4f027bb]
+link OP to SS5--><g id="link_OP_SS5"><path d="M564.82,887.04 C551.71,879.9 535.88,871.89 521,866 C475.07,847.83 443.84,875.36 414,836 C400.22,817.83 407.64,792.22 417.27,772.63 " fill="none" id="OP-to-SS5" style="stroke:#4A5F7A;stroke-width:1.4;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="419.76,767.79,412.1016,773.9826,417.4839,772.2419,419.2246,777.6243,419.76,767.79" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="72" x="451.5" y="817.625">Réponse à la</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="145" x="415" y="832.1445">demande de confirmation</text></g><!--MD5=[76391ca954329672ffc185e307a40385]
+link SCN to SS3--><g id="link_SCN_SS3"><path d="M296.2,71.13 C318.15,84.34 339.66,102.1 352,125 C370.97,160.22 353.93,175.05 352,215 C348,297.96 382.16,333.34 334,401 C321.91,417.98 303.91,430.34 285.03,439.3 " fill="none" id="SCN-to-SS3" style="stroke:#F5851F;stroke-width:2.0;"/><polygon fill="#F5851F" points="280.21,441.51,290.0583,441.4017,284.7564,439.4292,286.729,434.1274,280.21,441.51" style="stroke:#F5851F;stroke-width:2.0;"/><text fill="#C0620A" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="76" x="354" y="257.625">F7 Consignes</text></g><!--MD5=[2c8814bb77589d4c7103c317fa8f6a21]
+link SS2 to SS5--><g id="link_SS2_SS5"><path d="M249.01,339.09 C275.93,349.17 309.02,364.38 334,385 C412.38,449.69 435.96,474.23 467,571 C482.65,619.79 463.5,679.02 448.81,713.42 " fill="none" id="SS2-to-SS5" style="stroke:#F5851F;stroke-width:2.0;"/><polygon fill="#F5851F" points="446.67,718.31,453.9344,711.6595,448.6688,713.7269,446.6015,708.4614,446.67,718.31" style="stroke:#F5851F;stroke-width:2.0;"/><text fill="#C0620A" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="123" x="457" y="537.625">F8 Mesures qualifiées</text></g><!--MD5=[33135ac0447f22ceb9f907410d854ae4]
+link SS3 to SS5--><g id="link_SS3_SS5"><path d="M274.37,495.14 C287.58,503.32 300.24,513.24 310,525 C338.45,559.28 321.11,580.65 342,620 C360.65,655.13 389.2,690.8 409.74,714.42 " fill="none" id="SS3-to-SS5" style="stroke:#F5851F;stroke-width:2.0;"/><polygon fill="#F5851F" points="413.22,718.39,410.324,708.9765,409.9356,714.62,404.2921,714.2316,413.22,718.39" style="stroke:#F5851F;stroke-width:2.0;"/><text fill="#C0620A" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="119" x="343" y="600.125">F9 Valeurs attendues</text></g><!--MD5=[5affdfe969f7afd77151775bbf533e69]
+link SS2 to SS6--><g id="link_SS2_SS6"><path d="M162.92,355.02 C141.96,374.47 117.68,401.41 105,431 C44.76,571.58 85.05,622.45 96,775 C97.96,802.27 96.96,809.58 104,836 C106.18,844.17 109.1,852.67 112.25,860.78 " fill="none" id="SS2-to-SS6" style="stroke:#4A5F7A;stroke-width:1.4;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="114.22,865.77,114.6279,855.9296,112.3803,861.1208,107.1891,858.8732,114.22,865.77" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="7" x="77" y="600.125">E</text></g><!--MD5=[a4b99ee404e397a5a8952cd01214d112]
+link SS3 to SS6--><g id="link_SS3_SS6"><path d="M169.65,495.07 C151.92,514.92 131.46,542.27 122,571 C89.22,670.59 107.88,796.11 121.56,860.9 " fill="none" id="SS3-to-SS6" style="stroke:#4A5F7A;stroke-width:1.4;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="122.62,865.84,124.6531,856.2033,121.5763,860.9502,116.8294,857.8733,122.62,865.84" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="7" x="107" y="670.125">E</text></g><!--MD5=[a9406cc0a3cd11fc1c24f0080386a372]
+link SS4 to SS6--><g id="link_SS4_SS6"><path d="M181,620.04 C170.89,642.79 156.39,678.49 149,711 C137.51,761.54 133.69,821.16 132.47,860.62 " fill="none" id="SS4-to-SS6" style="stroke:#4A5F7A;stroke-width:1.4;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="132.33,865.81,136.5854,856.9279,132.4728,860.812,128.5887,856.6994,132.33,865.81" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="7" x="150" y="747.625">E</text></g><!--MD5=[16cae7b49056fa789b56cb6a0ae543f2]
+link SS5 to SS6--><g id="link_SS5_SS6"><path d="M407.93,767.53 C383.76,787.67 346.74,816.44 311,836 C276.67,854.78 236.07,870.67 202.22,882.35 " fill="none" id="SS5-to-SS6" style="stroke:#4A5F7A;stroke-width:1.4;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="197.27,884.05,207.0797,884.9278,202.0019,882.4346,204.495,877.3568,197.27,884.05" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="7" x="358" y="825.125">E</text></g><!--MD5=[f12695e6cb08aa072de5c3a00e5528c8]
+link ORCH to SS6--><g id="link_ORCH_SS6"><path d="M229.38,775.23 C210.78,799.83 184.65,834.39 164.14,861.51 " fill="none" id="ORCH-to-SS6" style="stroke:#4A5F7A;stroke-width:1.4;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="160.89,865.79,169.5009,861.0096,163.8991,861.7969,163.1119,856.195,160.89,865.79" style="stroke:#4A5F7A;stroke-width:1.4;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="98" x="204" y="825.125">E Entrée du cycle</text></g><rect fill="#DDDDDD" height="115.6367" id="_legend" rx="7.5" ry="7.5" style="stroke:#000000;stroke-width:1.0;" width="642" x="12" y="977"/><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="32" x="20" y="997.5625">Trait</text><text fill="#000000" font-family="Arial" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="88" x="58" y="997.5625">Signification</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="17" y="1014.502"> </text><text fill="#4A5F7A" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="16" x="21" y="1014.502">━━</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="37" y="1014.502"> </text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="231" x="59" y="1014.502">Flux F1 à F6 du rapport de concept</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="17" y="1031.4414"> </text><text fill="#F5851F" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="16" x="21" y="1031.4414">━━</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="37" y="1031.4414"> </text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="271" x="59" y="1031.4414">Flux F7 à F9 ajoutés pendant l'intégration</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="17" y="1048.3809"> </text><text fill="#4A5F7A" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="16" x="21" y="1048.3809">╍╍</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="4" x="37" y="1048.3809"> </text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="481" x="59" y="1048.3809">Flux E : événements de SS-2 à SS-5 et entrée de cycle de l'orchestrateur</text><line style="stroke:#000000;stroke-width:1.0;" x1="17" x2="544" y1="984" y2="984"/><line style="stroke:#000000;stroke-width:1.0;" x1="17" x2="544" y1="1000.9395" y2="1000.9395"/><line style="stroke:#000000;stroke-width:1.0;" x1="17" x2="544" y1="1017.8789" y2="1017.8789"/><line style="stroke:#000000;stroke-width:1.0;" x1="17" x2="544" y1="1034.8184" y2="1034.8184"/><line style="stroke:#000000;stroke-width:1.0;" x1="17" x2="544" y1="1051.7578" y2="1051.7578"/><line style="stroke:#000000;stroke-width:1.0;" x1="17" x2="17" y1="984" y2="1051.7578"/><line style="stroke:#000000;stroke-width:1.0;" x1="55" x2="55" y1="984" y2="1051.7578"/><line style="stroke:#000000;stroke-width:1.0;" x1="544" x2="544" y1="984" y2="1051.7578"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="632" x="17" y="1067.3203">Tous les flux passent par l'orchestrateur ; SS-3 et SS-4 ne reçoivent jamais les grandeurs vraies.</text><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="393" x="17" y="1084.2598">Aucun flux ne sort du périmètre vers l'installation (EX-F-08).</text><!--MD5=[f8210a15e5a388dab015d2e298eb5291]
+@startuml figure-2-1_composants
+' Figure 2-1. Diagramme des composants du prototype et flux de données.
+' Flux F1 à F6 : rapport de concept. Flux F7 à F9 (orange) : ajoutés pendant l'intégration.
+' Source du rapport 12 (section 2) et de la vue logique du rapport 13 (section 3.4).
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng figure-2-1_composants.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam ArrowColor #4A5F7A
+skinparam ArrowThickness 1.4
+skinparam rectangle {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam component {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+  FontStyle bold
+}
+top to bottom direction
+
+rectangle "Scénario d'essai\n(consignes, défauts injectés,\ngraine)" as SCN #F5F5F5
+actor "Opérateur" as OP
+
+rectangle "Périmètre du prototype" as PROTO {
+  component "Orchestrateur\ncadence T = 1 s\nSS-1 → SS-5, puis SS-6" as ORCH #F5F5F5
+  component "SS-1\nBoucle simulée" as SS1
+  component "SS-2\nAcquisition et\nqualification" as SS2
+  component "SS-3\nRéférence\n(comportement attendu)" as SS3
+  component "SS-4\nDécision d'état" as SS4
+  component "SS-5\nPrésentation par état" as SS5
+  component "SS-6\nJournal\nchaînage SHA-256,\nscellement signé" as SS6
+}
+
+SCN - -> SS1 : F1 Consignes
+SCN - -> SS2 : F1' Défauts de mesure
+SS1 - -> SS2 : F2 Grandeurs vraies
+SS2 - -> SS3 : F3 Mesures qualifiées
+SS3 - -> SS4 : F4 Résidus normalisés
+SS4 - -> SS5 : F5 État, confiance,\nvariables en cause
+SS5 - -> OP : F6 Présentation
+OP ..> SS5 : Réponse à la\ndemande de confirmation
+
+SCN -[#F5851F,thickness=2]-> SS3 : <color:#C0620A>F7 Consignes</color>
+SS2 -[#F5851F,thickness=2]-> SS5 : <color:#C0620A>F8 Mesures qualifiées</color>
+SS3 -[#F5851F,thickness=2]-> SS5 : <color:#C0620A>F9 Valeurs attendues</color>
+
+SS2 -[dashed]-> SS6 : E
+SS3 -[dashed]-> SS6 : E
+SS4 -[dashed]-> SS6 : E
+SS5 -[dashed]-> SS6 : E
+ORCH -[dashed]-> SS6 : E Entrée du cycle
+
+legend bottom left
+  |= Trait |= Signification |
+  | <color:#4A5F7A>━━</color> | Flux F1 à F6 du rapport de concept |
+  | <color:#F5851F>━━</color> | Flux F7 à F9 ajoutés pendant l'intégration |
+  | <color:#4A5F7A>╍╍</color> | Flux E : événements de SS-2 à SS-5 et entrée de cycle de l'orchestrateur |
+  Tous les flux passent par l'orchestrateur ; SS-3 et SS-4 ne reçoivent jamais les grandeurs vraies.
+  Aucun flux ne sort du périmètre vers l'installation (EX-F-08).
+endlegend
+@enduml
+
+@startuml figure-2-1_composants
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam ArrowColor #4A5F7A
+skinparam ArrowThickness 1.4
+skinparam rectangle {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam component {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+  FontStyle bold
+}
+top to bottom direction
+
+rectangle "Scénario d'essai\n(consignes, défauts injectés,\ngraine)" as SCN #F5F5F5
+actor "Opérateur" as OP
+
+rectangle "Périmètre du prototype" as PROTO {
+  component "Orchestrateur\ncadence T = 1 s\nSS-1 → SS-5, puis SS-6" as ORCH #F5F5F5
+  component "SS-1\nBoucle simulée" as SS1
+  component "SS-2\nAcquisition et\nqualification" as SS2
+  component "SS-3\nRéférence\n(comportement attendu)" as SS3
+  component "SS-4\nDécision d'état" as SS4
+  component "SS-5\nPrésentation par état" as SS5
+  component "SS-6\nJournal\nchaînage SHA-256,\nscellement signé" as SS6
+}
+
+SCN - -> SS1 : F1 Consignes
+SCN - -> SS2 : F1' Défauts de mesure
+SS1 - -> SS2 : F2 Grandeurs vraies
+SS2 - -> SS3 : F3 Mesures qualifiées
+SS3 - -> SS4 : F4 Résidus normalisés
+SS4 - -> SS5 : F5 État, confiance,\nvariables en cause
+SS5 - -> OP : F6 Présentation
+OP ..> SS5 : Réponse à la\ndemande de confirmation
+
+SCN -[#F5851F,thickness=2]-> SS3 : <color:#C0620A>F7 Consignes</color>
+SS2 -[#F5851F,thickness=2]-> SS5 : <color:#C0620A>F8 Mesures qualifiées</color>
+SS3 -[#F5851F,thickness=2]-> SS5 : <color:#C0620A>F9 Valeurs attendues</color>
+
+SS2 -[dashed]-> SS6 : E
+SS3 -[dashed]-> SS6 : E
+SS4 -[dashed]-> SS6 : E
+SS5 -[dashed]-> SS6 : E
+ORCH -[dashed]-> SS6 : E Entrée du cycle
+
+legend bottom left
+  |= Trait |= Signification |
+  | <color:#4A5F7A>━━</color> | Flux F1 à F6 du rapport de concept |
+  | <color:#F5851F>━━</color> | Flux F7 à F9 ajoutés pendant l'intégration |
+  | <color:#4A5F7A>╍╍</color> | Flux E : événements de SS-2 à SS-5 et entrée de cycle de l'orchestrateur |
+  Tous les flux passent par l'orchestrateur ; SS-3 et SS-4 ne reçoivent jamais les grandeurs vraies.
+  Aucun flux ne sort du périmètre vers l'installation (EX-F-08).
+endlegend
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 14:12:26 EDT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo4YzRjZTk2ZC05OTJhLTRjMTQtOGU2Mi0xNzZkNjg1ZmUxZTYAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaOOn0EbXY1G9OkT6vFnhLUgAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpkZDhjYWVkOS1hMzkwLTRiM2QtYTA2Mi01YTlmYjdjNjMyNWRscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNosZBOhJ5+/ZNxgwFKarrxxwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggGotzzhpOV+xJCdWtn9MeLkoCRBKKzE3+EwZuj5LOnl2kZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaHZXsXlSltJ5I2jCX7ZtT2oAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIJXdODvziBTqinyxLF+/jn2sEEuRGGS8c/fAQi/MC1CcZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GVwRZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjhjNGNlOTZkLTk5MmEtNGMxNC04ZTYyLTE3NmQ2ODVmZTFlNi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjUyY2NlMjk5LTZiNTctNDMzNi04ZTE3LWI0MWQ4NTRkOTA4ZXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAai3POGk5X7EkJ1a2f0x4uSgJEEorMTf4TBm6Pks6eXaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggE8E8cafbFTgY4ZG8c5AVIgtUw9J3J9+yBDT23fZPVAyiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggSlRMnJine+I9ipIbN5Jh+pas9ED3QQ9DLECHDTRnKCZ0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLi1TkqzGp23pI5twE0ouOfpWm/x63WH0zRaJQp0Fe65++emMmszas+CuKbPzWt8TEklHF3Jqc6xBPr/yNaWl9Y=</c2pa:manifest></metadata></svg>

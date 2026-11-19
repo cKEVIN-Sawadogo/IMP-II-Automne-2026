@@ -115,6 +115,67 @@ def test_une_confirmation_est_journalisee_au_cycle_suivant(tmp_path):
     assert verifier_journal(tmp_path / "essai" / "journal.sqlite")[0]
 
 
+class OperateurSimule:
+    """Remplace l'interface : dépose une réponse dans la file pendant un cycle donné."""
+    nom = "SS-5"
+
+    def __init__(self, ss5, file, k_depot, reponse):
+        self.ss5, self.file, self.k_depot, self.reponse = ss5, file, k_depot, reponse
+
+    def __getattr__(self, attribut):  # demande, repondre : ceux du vrai SS-5
+        return getattr(self.ss5, attribut)
+
+    def demarrer(self, contexte):
+        self.ss5.demarrer(contexte)
+
+    def etape(self, k, entrees):
+        sortie = self.ss5.etape(k, entrees)
+        if k == self.k_depot:
+            self.file.deposer(self.reponse)
+        return sortie
+
+    def arreter(self):
+        self.ss5.arreter()
+
+
+def essai_saut_franc(tmp_path, reponse, k_depot=1205, cycles=1210):
+    """Saut franc du débit : SS-5 demande une confirmation au cycle 1200 (anomalie non critique)."""
+    confirmations = FileConfirmations()
+    orch = Orchestrateur(charger(SCENARIOS / "saut_franc.json"), tmp_path / "essai",
+                         silencieux=True, confirmations=confirmations)
+    orch.modules["ss5"] = OperateurSimule(orch.modules["ss5"], confirmations, k_depot, reponse)
+    orch.executer(cycles)
+    journal = contenus(tmp_path / "essai" / "journal.sqlite")
+    return orch, journal, [(c["k"], e) for c in journal for e in c["evenements"]]
+
+
+def test_la_demande_en_cours_est_publiee_dans_le_cache(tmp_path):
+    orch, _, evenements = essai_saut_franc(tmp_path, {"k_demande": 0, "decision": "confirme"},
+                                           k_depot=-1, cycles=1203)
+    assert (1200, "demande_confirmation") in [(k, e["type"]) for k, e in evenements]
+    assert orch.cache.dernier()["demande_en_cours"]["k"] == 1200
+    assert orch.cache.dernier()["demande_en_cours"]["severite"] == "non_critique"
+
+
+def test_la_reponse_de_l_interface_passe_par_ss5_et_arrive_au_journal(tmp_path):
+    orch, journal, evenements = essai_saut_franc(tmp_path, {"k_demande": 1200, "decision": "confirme"})
+    au_cycle_1206 = [e["type"] for k, e in evenements if k == 1206]
+    assert au_cycle_1206 == ["confirmation_operateur", "reponse_operateur"]
+    reponse = next(e for k, e in evenements if e["type"] == "reponse_operateur")
+    assert reponse["reponse"] == "confirme" and reponse["demande_k"] == 1200
+    assert len(reponse["empreinte_instantane"]) == 64
+    assert orch.cache.dernier()["demande_en_cours"] is None
+    assert verifier_journal(tmp_path / "essai" / "journal.sqlite")[0]
+
+
+def test_une_reponse_a_une_demande_perimee_est_journalisee_sans_effet(tmp_path):
+    _, _, evenements = essai_saut_franc(tmp_path, {"k_demande": 999, "decision": "refuse"})
+    types = [(k, e["type"], e.get("motif")) for k, e in evenements if k == 1206]
+    assert types == [(1206, "confirmation_operateur", None),
+                     (1206, "confirmation_sans_effet", "demande_perimee")]
+    assert not any(e["type"] == "reponse_operateur" for _, e in evenements)
+
+
 def test_la_premiere_entree_contient_l_entete_de_l_essai(tmp_path):
     scenario = charger(SCENARIOS / "nominal.json")
     Orchestrateur(scenario, tmp_path / "essai", silencieux=True).executer(5)

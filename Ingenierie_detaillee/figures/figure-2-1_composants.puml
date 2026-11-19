@@ -1,0 +1,63 @@
+@startuml figure-2-1_composants
+' Figure 2-1. Diagramme des composants du prototype et flux de données.
+' Flux F1 à F6 : rapport de concept. Flux F7 à F9 (orange) : ajoutés pendant l'intégration.
+' Source du rapport 12 (section 2) et de la vue logique du rapport 13 (section 3.4).
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng figure-2-1_composants.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam ArrowColor #4A5F7A
+skinparam ArrowThickness 1.4
+skinparam rectangle {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam component {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+  FontStyle bold
+}
+top to bottom direction
+
+rectangle "Scénario d'essai\n(consignes, défauts injectés,\ngraine)" as SCN #F5F5F5
+actor "Opérateur" as OP
+
+rectangle "Périmètre du prototype" as PROTO {
+  component "Orchestrateur\ncadence T = 1 s\nSS-1 → SS-5, puis SS-6" as ORCH #F5F5F5
+  component "SS-1\nBoucle simulée" as SS1
+  component "SS-2\nAcquisition et\nqualification" as SS2
+  component "SS-3\nRéférence\n(comportement attendu)" as SS3
+  component "SS-4\nDécision d'état" as SS4
+  component "SS-5\nPrésentation par état" as SS5
+  component "SS-6\nJournal\nchaînage SHA-256,\nscellement signé" as SS6
+}
+
+SCN --> SS1 : F1 Consignes
+SCN --> SS2 : F1' Défauts de mesure
+SS1 --> SS2 : F2 Grandeurs vraies
+SS2 --> SS3 : F3 Mesures qualifiées
+SS3 --> SS4 : F4 Résidus normalisés
+SS4 --> SS5 : F5 État, confiance,\nvariables en cause
+SS5 --> OP : F6 Présentation
+OP ..> SS5 : Réponse à la\ndemande de confirmation
+
+SCN -[#F5851F,thickness=2]-> SS3 : <color:#C0620A>F7 Consignes</color>
+SS2 -[#F5851F,thickness=2]-> SS5 : <color:#C0620A>F8 Mesures qualifiées</color>
+SS3 -[#F5851F,thickness=2]-> SS5 : <color:#C0620A>F9 Valeurs attendues</color>
+
+SS2 -[dashed]-> SS6 : E
+SS3 -[dashed]-> SS6 : E
+SS4 -[dashed]-> SS6 : E
+SS5 -[dashed]-> SS6 : E
+ORCH -[dashed]-> SS6 : E Entrée du cycle
+
+legend bottom left
+  |= Trait |= Signification |
+  | <color:#4A5F7A>━━</color> | Flux F1 à F6 du rapport de concept |
+  | <color:#F5851F>━━</color> | Flux F7 à F9 ajoutés pendant l'intégration |
+  | <color:#4A5F7A>╍╍</color> | Flux E : événements de SS-2 à SS-5 et entrée de cycle de l'orchestrateur |
+  Tous les flux passent par l'orchestrateur ; SS-3 et SS-4 ne reçoivent jamais les grandeurs vraies.
+  Aucun flux ne sort du périmètre vers l'installation (EX-F-08).
+endlegend
+@enduml

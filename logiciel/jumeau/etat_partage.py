@@ -96,9 +96,9 @@ class FileConfirmations:
         self._file: queue.Queue[dict] = queue.Queue()
 
     def deposer(self, reponse: dict) -> None:
-        """Appelé par l'interface. La réponse doit dire ce qui a été demandé et ce qui a été répondu,
-        par exemple {"k_demande": 1267, "decision": "confirme", "etat": "derive",
-        "confiance": 0.93, "variables": ["T"]}."""
+        """Appelé par l'interface. La réponse dit à quelle demande elle répond et ce qui a été
+        répondu : {"k_demande": 1267, "decision": "confirme"} ou « refuse ». La demande en cours
+        est publiée dans le cache sous « demande_en_cours » ; k_demande reprend son champ « k »."""
         self._file.put(copy.deepcopy(reponse))
 
     def prendre_toutes(self) -> list[dict]:
