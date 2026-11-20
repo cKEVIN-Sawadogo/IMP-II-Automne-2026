@@ -5,17 +5,27 @@ SS-2, SS-3, SS-4, SS-5, puis l'écriture au journal (section 7.1 du rapport
 de concept). C'est lui qui achemine les données d'un module à l'autre : la
 règle « les grandeurs vraies ne vont jamais à SS-3 ni à SS-4 » est donc
 garantie ici, par construction.
+
+Architecture d'exécution retenue le 19 novembre (voir jumeau/etat_partage.py) :
+à chaque cycle, l'orchestrateur écrit d'abord le cycle au journal (SS-6), puis
+le publie dans le cache que lit l'interface. Les réponses de l'opérateur
+arrivent par une file d'attente et sont journalisées au cycle suivant.
 """
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
+import platform
+import subprocess
 import time
 import traceback
 from datetime import datetime, timezone
+from importlib import metadata
 from pathlib import Path
 
 from jumeau.contrat import T_CYCLE, Etat, Mesure, Statut, Variable
+from jumeau.etat_partage import CacheEtat, FileConfirmations
 from jumeau.interface import SousSysteme
 from jumeau.ss1_boucle import SimulateurBoucle
 from jumeau.ss2_mesures import AcquisitionMesures
@@ -45,6 +55,39 @@ def consignes_a(scenario: dict, t: float) -> dict:
     return consignes
 
 
+BIBLIOTHEQUES = ("numpy", "dash", "plotly", "cryptography")
+
+
+def entete_essai(scenario: dict) -> dict:
+    """Conditions de l'essai, écrites dans la première entrée du journal.
+
+    Chaque journal prouve ainsi lui-même avec quel code, quelles versions et quelle
+    graine il a été produit : on peut refaire l'essai à l'identique (EX-F-02).
+    """
+    versions = {}
+    for nom in BIBLIOTHEQUES:
+        try:
+            versions[nom] = metadata.version(nom)
+        except metadata.PackageNotFoundError:
+            pass
+    try:
+        commit = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
+                                timeout=5, cwd=Path(__file__).parent).stdout.strip() or None
+    except (OSError, subprocess.SubprocessError):
+        commit = None
+    scenario_json = json.dumps(scenario, ensure_ascii=False, sort_keys=True)
+    return {
+        "type": "entete_essai",
+        "python": platform.python_version(),
+        "bibliotheques": versions,
+        "commit": commit,
+        "scenario": scenario.get("nom"),
+        "version_scenario": scenario.get("version"),
+        "empreinte_scenario": hashlib.sha256(scenario_json.encode("utf-8")).hexdigest(),
+        "graine": scenario.get("graine"),
+    }
+
+
 def _serialiser(valeur):
     """Rend une sortie de module écrivable en JSON pour le journal."""
     if isinstance(valeur, Mesure):
@@ -61,13 +104,35 @@ def _serialiser(valeur):
 
 class Orchestrateur:
     def __init__(self, scenario: dict, sortie: str | Path, *, modules: dict | None = None,
-                 silencieux: bool = False, tolerant: bool = False, temps_reel: bool = False):
+                 silencieux: bool = False, tolerant: bool = False, temps_reel: bool = False,
+                 cache: CacheEtat | None = None, confirmations: FileConfirmations | None = None):
         self.scenario = scenario
         self.sortie = Path(sortie)
         self.modules = modules or modules_par_defaut()
         self.silencieux = silencieux
         self.tolerant = tolerant      # True : un module en défaut ne coupe pas la chaîne
         self.temps_reel = temps_reel  # True : un cycle par seconde réelle
+        # Partagés avec l'interface : elle lit le cache et dépose les confirmations.
+        self.cache = cache if cache is not None else CacheEtat()
+        self.confirmations = confirmations if confirmations is not None else FileConfirmations()
+
+    def _transmettre_reponse(self, reponse: dict) -> str | None:
+        """Transmet une réponse de l'opérateur à SS-5. Renvoie le motif si elle reste sans effet.
+
+        Une réponse ne s'applique qu'à la demande encore en cours : une réponse à une demande
+        retirée entre-temps (changement d'état, état devenu critique) est journalisée sans effet.
+        """
+        ss5 = self.modules["ss5"]
+        demande = getattr(ss5, "demande", None)
+        if demande is None:
+            return "aucune_demande_en_cours"
+        if reponse.get("k_demande") != demande["k"]:
+            return "demande_perimee"
+        try:
+            ss5.repondre(reponse.get("decision"))
+        except ValueError:
+            return "reponse_invalide"
+        return None
 
     def _appel(self, cle: str, k: int, entrees: dict, evenements: list) -> dict:
         module = self.modules[cle]
@@ -101,6 +166,17 @@ class Orchestrateur:
                     t = k * T_CYCLE
                     horodatage = datetime.now(timezone.utc).isoformat(timespec="milliseconds")
                     evenements: list = []
+                    if k == 0:
+                        evenements.append(entete_essai(self.scenario))
+                    # Réponses de l'opérateur déposées depuis le cycle précédent (EX-F-09).
+                    # La réception est journalisée telle quelle, puis transmise à SS-5, qui
+                    # journalise la réponse avec l'instantané de l'écran (reponse_operateur).
+                    for reponse in self.confirmations.prendre_toutes():
+                        evenements.append({"type": "confirmation_operateur", **reponse})
+                        motif = self._transmettre_reponse(reponse)
+                        if motif:
+                            evenements.append({"type": "confirmation_sans_effet", "motif": motif,
+                                               "k_demande": reponse.get("k_demande")})
 
                     consignes = consignes_a(self.scenario, t)
                     if consignes != consignes_prec:
@@ -143,14 +219,20 @@ class Orchestrateur:
                         if ev.get("type") == "changement_etat":
                             changements_etat.append({"k": k, "vers": ev["vers"], "variables": ev["variables"]})
 
-                    # SS-6 : une entrée par cycle, en dernier.
+                    # SS-6 : une entrée par cycle, en dernier. Le journal d'abord...
                     contenu = _serialiser({
                         "k": k, "t": t, "horodatage_utc": horodatage, "consignes": consignes,
                         "mesures": list(mesures.values()), "residus": s3.get("residus", {}),
                         "etat": etat, "confiance": s4.get("confiance", 0.0),
                         "contributrices": s4.get("contributrices", []), "evenements": evenements,
                     })
-                    self.modules["ss6"].etape(k, {"contenu": contenu})
+                    s6 = self.modules["ss6"].etape(k, {"contenu": contenu})
+                    # ... le cache ensuite : l'interface ne montre que ce qui est journalisé.
+                    self.cache.publier({**contenu, "sequence": s6.get("sequence"),
+                                        "empreinte": s6.get("empreinte"),
+                                        "attendus": _serialiser(s3.get("attendus", {})),
+                                        "affichage": s5.get("affichage", ""),
+                                        "demande_en_cours": _serialiser(getattr(self.modules["ss5"], "demande", None))})
 
                     if self.temps_reel:
                         time.sleep(max(0.0, T_CYCLE - (time.monotonic() - debut)))

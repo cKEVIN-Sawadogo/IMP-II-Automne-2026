@@ -7,6 +7,7 @@ Exemples :
     python lancer.py scenarios/derive_lente.json --temps-reel --console (texte seul)
     python lancer.py --interface                                        (choix dans l'interface)
     python lancer.py --verifier sorties/derive_lente_20261109-180000/journal.sqlite
+    python lancer.py --verifier sorties/derive_lente_20261109-180000
 """
 from __future__ import annotations
 
@@ -18,7 +19,7 @@ from pathlib import Path
 
 from jumeau.orchestrateur import Orchestrateur
 from jumeau.scenario import charger
-from jumeau.ss6_journal import verifier_journal
+from jumeau.ss6_journal import verifier
 
 
 def main() -> int:
@@ -38,16 +39,19 @@ def main() -> int:
     p.add_argument("--port", type=int, default=8050, help="port de l'interface web (8050)")
     p.add_argument("--sans-navigateur", action="store_true",
                    help="n'ouvre pas le navigateur automatiquement")
-    p.add_argument("--verifier", metavar="JOURNAL", help="vérifie l'intégrité d'un journal et quitte")
+    p.add_argument("--verifier", metavar="JOURNAL",
+                   help="vérifie un journal (journal.sqlite ou dossier de l'essai) et ses sceaux, puis quitte")
     args = p.parse_args()
 
     if args.verifier:
-        integre, fautive, n = verifier_journal(args.verifier)
-        if integre:
-            print(f"Journal intègre : {n} entrées, chaîne SHA-256 vérifiée.")
-            return 0
-        print(f"Journal ALTÉRÉ : la chaîne est rompue à l'entrée {fautive} (sur {n}).")
-        return 1
+        # Vérificateur de SS-6 : chaîne SHA-256, sceaux Ed25519 et complétude du journal.
+        try:
+            rapport = verifier(args.verifier)
+        except FileNotFoundError as erreur:
+            print(f"Journal introuvable : {erreur}")
+            return 2
+        print(rapport.texte(max_affiche=10))
+        return 0 if rapport.valide else 1
 
     if args.interface or (args.temps_reel and not args.console):
         from jumeau.ss5_interface.tableau import servir
@@ -68,9 +72,10 @@ def main() -> int:
     print(f"Scénario : {scenario['nom']} (graine {scenario['graine']})")
     resume = Orchestrateur(scenario, sortie, silencieux=args.silencieux, tolerant=args.tolerant,
                            temps_reel=args.temps_reel).executer(args.cycles)
-    integre, _, n = verifier_journal(Path(sortie) / "journal.sqlite")
-    print(f"\nTerminé : {resume['cycles']} cycles, {n} entrées au journal "
-          f"({'intègre' if integre else 'ALTÉRÉ'}). État final : {resume['etat_final']}.")
+    rapport = verifier(Path(sortie) / "journal.sqlite")
+    print(f"\nTerminé : {resume['cycles']} cycles, {rapport.entrees} entrées au journal, "
+          f"{rapport.sceaux} sceaux ({rapport.verdict.lower() if rapport.valide else rapport.verdict}). "
+          f"État final : {resume['etat_final']}.")
     print(f"Résultats dans {sortie}")
     print(json.dumps(resume["changements_etat"], ensure_ascii=False))
     return 0

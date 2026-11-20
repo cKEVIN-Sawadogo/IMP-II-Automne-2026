@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="804px" preserveAspectRatio="none" style="width:1262px;height:804px;background:#FFFFFF;" version="1.1" viewBox="0 0 1262 804" width="1262px" zoomAndPan="magnify" xmlns:c2pa="http://c2pa.org/manifest"><defs/><g><!--MD5=[42b87642f54e5978e696b6e6215af5b2]
+cluster Poste de l'opérateur (Python, versions exactes de requirements.txt)--><g id="cluster_Poste de l'opérateur (Python, versions exactes de requirements.txt)"><polygon fill="#FFFFFF" points="16,152.5,26,142.5,901,142.5,901,777.5,891,787.5,16,787.5,16,152.5" style="stroke:#4A5F7A;stroke-width:1.0;"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="891" x2="901" y1="152.5" y2="142.5"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="16" x2="891" y1="152.5" y2="152.5"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="891" x2="891" y1="152.5" y2="787.5"/><text fill="#000000" font-family="Arial" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="395" x="257" y="167.125">Poste de l'opérateur (Python, versions exactes de requirements.txt)</text></g><!--MD5=[991ab8c14c5fcd913d3c42247c0f96bb]
+cluster Processus principal (lancer.py)--><g id="cluster_Processus principal (lancer.py)"><polygon fill="#FFFFFF" points="517,198.5,527,188.5,877,188.5,877,753.5,867,763.5,517,763.5,517,198.5" style="stroke:#4A5F7A;stroke-width:1.0;"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="867" x2="877" y1="198.5" y2="188.5"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="517" x2="867" y1="198.5" y2="198.5"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="867" x2="867" y1="198.5" y2="763.5"/><text fill="#000000" font-family="Arial" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="184" x="601" y="213.125">Processus principal (lancer.py)</text></g><!--MD5=[3b4bf4c6e74ef4797cc02f0199a60d73]
+cluster Processus scelleur (SS-6)--><g id="cluster_Processus scelleur (SS-6)"><polygon fill="#FFFFFF" points="40,478.5,50,468.5,270,468.5,270,586.5,260,596.5,40,596.5,40,478.5" style="stroke:#4A5F7A;stroke-width:1.0;"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="260" x2="270" y1="478.5" y2="468.5"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="40" x2="260" y1="478.5" y2="478.5"/><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="260" x2="260" y1="478.5" y2="596.5"/><text fill="#000000" font-family="Arial" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="154" x="74" y="493.125">Processus scelleur (SS-6)</text></g><!--MD5=[0cfebb0c7f68f9aba321a3cfa8dd0164]
+entity J--><g id="elem_J"><path d="M178.5,684 C178.5,674 251,674 251,674 C251,674 323.5,674 323.5,684 L323.5,736.5586 C323.5,746.5586 251,746.5586 251,746.5586 C251,746.5586 178.5,746.5586 178.5,736.5586 L178.5,684 " fill="#FFF4E8" style="stroke:#4A5F7A;stroke-width:0.5;"/><path d="M178.5,684 C178.5,694 251,694 251,694 C251,694 323.5,694 323.5,684 " fill="none" style="stroke:#4A5F7A;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="72" x="188.5" y="709.625">journal.sqlite</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="70" x="188.5" y="724.1445">(mode WAL)</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="125" x="188.5" y="738.6641">seule source de vérité</text></g><!--MD5=[9c35c66068622dad62ecac52c54c307b]
+entity V--><g id="elem_V"><path d="M390.5,681 L390.5,739.5586 A2.5,2.5 0 0 0 393,742.0586 L499,742.0586 A2.5,2.5 0 0 0 501.5,739.5586 L501.5,688.5 L491.5,678.5 L393,678.5 A2.5,2.5 0 0 0 390.5,681 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M491.5,678.5 L491.5,686 A2.5,2.5 0 0 0 494,688.5 L501.5,688.5 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="56" x="400.5" y="700.125">verite.csv</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="91" x="400.5" y="714.6445">(hors du chemin</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="84" x="400.5" y="729.1641">de l'opérateur)</text></g><!--MD5=[99a08c0e060ab8bc02879608b90e271b]
+entity CLE--><g id="elem_CLE"><path d="M32,695.5 L32,725.0195 A2.5,2.5 0 0 0 34.5,727.5195 L107.5,727.5195 A2.5,2.5 0 0 0 110,725.0195 L110,703 L100,693 L34.5,693 A2.5,2.5 0 0 0 32,695.5 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M100,693 L100,700.5 A2.5,2.5 0 0 0 102.5,703 L110,703 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="58" x="42" y="714.625">Clé privée</text></g><!--MD5=[1427ba243378a42d8ddfce16c7207d5a]
+entity ORCH--><g id="elem_ORCH"><rect fill="#E6EBF2" height="73.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="120" x="533" y="506.5"/><rect fill="#E6EBF2" height="10" style="stroke:#4A5F7A;stroke-width:0.5;" width="15" x="633" y="511.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="631" y="513.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="631" y="517.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="80" x="548" y="538.125">Orchestrateur</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="36" x="548" y="552.6445">T = 1 s</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="73" x="548" y="567.1641">SS-1 → SS-5</text></g><!--MD5=[7f3405cf3ca835415611b501724087b8]
+entity CACHE--><g id="elem_CACHE"><rect fill="#E6EBF2" height="73.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="153" x="707.5" y="673.5"/><rect fill="#E6EBF2" height="10" style="stroke:#4A5F7A;stroke-width:0.5;" width="15" x="840.5" y="678.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="838.5" y="680.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="838.5" y="684.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="59" x="722.5" y="705.125">CacheEtat</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="113" x="722.5" y="719.6445">600 derniers cycles</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="81" x="722.5" y="734.1641">verrou, copies</text></g><!--MD5=[a1ac4459ee3dd99a4b7cad9458b0aea4]
+entity FILE--><g id="elem_FILE"><rect fill="#E6EBF2" height="44.5195" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="140" x="552" y="361.5"/><rect fill="#E6EBF2" height="10" style="stroke:#4A5F7A;stroke-width:0.5;" width="15" x="672" y="366.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="670" y="368.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="670" y="372.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="100" x="567" y="393.125">FileConfirmations</text></g><!--MD5=[1d6f150eca6209a1647a729025e19db0]
+entity DASH--><g id="elem_DASH"><rect fill="#E6EBF2" height="59.0391" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="158" x="603" y="226.5"/><rect fill="#E6EBF2" height="10" style="stroke:#4A5F7A;stroke-width:0.5;" width="15" x="741" y="231.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="739" y="233.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="739" y="237.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="118" x="618" y="258.125">Interface Plotly Dash</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="95" x="618" y="272.6445">(SS-5, fil séparé)</text></g><!--MD5=[5ada827fdd372ff2ce418247977de645]
+entity SCEL--><g id="elem_SCEL"><rect fill="#E6EBF2" height="73.5586" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="126" x="56" y="506.5"/><rect fill="#E6EBF2" height="10" style="stroke:#4A5F7A;stroke-width:0.5;" width="15" x="162" y="511.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="160" y="513.5"/><rect fill="#E6EBF2" height="2" style="stroke:#4A5F7A;stroke-width:0.5;" width="4" x="160" y="517.5"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="47" x="71" y="538.125">Scelleur</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="81" x="71" y="552.6445">seul détenteur</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="86" x="71" y="567.1641">de la clé privée</text></g><!--MD5=[69d8d45188bfd87ac85d18be3b70c704]
+entity OP--><g id="elem_OP"><ellipse cx="682" cy="14" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M682,22 L682,49 M669,30 L695,30 M682,49 L669,64 M682,49 L695,64 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="58" x="653" y="77.125">Opérateur</text></g><g id="elem_GMN24"><path d="M917,691 L917,706.5 L860.9,710.5 L917,714.5 L917,730.0391 A0,0 0 0 0 917,730.0391 L1101,730.0391 A0,0 0 0 0 1101,730.0391 L1101,701 L1091,691 L917,691 A0,0 0 0 0 917,691 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M1091,691 L1091,701 L1101,701 L1091,691 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="150" x="923" y="707.625">Rechargé depuis le journal</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="163" x="923" y="722.1445">quand l'interface redémarre.</text></g><g id="elem_N1"><path d="M917,364.5 L917,403.5391 A0,0 0 0 0 917,403.5391 L1024,403.5391 L653.09,523.3 L1032,403.5391 L1255,403.5391 A0,0 0 0 0 1255,403.5391 L1255,374.5 L1245,364.5 L917,364.5 A0,0 0 0 0 917,364.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M1245,364.5 L1245,374.5 L1255,374.5 L1245,364.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="266" x="923" y="381.125">Aucune commande ne sort du poste (EX-F-08).</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="317" x="923" y="395.6445">Redémarrer l'orchestrateur commence un nouvel essai.</text></g><!--MD5=[cc6bc92e49b3c1cb64dddbb71488ed9d]
+link ORCH to J--><g id="link_ORCH_J"><path d="M532.77,551.01 C479.01,558.99 399.78,576.22 340,612.5 C316,627.06 294.55,649.98 278.72,669.88 " fill="none" id="ORCH-to-J" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="275.63,673.82,284.3349,669.213,278.7185,669.8879,278.0436,664.2715,275.63,673.82" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="157" x="341" y="632.625">① écrit le cycle et le valide</text></g><!--MD5=[de891fda1fb78372182a2ae7ebd3121e]
+link ORCH to CACHE--><g id="link_ORCH_CACHE"><path d="M653.27,577.98 C669.46,588.15 686.5,599.97 701,612.5 C720.34,629.2 739.09,650.53 753.86,668.94 " fill="none" id="ORCH-to-CACHE" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="757.14,673.06,754.6667,663.5267,754.027,669.1473,748.4064,668.5076,757.14,673.06" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="112" x="732" y="632.625">② publie une copie</text></g><!--MD5=[20e8baa5b549ab99d58b747d687da703]
+link DASH to CACHE--><g id="link_DASH_CACHE"><path d="M720.93,285.68 C730.78,294.39 740.64,304.58 748,315.5 C826.21,431.63 829.33,474.51 853,612.5 C855.33,626.08 858.41,630.83 853,643.5 C848.97,652.93 842.86,661.66 835.9,669.47 " fill="none" id="DASH-to-CACHE" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="832.43,673.24,841.4718,669.3355,835.8196,669.5643,835.5908,663.9121,832.43,673.24" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="106" x="820" y="449.125">lit chaque seconde</text></g><!--MD5=[7e24b3aaf42be0b711973717a0b7f375]
+link DASH to FILE--><g id="link_DASH_FILE"><path d="M657.53,285.65 C650.74,294.73 643.89,305.12 639,315.5 C632.95,328.34 628.88,343.6 626.24,356.36 " fill="none" id="DASH-to-FILE" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="625.26,361.3,630.9294,353.2465,626.2296,356.3949,623.0812,351.6952,625.26,361.3" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="103" x="640" y="328.125">dépose la réponse</text></g><!--MD5=[c160c60096faf43b61fff12c3523867e]
+link FILE to ORCH--><g id="link_FILE_ORCH"><path d="M588.83,406.75 C579.32,414.84 570.14,424.92 565,436.5 C555.84,457.11 561.16,481.36 569.52,501.45 " fill="none" id="FILE-to-ORCH" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="571.58,506.2,571.6743,496.3516,569.5932,501.6117,564.3331,499.5305,571.58,506.2" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="143" x="566" y="449.125">③ prise au cycle suivant</text></g><!--MD5=[68b674d15f5cf1e147d9e77491cd0efb]
+link ORCH to V--><g id="link_ORCH_V"><path d="M560.74,580.71 C535.93,608.56 501.85,646.81 477.29,674.38 " fill="none" id="ORCH-to-V" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="473.73,678.37,482.6999,674.3029,477.0527,674.6337,476.7219,668.9866,473.73,678.37" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="162" x="530" y="632.625">grandeurs vraies (validation)</text></g><!--MD5=[be5f97181b65b11ecc1b261bd5859f09]
+link SCEL to J--><g id="link_SCEL_J"><path d="M83.06,580.83 C68.28,600.25 57.44,624.08 71,643.5 C77.47,652.76 127.73,670.77 173.5,685.64 " fill="none" id="SCEL-to-J" style="stroke:#4A5F7A;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="178.48,687.25,171.153,680.6686,173.7239,685.7075,168.685,688.2783,178.48,687.25" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="221" x="72" y="625.125">lecture seule ; sceau tous les 60 cycles</text><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="123" x="121" y="639.6445">et sceau final à l'arrêt</text></g><!--MD5=[e778f021804790692279451545d63ca4]
+link SCEL to CLE--><g id="link_SCEL_CLE"><path d="M62.27,580.82 C52.44,589.9 43.59,600.52 38,612.5 C26.19,637.83 41.31,668.61 54.75,688.6 " fill="none" id="SCEL-to-CLE" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="57.76,692.95,55.9346,683.2718,54.9177,688.8365,49.353,687.8195,57.76,692.95" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[d6fd96e24adacfbcd6d7a7df26bd695e]
+link DASH to OP--><g id="link_DASH_OP"><path d="M697.55,226.47 C711.45,197.31 728.19,150.72 718,110.5 C715.82,101.91 712.29,93.23 708.27,85.1 " fill="none" id="DASH-to-OP" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="705.99,80.64,706.5376,90.4736,708.2716,85.0891,713.6561,86.8231,705.99,80.64" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="91" x="722" y="123.125">navigateur local</text></g><!--MD5=[bd10f10727de81ad8aa2f0617ebf3922]
+link OP to DASH--><g id="link_OP_DASH"><path d="M652.61,57.09 C625.96,71.13 592.09,95.65 601,126.5 C611.31,162.19 634.79,197.5 653.84,222.05 " fill="none" id="OP-to-DASH" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="657.09,226.2,654.6764,216.6515,654.0015,222.2679,648.3851,221.593,657.09,226.2" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="12" lengthAdjust="spacing" textLength="107" x="602" y="123.125">confirme ou refuse</text></g><!--MD5=[965d9912aad9c38effc7503063467c00]
+@startuml vue-execution
+' Vue d'exécution et de déploiement (rapport 13, section 3.5). Décisions du 19 novembre.
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng vue-execution.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ArrowColor #4A5F7A
+skinparam node {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam component {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+}
+skinparam database {
+  BorderColor #4A5F7A
+  BackgroundColor #FFF4E8
+}
+
+node "Poste de l'opérateur (Python, versions exactes de requirements.txt)" {
+  node "Processus principal (lancer.py)" {
+    component "Orchestrateur\nT = 1 s\nSS-1 → SS-5" as ORCH
+    component "CacheEtat\n600 derniers cycles\nverrou, copies" as CACHE
+    component "FileConfirmations" as FILE
+    component "Interface Plotly Dash\n(SS-5, fil séparé)" as DASH
+  }
+  node "Processus scelleur (SS-6)" {
+    component "Scelleur\nseul détenteur\nde la clé privée" as SCEL
+  }
+  database "journal.sqlite\n(mode WAL)\nseule source de vérité" as J
+  file "verite.csv\n(hors du chemin\nde l'opérateur)" as V
+  file "Clé privée" as CLE
+}
+actor "Opérateur" as OP
+
+ORCH - -> J : ① écrit le cycle et le valide
+ORCH - -> CACHE : ② publie une copie
+DASH - -> CACHE : lit chaque seconde
+DASH - -> FILE : dépose la réponse
+FILE - -> ORCH : ③ prise au cycle suivant
+ORCH - -> V : grandeurs vraies (validation)
+SCEL ..> J : lecture seule ; sceau tous les 60 cycles\net sceau final à l'arrêt
+SCEL - -> CLE
+DASH - -> OP : navigateur local
+OP - -> DASH : confirme ou refuse
+
+note right of CACHE
+  Rechargé depuis le journal
+  quand l'interface redémarre.
+end note
+note as N1
+  Aucune commande ne sort du poste (EX-F-08).
+  Redémarrer l'orchestrateur commence un nouvel essai.
+end note
+N1 .. ORCH
+@enduml
+
+@startuml vue-execution
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam ArrowColor #4A5F7A
+skinparam node {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam component {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+}
+skinparam database {
+  BorderColor #4A5F7A
+  BackgroundColor #FFF4E8
+}
+
+node "Poste de l'opérateur (Python, versions exactes de requirements.txt)" {
+  node "Processus principal (lancer.py)" {
+    component "Orchestrateur\nT = 1 s\nSS-1 → SS-5" as ORCH
+    component "CacheEtat\n600 derniers cycles\nverrou, copies" as CACHE
+    component "FileConfirmations" as FILE
+    component "Interface Plotly Dash\n(SS-5, fil séparé)" as DASH
+  }
+  node "Processus scelleur (SS-6)" {
+    component "Scelleur\nseul détenteur\nde la clé privée" as SCEL
+  }
+  database "journal.sqlite\n(mode WAL)\nseule source de vérité" as J
+  file "verite.csv\n(hors du chemin\nde l'opérateur)" as V
+  file "Clé privée" as CLE
+}
+actor "Opérateur" as OP
+
+ORCH - -> J : ① écrit le cycle et le valide
+ORCH - -> CACHE : ② publie une copie
+DASH - -> CACHE : lit chaque seconde
+DASH - -> FILE : dépose la réponse
+FILE - -> ORCH : ③ prise au cycle suivant
+ORCH - -> V : grandeurs vraies (validation)
+SCEL ..> J : lecture seule ; sceau tous les 60 cycles\net sceau final à l'arrêt
+SCEL - -> CLE
+DASH - -> OP : navigateur local
+OP - -> DASH : confirme ou refuse
+
+note right of CACHE
+  Rechargé depuis le journal
+  quand l'interface redémarre.
+end note
+note as N1
+  Aucune commande ne sort du poste (EX-F-08).
+  Redémarrer l'orchestrateur commence un nouvel essai.
+end note
+N1 .. ORCH
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 14:12:26 EDT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo0ZmRmYWRiZS02ZjVmLTQ5YWUtYWNjYS00ODQ3MzVhNmE1NmMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaGj+rkI04QNjxr7hAqwzRxEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo5ZmE2MDdkYy1lZjFjLTQ0ODEtYjAxYi1jZDliOGYwMmRhODZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo9q6ayxode2VrkDQIgOj6pQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggi7WX1afGVAdLBf7hjJthu9/ZFvSF7DQhguxtnu+aDtekZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaP30SzMzqljP/CA3DWQt8sIAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIA4ipz7T0MqoDi5nKUjxNTzqW69X0O2kb6kz4cY6zmmHZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GVBfZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjRmZGZhZGJlLTZmNWYtNDlhZS1hY2NhLTQ4NDczNWE2YTU2Yy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmE0OWQxYzc0LWJmMDgtNGZmOC1iMGE0LTViYWM0MzY2OTBmMXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCLtZfVp8ZUB0sF/uGMm2G739kW9IXsNCGC7G2e75oO16JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggytcI7rmB1oMdCribgUaMdPa+WQWVs/VE02VF5BwrE9+iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggj09zxQLopQgTQp/o9xhRf5/Zut0jdRU6LspSf+/zNZl0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQCwC0TBz3vZ/9cqWN9KWFtcpXwKFM7WqlV9YwFf6uQve942KAfNr27zlN6BRh7wESJflamwvBIdRXkMyBws+cug=</c2pa:manifest></metadata></svg>

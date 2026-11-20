@@ -1,0 +1,124 @@
+@startuml contrat-de-donnees
+' Contrat de données (tableau 2-1 du rapport 12, tableau 7-2 du rapport de concept).
+' Traduit logiciel/jumeau/contrat.py et les entrées et sorties de chaque sous-système.
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng contrat-de-donnees.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam ArrowColor #4A5F7A
+hide empty methods
+hide circle
+
+package "Types communs (contrat.py)" {
+  enum Variable {
+    T : température en sortie de V1, °C, plage 0 à 100
+    P : pression absolue, MPa, plage 0 à 0,5
+    Q : débit massique, kg/s, plage 0 à 0,5
+  }
+  enum Statut {
+    valide
+    absent
+    hors_plage
+  }
+  enum Etat {
+    normal
+    derive
+    anomalie
+    incertain
+  }
+  class Mesure <<immuable>> {
+    k : int — cycle, k ≥ 0
+    t : float — s, t = k × T, T = 1 s
+    horodatage_utc : str — ISO 8601
+    variable : Variable
+    valeur : float | None
+    statut : Statut
+    --
+    Règle : valeur finie si et seulement si statut = valide.
+    Une absence n'est jamais codée par zéro.
+  }
+  Mesure --> Variable
+  Mesure --> Statut
+}
+
+package "Flux par cycle" {
+  class "F1 et F7 · Consignes" as Consignes {
+    vitesse_pompe : float — fraction de la vitesse nominale
+    puissance_W : float
+    --
+    F1 vers SS-1 ; F7 vers SS-3
+  }
+  class "F2 · Grandeurs vraies" as Vraies {
+    grandeurs_vraies : dict[Variable, float]
+    --
+    SS-1 vers SS-2 seulement, et verite.csv
+  }
+  class "F3 et F8 · Mesures qualifiées" as Mesures {
+    mesures : dict[Variable, Mesure]
+    --
+    F3 vers SS-3 ; F8 vers SS-5
+  }
+  class "F4 · Résidus normalisés" as Residus {
+    residus : dict[Variable, float | None]
+    pret : bool — calage de 600 cycles terminé
+  }
+  class "F9 · Valeurs attendues" as Attendus {
+    attendus : dict[Variable, float | None]
+  }
+  class "F5 · Décision" as Decision {
+    etat : Etat
+    confiance : float — de 0 à 1
+    contributrices : list[Variable]
+  }
+  class "F6 · Présentation" as Presentation {
+    affichage : str
+    demande_en_cours : dict | None
+  }
+  class "E · Événement" as Evenement {
+    type : str
+    k : int
+    ...  champs propres au type
+    --
+    entete_essai, consignes, changement_etat,
+    calage_termine, defaut_composant,
+    demande_confirmation, etat_critique,
+    demande_confirmation_retiree,
+    confirmation_operateur, reponse_operateur,
+    confirmation_sans_effet
+  }
+  class "Entrée de journal (SS-6)" as Entree {
+    sequence : int
+    k : int
+    contenu : JSON
+    empreinte_precedente : str — SHA-256
+    empreinte : str — SHA-256
+    --
+    contenu : k, t, horodatage_utc, consignes, mesures,
+    residus, etat, confiance, contributrices, evenements
+  }
+}
+
+Mesures --> Mesure
+Decision --> Etat
+Decision --> Variable
+Entree "1" *-- "0..*" Evenement
+
+Consignes -[hidden]right-> Vraies
+Vraies -[hidden]right-> Mesures
+Mesures -[hidden]right-> Residus
+Consignes -[hidden]down-> Attendus
+Attendus -[hidden]right-> Decision
+Decision -[hidden]right-> Presentation
+Attendus -[hidden]down-> Entree
+
+note bottom of Entree
+  Une entrée par cycle, écrite en dernier (mode WAL, validée à chaque cycle).
+  Le journal est la seule source de vérité ; le cache de l'interface en est une copie.
+end note
+@enduml

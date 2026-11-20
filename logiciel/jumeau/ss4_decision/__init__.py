@@ -26,7 +26,7 @@ from jumeau.contrat import N_INCERTAIN, Etat, Variable
 from jumeau.interface import SousSysteme
 
 K_REF = 0.5           # moitié du décalage minimal détectable δ = 1 σ
-SEUIL_H = 9.0         # seuil de la somme cumulée (repli : 10)
+SEUIL_H = 10.0         # seuil de la somme cumulée (repli : 10)
 SEUIL_INSTANT = 5.0   # seuil instantané, en σ
 
 
@@ -61,7 +61,7 @@ class DecisionSequentielle(SousSysteme):
                 # même cycle, le seuil instantané l'emporte : c'est un saut.
                 if abs(r) > SEUIL_INSTANT:
                     self.alarme[var] = Etat.ANOMALIE
-                elif max(self.haut[var], self.bas[var]) > SEUIL_H:
+                elif max(self.haut[var], self.bas[var]) >= SEUIL_H:
                     self.alarme[var] = Etat.DERIVE
 
         if Etat.ANOMALIE in self.alarme.values():

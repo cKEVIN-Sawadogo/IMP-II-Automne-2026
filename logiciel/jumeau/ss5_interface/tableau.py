@@ -193,6 +193,14 @@ def _decrire_evenement(ev: dict) -> tuple[str, str]:
         return "Opérateur", f"Sévérité critique, aucune demande ({_noms_variables(ev.get('variables'))})"
     if t == "defaut_composant":
         return "Composant", f"Défaut de {ev.get('module')} : {ev.get('message')}"
+    if t == "entete_essai":
+        return "Essai", (f"Début de l'essai : scénario {ev.get('scenario')}, graine {ev.get('graine')}, "
+                         f"Python {ev.get('python')}, commit {str(ev.get('commit') or '?')[:7]}")
+    if t == "confirmation_operateur":
+        verbe = "confirmé" if ev.get("decision") == "confirme" else "refusé"
+        return "Opérateur", f"Réponse reçue de l'interface : {verbe} (demande du cycle {ev.get('k_demande')})"
+    if t == "confirmation_sans_effet":
+        return "Opérateur", f"Réponse sans effet ({str(ev.get('motif', '')).replace('_', ' ')})"
     return "Autre", ", ".join(f"{c} = {v}" for c, v in ev.items() if c not in ("cycle", "horodatage_utc"))
 
 
