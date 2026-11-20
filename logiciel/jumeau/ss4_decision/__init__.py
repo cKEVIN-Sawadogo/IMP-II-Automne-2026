@@ -26,7 +26,7 @@ from jumeau.contrat import N_INCERTAIN, Etat, Variable
 from jumeau.interface import SousSysteme
 
 K_REF = 0.5           # moitié du décalage minimal détectable δ = 1 σ
-SEUIL_H = 9.0         # seuil de la somme cumulée (repli : 10)
+SEUIL_H = 10.0         # seuil de la somme cumulée (repli : 10)
 SEUIL_INSTANT = 5.0   # seuil instantané, en σ
 
 
