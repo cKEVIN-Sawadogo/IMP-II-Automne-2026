@@ -1,12 +1,18 @@
-"""SS-6 : journal de données. Responsable : Djasra Wilson Thoroum.
+"""SS-6 : journal de données et scellement signé. Responsable : Djasra Wilson Thoroum
+(prototype du rapport 12, section 2.6), intégration au squelette : issue #90.
 
-Version minimale du concept B : une entrée par cycle dans une base SQLite,
-en ajout seul. Chaque entrée contient l'empreinte SHA-256 de la précédente,
-si bien qu'une modification après coup est détectée par verifier_journal().
+Trois rôles, un fichier chacun :
+  ecrivain.py      JournalDonnees : une entrée par cycle dans journal.sqlite
+                   (mode WAL, ajout seul, chaînage SHA-256). Aucune clé.
+  scelleur.py      processus séparé, lancé par l'écrivain au démarrage, seul à
+                   lire la clé privée. Signe (Ed25519) l'empreinte de la dernière
+                   entrée tous les 60 cycles, plus un sceau final à l'arrêt
+                   normal, dans sceaux.sqlite.
+  verificateur.py  après l'essai, avec la clé publique seulement :
+                   « python lancer.py --verifier » ou « python -m jumeau.ss6_journal ».
 
-La base est en mode WAL et chaque cycle est validé aussitôt : le scelleur et
-l'interface peuvent la lire pendant que l'orchestrateur écrit, et un arrêt
-brutal ne fait perdre au plus que le cycle en cours.
+Les clés sont dans « cles_ss6 », à côté du dossier de l'essai (sorties/cles_ss6
+avec lancer.py), ou dans le dossier donné par la variable JUMEAU_CLES_SS6.
 
 Entrées par cycle (préparées par l'orchestrateur) :
   contenu  dict   mesures, résidus, état, événements du cycle (sérialisables)
@@ -15,72 +21,13 @@ Sortie par cycle :
   sequence  int   numéro de l'entrée
   empreinte str   empreinte SHA-256 de l'entrée
 
-À faire par le responsable : scellement signé d'un bloc d'entrées par un rôle
-distinct (concept C ajouté), intervalle de scellement, sceau final à l'arrêt
-et détection d'un arrêt brutal au démarrage suivant (CU6).
+SS-6 ne fait qu'écrire : il ne renvoie rien qui puisse changer le diagnostic.
+Les changements d'état (SS-4) et les confirmations de l'opérateur (file des
+confirmations, puis SS-5) arrivent dans les événements du cycle : SS-6 les
+garde tels quels, et le vérificateur contrôle qu'il n'en manque aucun.
 """
-from __future__ import annotations
+from jumeau.ss6_journal.ecrivain import EMPREINTE_INITIALE, PERIODE_SCEAU, JournalDonnees
+from jumeau.ss6_journal.verificateur import Rapport, verifier, verifier_journal
 
-import hashlib
-import json
-import sqlite3
-from pathlib import Path
-
-from jumeau.interface import SousSysteme
-
-EMPREINTE_INITIALE = "0" * 64
-
-
-def _empreinte(precedente: str, contenu_json: str) -> str:
-    return hashlib.sha256((precedente + contenu_json).encode("utf-8")).hexdigest()
-
-
-class JournalDonnees(SousSysteme):
-    nom = "SS-6"
-
-    def demarrer(self, contexte: dict) -> None:
-        self.chemin = Path(contexte["sortie"]) / "journal.sqlite"
-        if self.chemin.exists():
-            raise FileExistsError(f"Le journal {self.chemin} existe déjà : il ne doit jamais être écrasé.")
-        self.cx = sqlite3.connect(self.chemin)
-        self.cx.execute("PRAGMA journal_mode=WAL")
-        self.cx.execute("PRAGMA synchronous=NORMAL")
-        self.cx.execute(
-            "CREATE TABLE journal (sequence INTEGER PRIMARY KEY, k INTEGER NOT NULL, "
-            "contenu TEXT NOT NULL, empreinte_precedente TEXT NOT NULL, empreinte TEXT NOT NULL)"
-        )
-        self.derniere = EMPREINTE_INITIALE
-        self.sequence = 0
-
-    def etape(self, k: int, entrees: dict) -> dict:
-        contenu = json.dumps(entrees["contenu"], ensure_ascii=False, sort_keys=True)
-        empreinte = _empreinte(self.derniere, contenu)
-        self.cx.execute("INSERT INTO journal VALUES (?, ?, ?, ?, ?)",
-                        (self.sequence, k, contenu, self.derniere, empreinte))
-        self.cx.commit()  # validé à chaque cycle : le journal d'abord, l'affichage ensuite
-        sortie = {"sequence": self.sequence, "empreinte": empreinte}
-        self.derniere = empreinte
-        self.sequence += 1
-        return sortie
-
-    def arreter(self) -> None:
-        self.cx.commit()
-        self.cx.close()
-
-
-def verifier_journal(chemin: str | Path) -> tuple[bool, int | None, int]:
-    """Recalcule toute la chaîne.
-
-    Renvoie (intègre, première séquence fautive ou None, nombre d'entrées).
-    """
-    cx = sqlite3.connect(chemin)
-    lignes = cx.execute(
-        "SELECT sequence, contenu, empreinte_precedente, empreinte FROM journal ORDER BY sequence"
-    ).fetchall()
-    cx.close()
-    precedente = EMPREINTE_INITIALE
-    for attendu, (sequence, contenu, emp_prec, emp) in enumerate(lignes):
-        if sequence != attendu or emp_prec != precedente or emp != _empreinte(precedente, contenu):
-            return False, sequence, len(lignes)
-        precedente = emp
-    return True, None, len(lignes)
+__all__ = ["EMPREINTE_INITIALE", "PERIODE_SCEAU", "JournalDonnees", "Rapport",
+           "verifier", "verifier_journal"]
