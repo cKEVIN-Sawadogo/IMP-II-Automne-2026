@@ -45,11 +45,11 @@
 
 **Options.** Scelleur dans le même programme que l'écrivain, ou dans un processus séparé.
 
-**Décision : processus séparé dès le J3.** Lancé par `lancer.py`, il est le seul à connaître la clé privée ; l'orchestrateur ne la charge jamais. Il lit le journal en lecture seule (mode WAL), pose un sceau tous les 60 cycles et un sceau final à l'arrêt.
+**Décision : processus séparé dès le J3.** SS-6 le lance au démarrage de l'essai, donc aussi dans les tests et l'interface. Il est le seul à connaître la clé privée ; l'orchestrateur ne la charge jamais. Il lit le journal en lecture seule (mode WAL), pose un sceau tous les 60 cycles et un sceau final à l'arrêt.
 
 **Raison.** Si l'écrivain détenait la clé, il pourrait réécrire le journal et le resceller : la signature ne prouverait plus rien. C'est l'argument de sécurité du concept C ajouté à SS-6.
 
-**Repli.** Si ce n'est pas prêt pour la démonstration du 20 novembre, le scellement reste dans le même programme pour le J3, et l'écart est déclaré, avec une séparation au J4.
+**Réalisé.** Le scelleur séparé est dans la version gelée du J3 (demande #123). Le repli prévu (scellement dans le même programme) n'a pas servi.
 
 ---
 
