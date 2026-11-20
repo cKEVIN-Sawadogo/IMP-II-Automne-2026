@@ -13,8 +13,14 @@ py -3.13 -m venv .venv
 # Un scénario, avec l'affichage de l'opérateur dans la console
 .\.venv\Scripts\python.exe lancer.py scenarios\derive_lente.json
 
-# Le même, au rythme réel d'un cycle par seconde (Ctrl+C pour arrêter)
+# Le même, au rythme réel, avec l'interface opérateur dans le navigateur (Ctrl+C pour arrêter)
 .\.venv\Scripts\python.exe lancer.py scenarios\derive_lente.json --temps-reel
+
+# L'interface seule : le scénario et la cadence se choisissent dans la page
+.\.venv\Scripts\python.exe lancer.py --interface
+
+# Temps réel en mode texte, sans navigateur
+.\.venv\Scripts\python.exe lancer.py scenarios\derive_lente.json --temps-reel --console
 
 # Vérifier un journal produit : chaîne SHA-256, sceaux et complétude
 .\.venv\Scripts\python.exe lancer.py --verifier sorties\<dossier>\journal.sqlite
@@ -29,6 +35,19 @@ Chaque essai écrit dans `sorties\<scénario>_<date>\` :
 - `sceaux.sqlite` : les sceaux de SS-6, signés (Ed25519) tous les 60 cycles, plus un sceau final à l'arrêt normal. Les clés sont dans `sorties\cles_ss6\` ; elles ne sont jamais poussées sur GitHub.
 - `verite.csv` : les grandeurs vraies de SS-1, réservées au banc d'essai pour la validation.
 - `resume.json` : les changements d'état et l'état final.
+
+## Interface opérateur (SS-5)
+
+L'interface s'ouvre dans le navigateur à l'adresse http://127.0.0.1:8050/ (option `--port` pour en changer, `--sans-navigateur` pour ne pas l'ouvrir automatiquement). Elle lance le jumeau complet et montre les sorties de chaque sous-système, cycle par cycle.
+
+- **Barre d'essai** : choix du scénario, cadence (temps réel, × 10, × 60, au plus vite), mode tolérant aux pannes, lancement, pause et arrêt. Un nouveau scénario ne s'applique qu'au clic sur « Lancer l'essai ».
+- **Chaîne de traitement** : toujours visible, une carte par sous-système avec sa sortie du cycle courant, son nombre de cycles et son temps de calcul.
+- **Conduite** : état codé par la forme, la couleur et le libellé (cercle normal, triangle hachuré dérive, octogone anomalie, carré pointillé incertain), confiance, heure d'entrée dans l'état, bandeau des trois variables, vue de détail en un clic, demande de confirmation de l'opérateur, chronologie et historique des transitions.
+- **Analyse des sous-systèmes** : grandeurs vraies, mesures et valeurs attendues (SS-1 à SS-3), résidus normalisés (SS-3), sommes cumulées et seuil h (SS-4), état et confiance (SS-4, SS-5).
+- **Journal** : vérification de la chaîne SHA-256 (SS-6) et événements de l'essai, filtrables par catégorie.
+- **Noir et blanc** : bouton de l'en-tête qui montre que les quatre états restent distincts sans couleur.
+
+Les heures sont affichées en heure de l'Est (HNE ou HAE) ; le journal reste horodaté en UTC. Pour une présentation, la cadence × 60 montre la dérive lente en une vingtaine de secondes. L'interface affiche et journalise seulement : elle n'émet aucune commande vers l'installation (EX-F-08).
 
 ## Scénarios disponibles
 
@@ -56,7 +75,7 @@ logiciel/
     ss2_mesures/        Sidiki      bruit, biais et défauts d'EX-F-02
     ss3_reference/      Raouf       modèle 0D réduit en boucle ouverte, calé sur 600 cycles
     ss4_decision/       Rayane      somme cumulée, seuil instantané, état incertain
-    ss5_interface/      Jérémie     PROVISOIRE : affichage texte, Plotly Dash en cours (lit le cache)
+    ss5_interface/      Jérémie     affichage texte et interface web Plotly Dash (session.py, tableau.py)
     ss6_journal/        Ibrahima    écrivain (SQLite en mode WAL, chaînage SHA-256), scelleur séparé
                                     (Ed25519) et vérificateur, à partir du prototype de Wilson
   scenarios/            Un fichier JSON par scénario
@@ -118,7 +137,7 @@ Ce que l'architecture ne fait pas : redémarrer l'orchestrateur en cours d'essai
 1. **Tout en Python, y compris SS-1 et SS-3.** SS-1 existait déjà en Python, et l'orchestrateur unique est en Python. OpenModelica peut servir à vérifier SS-1 hors ligne, pas à tourner dans la boucle.
 2. **SQLite pour le journal**, en mode WAL. Un seul fichier, sans serveur.
 3. **T = 1 s.**
-4. **Interface Plotly Dash dans le même processus**, qui lit le cache (voir l'architecture ci-dessus). La version texte reste pour les essais en mode accéléré.
+4. **SS-5 en Plotly Dash, dans le même processus.** Le jumeau tourne dans un fil d'exécution à part ; la version texte reste disponible pour les essais en mode accéléré.
 5. **Versions exactes dans `requirements.txt`.** Toute nouvelle bibliothèque y entre avec sa version exacte (`pip freeze` pour la connaître). Docker est optionnel.
 
 ## Premiers constats d'essai
