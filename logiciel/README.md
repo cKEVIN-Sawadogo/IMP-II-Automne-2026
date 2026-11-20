@@ -16,7 +16,7 @@ py -3.13 -m venv .venv
 # Le même, au rythme réel d'un cycle par seconde (Ctrl+C pour arrêter)
 .\.venv\Scripts\python.exe lancer.py scenarios\derive_lente.json --temps-reel
 
-# Vérifier l'intégrité d'un journal produit
+# Vérifier un journal produit : chaîne SHA-256, sceaux et complétude
 .\.venv\Scripts\python.exe lancer.py --verifier sorties\<dossier>\journal.sqlite
 
 # Tous les tests
@@ -26,6 +26,7 @@ py -3.13 -m venv .venv
 Chaque essai écrit dans `sorties\<scénario>_<date>\` :
 
 - `journal.sqlite` : le journal de SS-6, une entrée par cycle, chaînée par SHA-256. La première entrée contient l'en-tête de l'essai : versions de Python et des bibliothèques, commit, graine et empreinte du scénario.
+- `sceaux.sqlite` : les sceaux de SS-6, signés (Ed25519) tous les 60 cycles, plus un sceau final à l'arrêt normal. Les clés sont dans `sorties\cles_ss6\` ; elles ne sont jamais poussées sur GitHub.
 - `verite.csv` : les grandeurs vraies de SS-1, réservées au banc d'essai pour la validation.
 - `resume.json` : les changements d'état et l'état final.
 
@@ -56,8 +57,8 @@ logiciel/
     ss3_reference/      Raouf       modèle 0D réduit en boucle ouverte, calé sur 600 cycles
     ss4_decision/       Rayane      somme cumulée, seuil instantané, état incertain
     ss5_interface/      Jérémie     PROVISOIRE : affichage texte, Plotly Dash en cours (lit le cache)
-    ss6_journal/        Ibrahima    SQLite en mode WAL, chaînage SHA-256 ; scelleur séparé en cours
-                                    (à partir du prototype de Wilson)
+    ss6_journal/        Ibrahima    écrivain (SQLite en mode WAL, chaînage SHA-256), scelleur séparé
+                                    (Ed25519) et vérificateur, à partir du prototype de Wilson
   scenarios/            Un fichier JSON par scénario
   tests/                Test de bout en bout et règles d'architecture
   lancer.py             Point d'entrée
@@ -108,7 +109,7 @@ Tout module peut ajouter une clé `evenements` (liste de dict) : l'orchestrateur
 4. **L'interface ne parle jamais aux sous-systèmes.** Elle lit `orchestrateur.cache` et dépose les réponses de l'opérateur avec `orchestrateur.confirmations.deposer(...)`. L'orchestrateur les prend au début du cycle suivant, journalise leur réception (`confirmation_operateur`) et les transmet à SS-5, qui journalise la réponse avec l'instantané de l'écran (`reponse_operateur`, EX-F-09). La demande en cours est publiée dans le cache sous `demande_en_cours` ; la réponse déposée est `{"k_demande": <champ k de la demande>, "decision": "confirme"}` ou `"refuse"`. Une réponse à une demande retirée entre-temps est journalisée sans effet (`confirmation_sans_effet`). Aucune commande ne sort du poste.
 5. **Les accès au cache passent par un verrou**, et l'interface reçoit des copies.
 6. **Le journal est en mode WAL et validé à chaque cycle.** Le scelleur et l'interface peuvent le lire pendant l'écriture, et un arrêt brutal ne fait perdre que le cycle en cours.
-7. **Le scelleur sera un processus séparé**, lancé par `lancer.py`, seul à connaître la clé privée. Il lira le journal en lecture seule et posera un sceau tous les 60 cycles, plus un sceau final à l'arrêt. Intégration en cours (Ibrahima, issue #90) ; le mode WAL ci-dessus le permet déjà.
+7. **Le scelleur est un processus séparé**, seul à lire la clé privée. SS-6 le lance au démarrage de l'essai (donc avec `lancer.py`, mais aussi dans les tests et la démo). Il lit le journal en lecture seule et pose un sceau tous les 60 cycles, plus un sceau final à l'arrêt normal. `python lancer.py --verifier` contrôle la chaîne, les sceaux et la complétude du journal (une entrée par cycle, changements d'état, confirmations) : un arrêt brutal se voit à l'absence du sceau final.
 
 Ce que l'architecture ne fait pas : redémarrer l'orchestrateur en cours d'essai reprend un **nouvel** essai. L'historique est conservé et l'arrêt brutal est détecté, mais les sommes cumulées et le calage, gardés en mémoire, repartent de zéro.
 

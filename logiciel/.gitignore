@@ -2,3 +2,6 @@ sorties/
 __pycache__/
 .pytest_cache/
 .venv*/
+# Clés du scelleur SS-6 : la clé privée ne doit jamais être poussée.
+cles_ss6/
+*.pem
