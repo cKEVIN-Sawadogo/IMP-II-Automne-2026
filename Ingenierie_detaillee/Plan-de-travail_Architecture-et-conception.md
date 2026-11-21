@@ -2,11 +2,11 @@
 
 **Projet.** Jumeau numérique de surveillance d'une boucle thermohydraulique (6GEN135 IMP2, UQAC)
 **Gabarit.** `13-Architecture-et-conception-du-logiciel.doc` du carnet de développement de logiciels. Il remplace le gabarit 09 « Rapport d'ingénierie détaillée » du carnet classique, dont on garde le contenu attendu (calculs et tests, programmes réalisés, revue de conception).
-**Remise.** Jeudi 24 décembre 2026, le même jour que le rapport final.
+**Remise.** Jeudi 24 décembre 2026. Le professeur a confirmé le 21 novembre que ce rapport tient lieu de rapport final : il n'y a qu'un rapport à remettre. La présentation orale a lieu le jeudi 10 décembre.
 **Gabarit adapté.** `Ingenierie_detaillee/13-Architecture-et-conception-du-logiciel.docx`, avec la consigne de chaque lot en gris italique.
-**Auteur.** Christian Kévin Sawadogo, chargé de projet · **Version.** v1.1, 19 novembre 2026 (décisions d'architecture)
+**Auteur.** Christian Kévin Sawadogo, chargé de projet · **Version.** v1.2, 21 novembre 2026 (un seul rapport, présentation orale le 10 décembre)
 
-Le travail est découpé en trois sprints, calés sur les jalons du plan de projet : J3 le 20 novembre, J4 le 4 décembre et J5 le 18 décembre. Le rapport 13 se rédige à partir du sprint 2, une fois les fonctionnalités gelées, et il est déposé avec le rapport final.
+Le travail est découpé en trois sprints, calés sur les jalons du plan de projet : J3 le 20 novembre, J4 le 4 décembre et J5, la présentation orale, le jeudi 10 décembre. Le rapport 13 se rédige à partir du sprint 2, une fois les fonctionnalités gelées ; il tient lieu de rapport final et se remet le 24 décembre.
 
 La répartition ci-dessous est une proposition. Elle se valide au laboratoire de la semaine du 16 novembre.
 
@@ -23,6 +23,8 @@ Le professeur a précisé que le contenu attendu reste celui du carnet classique
 3. La revue de conception réalisée avec le client, les intervenants ou des experts (09, section 1.3).
 
 Les deux premiers points vont dans la conception détaillée de chaque élément et dans une section de vérification de la chaîne intégrée. Le troisième devient une section à part.
+
+Ce rapport est aussi le rapport final. Il porte donc la recommandation d'ingénierie (livrable L08), à la section 10, avec la conclusion.
 
 Le rapport 12 décrivait **ce que fait** chaque composant. Le rapport 13 décrit **comment il est construit** : modules et classes, séquences d'appel, états internes, choix de conception et leurs raisons. On ne recopie pas le rapport 12 : on y renvoie et on donne ce qui est nouveau.
 
@@ -117,27 +119,27 @@ Abdramane et Wilson gardent de petites tâches, peu complexes. Leurs tâches pri
 | Section 3.6 Vue des modes de marche | Ibrahima | Jérémie, qui décrit les mêmes états dans SS-5 |
 | Section 6.3 Développement durable | Ibrahima | Abdramane |
 
-Les petites tâches d'Abdramane : section 2 (parties prenantes), section 6.3 (développement durable), aide à l'accueil des participants de l'essai d'utilisabilité, mise en forme du rapport final, révision du lot G.
+Les petites tâches d'Abdramane : section 2 (parties prenantes), section 6.3 (développement durable), aide à l'accueil des participants de l'essai d'utilisabilité, mise en forme du rapport 13, révision du lot G.
 
-Les petites tâches de Wilson : remise de son module SS-6 avec les noms de champs du contrat, lancement de l'essai d'endurance et relevé des chiffres, compilation des heures au 4 décembre pour les sections 7.2 et 9, relecture du rapport final, révision du lot A.
+Les petites tâches de Wilson : remise de son module SS-6 avec les noms de champs du contrat, lancement de l'essai d'endurance et relevé des chiffres, compilation des heures au 4 décembre pour les sections 7.2 et 9, relecture de la langue du rapport 13, révision du lot A.
 
 ### Capacité
 
 Les heures disponibles valent 135 h moins les heures consignées au 8 novembre (section 4.1 du rapport 12). Elles sont à mettre à jour avec la feuille de temps.
 
-| Membre | Disponibles | Sprint 1 | Sprint 2 | Rapport 13 | Rapport final et présentation | Révision | Réunions | Planifiées | Charge |
+| Membre | Disponibles | Sprint 1 | Sprint 2 | Rapport 13 | Présentation et mise en forme | Révision | Réunions | Planifiées | Charge |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Christian | 62,65 h | 9 | 4 | 23 | 11 | 2 | 8 | 57 h | 91 % |
-| Raouf | 53,75 h | 8 | 6 | 18 | 6 | 2 | 8 | 48 h | 89 % |
-| Rayane | 66,25 h | 8 | 16 | 18 | 6 | 2 | 8 | 58 h | 88 % |
-| Ibrahima | 62,75 h | 12 | 8 | 15 | 11 | 2 | 8 | 56 h | 89 % |
-| Sidiki | 50,50 h | 4 | 10 | 15 | 5 | 2 | 8 | 44 h | 87 % |
-| Jérémie | 59,95 h | 18 | 8 | 12 | 7 | 2 | 8 | 55 h | 92 % |
+| Christian | 62,65 h | 9 | 4 | 25 | 4 | 2 | 8 | 52 h | 83 % |
+| Raouf | 53,75 h | 8 | 6 | 18 | 3 | 2 | 8 | 45 h | 84 % |
+| Rayane | 66,25 h | 8 | 16 | 18 | 3 | 2 | 8 | 55 h | 83 % |
+| Ibrahima | 62,75 h | 12 | 8 | 15 | 8 | 2 | 8 | 53 h | 84 % |
+| Sidiki | 50,50 h | 4 | 10 | 15 | 3 | 2 | 8 | 42 h | 83 % |
+| Jérémie | 59,95 h | 18 | 8 | 12 | 3 | 2 | 8 | 51 h | 85 % |
 | Abdramane | 55,00 h | 0 | 2 | 5 | 2 | 2 | 8 | 19 h | 35 % |
 | Wilson | 54,00 h | 2 | 3 | 2 | 2 | 2 | 8 | 19 h | 35 % |
-| **Équipe** | **464,85 h** | **61** | **57** | **108** | **50** | **16** | **64** | **356 h** | **77 %** |
+| **Équipe** | **464,85 h** | **61** | **57** | **110** | **28** | **16** | **64** | **336 h** | **72 %** |
 
-Les six membres actifs sont tous entre 87 % et 92 % de leurs heures disponibles : la marge individuelle est mince. La marge de l'équipe (environ 109 h) se trouve presque entièrement chez Abdramane et Wilson. Si un imprévu survient, on leur confie d'abord une tâche simple de plus, puis on retire du contenu ajustable (lot L8), jamais des essais.
+La fusion du rapport final et du rapport 13 (21 novembre) remplace les 50 h prévues pour le rapport final et la présentation par 28 h : la présentation (contenu de Christian, support d'Ibrahima, répétition de chacun), la mise en forme (Abdramane) et la relecture de la langue (Wilson). Christian prend 2 h de plus au rapport 13 pour la recommandation d'ingénierie (L08). Les six membres actifs sont maintenant entre 83 % et 85 % de leurs heures disponibles. Les 20 h libérées ne servent pas à ajouter du contenu : elles sont une réserve pour les examens de décembre et pour la révision. La marge de l'équipe (environ 129 h) reste surtout chez Abdramane et Wilson. Si un imprévu survient, on leur confie d'abord une tâche simple de plus, puis on retire du contenu ajustable (lot L8), jamais des essais.
 
 ### Sprint 1 : du lundi 16 au vendredi 20 novembre
 
@@ -176,25 +178,36 @@ Les six membres actifs sont tous entre 87 % et 92 % de leurs heures disponibles 
 | P1 | Annexe des comparaisons expérimentales de SS-1, avec leurs sources | 4 h | Ibrahima | Aucune |
 | P1 | Coordination, mise à jour du tableau de suivi | 4 h | Christian | Aucune |
 
-### Sprint 3 : du samedi 5 au vendredi 18 décembre
+### Sprint 3 : du samedi 5 au jeudi 10 décembre
 
-**Objectif.** Les deux rapports sont complets et la présentation orale du J5 est prête.
+**Objectif.** La présentation orale du J5 est donnée le jeudi 10 décembre, à partir des résultats de la campagne figés au J4.
 
 | Priorité | Élément | Estimation | Responsable | Dépend de |
 |:-:|---|:-:|---|---|
-| P0 | Section 5 du rapport 13 : calculs et résultats de la campagne, avec verdicts | voir section 4 | Rayane, Raouf, Jérémie, Sidiki | Fin de la campagne |
+| P0 | Contenu de la présentation, remis à Ibrahima le vendredi 4 décembre | 4 h | Christian | Résultats de la campagne (3 décembre) |
+| P0 | Support de la présentation, complet le lundi 7 décembre | 8 h | Ibrahima | Contenu de Christian |
+| P0 | Répétition générale le mardi 8 décembre | 1 h chacun | Tous | Support complet |
 | P0 | Heures au 4 décembre, compilées pour les sections 7.2 et 9 | 2 h | Wilson | Feuilles de temps à jour |
-| P0 | Sections 6 à 10 du rapport 13 : revue de conception, avancement et post-mortem, développement durable, risques et budget, Gantt, performance financière, conclusion | voir section 4 | Sidiki, Christian, Abdramane, Raouf, Jérémie | Heures au 4 décembre |
 | P0 | Avis des parties prenantes du RACI sur la conception (professeur, auxiliaire, technicien), consigné par compte rendu | 3 h | Sidiki | Démonstration du J3 |
-| P0 | Recommandation d'ingénierie (L08) et rapport final | voir capacité | Tous, coordination Christian | Rapport 13 |
-| P0 | Présentation orale : support et répétition le mercredi 16 décembre | 4 h de plus | Ibrahima | Rapport final |
-| P1 | Mise en forme du rapport final (Abdramane) et relecture (Wilson) | 2 h + 2 h | Abdramane, Wilson | Rapport final complet |
-| P1 | Revue des deux rapports par M. Otis, si possible avant le 18 décembre | 2 h | Christian | Brouillons complets |
+| P0 | Questions et commentaires reçus à la présentation, notés pour la section 6.1 | Compris | Sidiki | Présentation |
 
-### Finalisation : du samedi 19 au jeudi 24 décembre
+### Finalisation du rapport 13 : du vendredi 11 au jeudi 24 décembre
 
-1. **Lundi 21 décembre.** Versions complètes des deux rapports, intégrées dans les gabarits.
-2. **Mardi 22 décembre.** Relecture d'ensemble et contrôle de cohérence entre les deux rapports (mêmes chiffres, mêmes verdicts).
+**Objectif.** Le rapport 13, qui tient lieu de rapport final, est complet le lundi 21 décembre et déposé le jeudi 24.
+
+| Priorité | Élément | Estimation | Responsable | Dépend de |
+|:-:|---|:-:|---|---|
+| P0 | Section 5 : calculs et résultats de la campagne, avec verdicts (vendredi 11 décembre) | voir section 4 | Rayane, Raouf, Jérémie, Sidiki | Fin de la campagne |
+| P0 | Sections 6 à 9 : revue de conception avec les commentaires de la présentation, avancement et post-mortem, développement durable, risques et budget, Gantt, performance financière (lundi 14 décembre) | voir section 4 | Sidiki, Christian, Abdramane, Raouf, Jérémie | Heures au 4 décembre |
+| P0 | Révision des sections 5 à 9 (jeudi 17 décembre) | voir capacité | Réviseurs | Brouillons |
+| P0 | Conclusion, recommandation d'ingénierie (L08), résumé et références (vendredi 18 décembre) | voir section 4 | Christian, Rayane | Sections 5 à 9 |
+| P1 | Revue du rapport par M. Otis, si possible avant le 18 décembre | 2 h | Christian | Brouillons complets |
+| P1 | Mise en forme (Abdramane) et relecture de la langue (Wilson) | 2 h + 2 h | Abdramane, Wilson | Rapport complet |
+
+La dernière semaine :
+
+1. **Lundi 21 décembre.** Version complète, intégrée dans le gabarit.
+2. **Mardi 22 décembre.** Relecture de la langue ; contrôle de cohérence : mêmes chiffres et mêmes verdicts dans toutes les sections, et avec le support de la présentation.
 3. **Mercredi 23 décembre.** Mise en forme finale, table des matières, export PDF.
 4. **Jeudi 24 décembre.** Dépôt.
 
@@ -217,7 +230,7 @@ Les heures sont des estimations de rédaction, figures comprises. Elles excluent
 
 | Lot | Sections | Auteur | Heures | Réviseur |
 |:-:|---|---|:-:|---|
-| A | Résumé ; 3.2 Démarche de conception ; 3.3 Vue d'ensemble ; 3.4 Vue logique ; 4.1 Vue d'ensemble de la conception détaillée ; 4.8 Orchestrateur ; 6.2 Avancement, sprints et post-mortem ; 7.2 Révision finale du budget ; 9 Performance financière ; 10 Conclusion ; intégration et export | Christian | 23 | Wilson |
+| A | Résumé ; 3.2 Démarche de conception ; 3.3 Vue d'ensemble ; 3.4 Vue logique ; 4.1 Vue d'ensemble de la conception détaillée ; 4.8 Orchestrateur ; 6.2 Avancement, sprints et post-mortem ; 7.2 Révision finale du budget ; 9 Performance financière ; 10 Conclusion et recommandation d'ingénierie (L08) ; intégration et export | Christian | 25 | Wilson |
 | B | 2 Parties prenantes ; 6.3 Développement durable et contexte socio-économique | Abdramane | 5 | Ibrahima |
 | C | 1 Introduction ; 4.2 SS-1 ; 4.7 SS-6 ; annexe des comparaisons de SS-1 | Ibrahima | 15 | Sidiki |
 | D | 3.5 Vue d'exécution et de déploiement ; 4.3 SS-2 ; 5.5 Endurance et temps de cycle ; 6.1 Revue de conception | Sidiki | 15 | Raouf |
@@ -226,7 +239,7 @@ Les heures sont des estimations de rédaction, figures comprises. Elles excluent
 | G | 3.6 Vue des modes de marche ; 4.6 SS-5 ; 5.4 Utilisabilité ; 8 Gantt révisé | Jérémie | 12 | Abdramane |
 | H | Heures au 4 décembre pour les sections 7.2 et 9 | Wilson | 2 | Christian |
 
-Total : 108 heures de rédaction et environ 16 heures de révision.
+Total : 110 heures de rédaction et environ 16 heures de révision.
 
 ### Liens entre les lots
 
@@ -262,8 +275,8 @@ Statuts possibles : À faire, Brouillon déposé, En révision, Approuvé.
 |---|---|---|
 | C1 échoue à l'essai du 18 novembre | Environ 30 h de plus sur SS-3 ; J3 peut glisser | Raouf et Christian construisent la référence recalée ; Abdramane et Wilson reprennent des tâches simples de Raouf ; on retire d'abord l'historique de l'interface (lot L8) |
 | L'interface Dash n'est pas prête au J3 | Démonstration incomplète ; essai d'utilisabilité retardé | La version texte de SS-5 sert à la démonstration ; l'essai d'utilisabilité reste au sprint 2 |
-| Examens de fin de session en décembre | Moins de disponibilité pendant le sprint 3 | Les brouillons du rapport 13 sont faits au sprint 2 ; chacun signale ses dates d'examen d'ici le 18 novembre |
-| Deux rapports à remettre le même jour | Surcharge de la dernière semaine | Rapport 13 rédigé en premier ; le rapport final le reprend au lieu de le réécrire |
+| Examens de fin de session en décembre | Moins de disponibilité pendant la finalisation | Les brouillons des sections 1 à 4 sont faits au sprint 2 ; les 20 h libérées par la fusion des rapports servent de réserve ; chacun signale ses dates d'examen |
+| Présentation le 10 décembre, avant la rédaction de la section 5 | Des chiffres différents entre la présentation et le rapport | Les résultats de la campagne sont figés au J4 et remis à Rayane le 3 décembre ; le support reprend ces tableaux tels quels ; contrôle de cohérence le 22 décembre |
 | Plafond de 135 h par membre | Un membre ne peut plus contribuer | Suivi hebdomadaire des heures ; réallocation selon la section 3 |
 | Recrutement de cinq participants externes pour EX-Q-03 | Essai incomplet | Jérémie, Ibrahima et Abdramane recrutent dès le sprint 1 |
 | Six membres actifs chargés à près de 90 % | Peu de marge individuelle | Les imprévus vont d'abord à Abdramane et Wilson sous forme de tâches simples ; suivi des heures chaque semaine |
@@ -301,15 +314,18 @@ Pour une section du rapport 13 :
 | Lundi 30 novembre | Relevés de l'essai d'endurance remis à Sidiki ; valeurs des spécifications techniques remises à Raouf |
 | Mercredi 2 décembre | Brouillons des sections 1 à 4 du rapport 13 |
 | Jeudi 3 décembre | Résultats de tous les essais remis à Rayane pour le bilan L06 |
-| Vendredi 4 décembre | J4 : campagne d'essais terminée ; révision des sections 1 à 4 terminée ; données de calcul remises à Rayane ; revue et rétrospective du sprint 2 |
-| Lundi 7 décembre | Heures au 4 décembre remises à Christian ; répartition du rapport final envoyée à l'équipe |
-| Mercredi 9 décembre | Brouillons de la section 5 |
-| Vendredi 11 décembre | Brouillons des sections 6 à 9 |
-| Lundi 14 décembre | Révision des sections 5 à 9 terminée |
-| Mercredi 16 décembre | Conclusion, résumé et références ; répétition de la présentation |
-| Vendredi 18 décembre | J5 : présentation orale ; rétrospective du sprint 3 |
-| Lundi 21 décembre | Versions complètes des deux rapports |
-| Jeudi 24 décembre | Dépôt du rapport 13 et du rapport final |
+| Vendredi 4 décembre | J4 : campagne d'essais terminée ; révision des sections 1 à 4 terminée ; données de calcul remises à Rayane ; contenu de la présentation remis à Ibrahima ; revue et rétrospective du sprint 2 |
+| Lundi 7 décembre | Heures au 4 décembre remises à Christian ; support de la présentation complet |
+| Mardi 8 décembre | Répétition générale de la présentation |
+| Jeudi 10 décembre | J5 : présentation orale ; rétrospective du sprint 3 |
+| Vendredi 11 décembre | Brouillons de la section 5 |
+| Lundi 14 décembre | Brouillons des sections 6 à 9 |
+| Jeudi 17 décembre | Révision des sections 5 à 9 terminée |
+| Vendredi 18 décembre | Conclusion, recommandation d'ingénierie (L08), résumé et références |
+| Lundi 21 décembre | Version complète du rapport 13 |
+| Mardi 22 décembre | Relecture de la langue et contrôle de cohérence |
+| Mercredi 23 décembre | Mise en forme finale et export PDF |
+| Jeudi 24 décembre | Dépôt du rapport 13, qui tient lieu de rapport final |
 
 ---
 
@@ -326,7 +342,8 @@ Deux règles s'ajoutent :
 
 ## 9. Points à trancher
 
-- [x] **Rapport 13 et rapport final.** Ce sont deux documents distincts, tous deux à remettre le 24 décembre.
+- [x] **Un seul rapport.** Le professeur a confirmé le 21 novembre que le rapport d'ingénierie détaillée tient lieu de rapport final : un seul rapport, remis le 24 décembre, et la présentation orale le jeudi 10 décembre.
+- [ ] **Plan de projet.** Avancer J5 au 10 décembre dans le Gantt et noter la fusion des deux rapports au registre des changements (lot G, section 8).
 - [ ] **Parties prenantes du RACI.** Identifier l'auxiliaire et le technicien à consulter pour la revue de conception (section 6.1).
 - [ ] **Dates d'examen.** Chaque membre signale les siennes d'ici le 18 novembre, pour ajuster le sprint 3.
 - [ ] **Feuilles de temps.** Les mettre à jour au 15 novembre, pour recalculer les heures disponibles de la section 3.

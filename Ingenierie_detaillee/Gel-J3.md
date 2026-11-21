@@ -56,7 +56,7 @@ Ces valeurs ne changent plus. Les modifier invaliderait la campagne statistique 
 2. **Chaque demande de fusion après le gel** porte un titre qui commence par « Correctif : », décrit le défaut, ajoute un test qui le reproduit, et s'inscrit au registre de la section 5. Christian fusionne seulement après la revue.
 3. **Les essais de la campagne se font sur l'étiquette.** `git checkout gel-j3` (ou la dernière étiquette `gel-j3.n`), puis on contrôle que le commit écrit dans l'en-tête du journal est bien celui de l'étiquette.
 4. **Un correctif qui touche SS-1 à SS-4, SS-6 ou l'orchestrateur** crée une nouvelle étiquette (`gel-j3.1`, `gel-j3.2`…), et les essais de la campagne déjà faits et concernés sont refaits. Un correctif limité à l'affichage de SS-5 ne change pas la campagne statistique, mais il doit être fait avant l'essai d'utilisabilité.
-5. **Une idée de fonction nouvelle** va dans les recommandations du rapport final (L08), pas dans le code.
+5. **Une idée de fonction nouvelle** va dans la recommandation d'ingénierie de la section 10 du rapport 13 (L08), pas dans le code.
 
 ## 5. Registre des correctifs
 

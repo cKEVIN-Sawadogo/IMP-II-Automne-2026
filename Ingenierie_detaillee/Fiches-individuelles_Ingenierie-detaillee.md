@@ -7,8 +7,8 @@ Une fiche par membre, à publier telle quelle sur Discord (chaque fiche tient da
 ## Message commun (à épingler)
 
 **Ingénierie détaillée : règles communes**
-**Remise du rapport 13 et du rapport final : jeudi 24 décembre.**
-Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais terminés **ven 4 déc** ; J5 présentation **ven 18 déc**.
+**Un seul rapport : le rapport 13, qui tient lieu de rapport final, remis le jeudi 24 décembre.**
+Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais terminés **ven 4 déc** ; J5 présentation orale **jeu 10 déc**.
 
 **Code**
 • Une branche par personne, une demande de fusion par changement, tests au vert.
@@ -29,7 +29,7 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 ---
 
-## Raouf : SS-3, condition C1, risques (environ 48 h)
+## Raouf : SS-3, condition C1, risques (environ 45 h)
 
 **Semaine du 16 nov (avant le J3)**
 • **Lun 16** : SS-3 final fusionné dans main (modèle réduit, calage de 600 cycles), dès que Sidiki a fusionné SS-2.
@@ -44,14 +44,14 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 **Rapport 13 (lot E)**
 • **Mer 2 déc** : 3.1 Validation de la solution préliminaire (erreurs relevées, correctifs, avis au client) ; 4.4 SS-3 (7 rubriques, diagramme de classes, diagramme d'états) ; 4.9 Spécifications techniques (tableau : paramètre, valeur, unité, origine).
-• **Mer 9 déc** : 5.2 Essai de cohérence et C1 (protocole, critère, résultat, verdict, méthode statistique expliquée).
-• **Ven 11 déc** : 7.1 Révision finale des risques (matrices avant et après mitigation), en lien avec Christian pour le budget.
+• **Ven 11 déc** : 5.2 Essai de cohérence et C1 (protocole, critère, résultat, verdict, méthode statistique expliquée).
+• **Lun 14 déc** : 7.1 Révision finale des risques (matrices avant et après mitigation), en lien avec Christian pour le budget.
 
-**Ta révision** : le lot de Sidiki (3.5, 4.3, 5.5, 6.1), terminée le **4 déc** puis le **14 déc**.
+**Ta révision** : le lot de Sidiki (3.5, 4.3, 5.5, 6.1), terminée le **4 déc** puis le **17 déc**.
 
 ---
 
-## Rayane : SS-4, campagne statistique, bilan des exigences (environ 58 h)
+## Rayane : SS-4, campagne statistique, bilan des exigences (environ 55 h)
 
 **Semaine du 16 nov (avant le J3)**
 • **Mar 17** : test de la convention S ≥ h (résidu constant de 1,5σ : déclenchement au cycle 9) et gestion des données invalides (aucune mise à jour sur un résidu absent, état incertain après N = 3 cycles).
@@ -63,14 +63,14 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 **Rapport 13 (lot F)**
 • **Mer 2 déc** : 4.5 SS-4 (7 rubriques, diagramme d'états avec la règle de priorité).
-• **Mer 9 déc** : 5.1 Calculs de dimensionnement (tu reçois ceux d'Ibrahima et de Raouf le 4 déc ; pour chaque calcul : formule, données, résultat, vérification à la main) ; 5.3 Performances de détection ; 5.6 Bilan exigence par exigence.
-• **Mer 16 déc** : 11 Références (liste numérotée [n], numéros du rapport 12 gardés si possible).
+• **Ven 11 déc** : 5.1 Calculs de dimensionnement (tu reçois ceux d'Ibrahima et de Raouf le 4 déc ; pour chaque calcul : formule, données, résultat, vérification à la main) ; 5.3 Performances de détection ; 5.6 Bilan exigence par exigence.
+• **Ven 18 déc** : 11 Références (liste numérotée [n], numéros du rapport 12 gardés si possible).
 
-**Ta révision** : le lot de Raouf (3.1, 4.4, 4.9, 5.2, 7.1), terminée le **4 déc** puis le **14 déc**.
+**Ta révision** : le lot de Raouf (3.1, 4.4, 4.9, 5.2, 7.1), terminée le **4 déc** puis le **17 déc**.
 
 ---
 
-## Ibrahima : SS-1, intégration de SS-6, introduction, présentation (environ 56 h)
+## Ibrahima : SS-1, intégration de SS-6, introduction, présentation (environ 53 h)
 
 **Semaine du 16 nov (avant le J3)**
 • **Lun 16** : tu reçois le module SS-6 de Wilson.
@@ -86,13 +86,13 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 **Rapport 13 (lot C)**
 • **Mer 2 déc** : 1 Introduction en cinq parties (contexte et objectif, portée, méthodologie, importance et impact, structure) ; 4.2 SS-1 ; 4.7 SS-6 (à partir de la section de Wilson du rapport 12).
 
-**Présentation orale** : tu prépares le support ; répétition **mer 16 déc**, présentation **ven 18 déc**.
+**Présentation orale** : tu prépares le support ; à partir du contenu de Christian, support complet **lun 7 déc**, répétition **mar 8 déc**, présentation **jeu 10 déc**.
 
-**Ta révision** : le lot d'Abdramane (2, 6.3), terminée le **4 déc** puis le **14 déc**.
+**Ta révision** : le lot d'Abdramane (2, 6.3), terminée le **4 déc** puis le **17 déc**.
 
 ---
 
-## Sidiki : SS-2, démonstration du J3, essais fonctionnels, revue de conception (environ 44 h)
+## Sidiki : SS-2, démonstration du J3, essais fonctionnels, revue de conception (environ 42 h)
 
 **Semaine du 16 nov (avant le J3)**
 • **Lun 16 au soir** : SS-2 final fusionné. Raouf en dépend pour l'essai de cohérence.
@@ -106,14 +106,14 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 **Rapport 13 (lot D)**
 • **Mer 2 déc** : 3.5 Vue d'exécution et de déploiement (6 rubriques, diagramme de séquence d'un cycle, chemins anormaux, processus et fichiers) ; 4.3 SS-2.
-• **Mer 9 déc** : 5.5 Endurance et temps de cycle.
-• **Ven 11 déc** : 6.1 Revue de conception (avis de chaque partie prenante, changements apportés).
+• **Ven 11 déc** : 5.5 Endurance et temps de cycle.
+• **Lun 14 déc** : 6.1 Revue de conception (avis de chaque partie prenante, changements apportés).
 
 **Ta révision** : le lot d'Ibrahima (1, 4.2, 4.7), terminée le **4 déc**.
 
 ---
 
-## Jérémie : SS-5 et interface Plotly Dash, utilisabilité, Gantt (environ 55 h)
+## Jérémie : SS-5 et interface Plotly Dash, utilisabilité, Gantt (environ 51 h)
 
 **Semaine du 16 nov (avant le J3)**
 • Interface Dash, mise à jour chaque seconde :
@@ -132,10 +132,10 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 **Rapport 13 (lot G)**
 • **Mer 2 déc** : 3.6 Vue des modes de marche (états du GEMMA reliés aux états du logiciel) ; 4.6 SS-5 (7 rubriques, une capture par vue).
-• **Mer 9 déc** : 5.4 Utilisabilité.
-• **Ven 11 déc** : 8 Gantt révisé (J3 et J4 atteints ou non, chemin critique).
+• **Ven 11 déc** : 5.4 Utilisabilité.
+• **Lun 14 déc** : 8 Gantt révisé (J3 et J4 atteints ou non, chemin critique).
 
-**Ta révision** : le lot de Rayane (4.5, 5.1, 5.3, 5.6, 11), terminée le **4 déc** puis le **14 déc**.
+**Ta révision** : le lot de Rayane (4.5, 5.1, 5.3, 5.6, 11), terminée le **4 déc** puis le **17 déc**.
 
 ---
 
@@ -146,10 +146,10 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 **Rapport 13 (lot B)**
 • **Mer 2 déc** : section 2, Parties prenantes. Un tableau de trois colonnes : partie prenante (client Hydro-Québec, opérateur, vérificateur, Commission canadienne de sûreté nucléaire, équipe, conseiller), ses préoccupations (sûreté, fiabilité du diagnostic, traçabilité, temps de réponse, entretien), la vue de la section 3 qui y répond.
-• **Ven 11 déc** : section 6.3, Développement durable, une page à une page et demie. Trois parties : environnement, économie, société. Puis le contexte social, politique et socio-économique. Puis les solutions de rechange envisagées (par exemple, une boucle physique ou un service infonuagique) et pourquoi on ne les a pas retenues.
+• **Lun 14 déc** : section 6.3, Développement durable, une page à une page et demie. Trois parties : environnement, économie, société. Puis le contexte social, politique et socio-économique. Puis les solutions de rechange envisagées (par exemple, une boucle physique ou un service infonuagique) et pourquoi on ne les a pas retenues.
 
-**Ta révision** : le lot de Jérémie (3.6, 4.6, 5.4, 8), terminée le **4 déc** puis le **14 déc**.
-**Rapport final** : mise en forme du **21 au 23 déc** (légendes numérotées, table des matières, abréviations).
+**Ta révision** : le lot de Jérémie (3.6, 4.6, 5.4, 8), terminée le **4 déc** puis le **17 déc**.
+**Rapport 13** : mise en forme du **21 au 23 déc** (légendes numérotées, table des matières, abréviations).
 
 ---
 
@@ -160,12 +160,12 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 • **Lun 30 nov** : envoyer les fichiers et tes relevés à Sidiki.
 • **Lun 7 déc** : compiler les heures de chaque membre au 4 décembre, à partir des feuilles de temps (un tableau : membre, heures cumulées), et l'envoyer à Christian.
 
-**Ta révision** : le lot de Christian (3.2, 3.3, 3.4, 4.1, 4.8, puis 6.2, 7.2 et 9), terminée le **4 déc** puis le **14 déc**.
-**Rapport final** : relecture de la langue **lun 21 et mar 22 déc**.
+**Ta révision** : le lot de Christian (3.2, 3.3, 3.4, 4.1, 4.8, puis 6.2, 7.2 et 9), terminée le **4 déc** puis le **17 déc**.
+**Rapport 13** : relecture de la langue **lun 21 et mar 22 déc**.
 
 ---
 
-## Christian : intégration, architecture, gestion (environ 57 h)
+## Christian : intégration, architecture, gestion (environ 52 h)
 
 **Semaine du 16 nov**
 • **Lun 16 et mar 17** : trancher avec Sidiki, Jérémie et Ibrahima le partage d'état entre Dash et l'orchestrateur, la séparation du scelleur, Docker ou des versions figées. Partager le document du rapport 13 et épingler le lien.
@@ -178,9 +178,9 @@ Dates clés : J3 démonstration et gel du code **ven 20 nov** ; J4 essais termin
 
 **Rapport 13 (lot A)**
 • **Mer 2 déc** : 3.2, 3.3, 3.4, 4.1, 4.8.
-• **Lun 7 déc** : répartition du rapport final envoyée à l'équipe.
-• **Ven 11 déc** : 6.2 Avancement et post-mortem, 7.2 Budget (heures de Wilson), 9 Performance financière.
-• **Mer 16 déc** : 10 Conclusion et résumé exécutif.
+• **Ven 4 déc** : contenu de la présentation remis à Ibrahima.
+• **Lun 14 déc** : 6.2 Avancement et post-mortem, 7.2 Budget (heures de Wilson), 9 Performance financière.
+• **Ven 18 déc** : 10 Conclusion et recommandation d'ingénierie (L08), résumé exécutif.
 • **Du 21 au 24 déc** : intégration, cohérence entre les deux rapports, export, dépôt.
 
 **Ta révision** : le petit lot de Wilson (heures au 4 décembre).
