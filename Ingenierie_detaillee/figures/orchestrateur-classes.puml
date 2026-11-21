@@ -1,0 +1,76 @@
+@startuml orchestrateur-classes
+' Figure 4.8-1. Diagramme de classes de l'orchestrateur et des informations communes.
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng orchestrateur-classes.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam ArrowColor #4A5F7A
+hide circle
+
+class Orchestrateur {
+  scenario : dict
+  sortie : Path
+  modules : dict[str, SousSysteme]
+  tolerant : bool
+  temps_reel : bool
+  cache : CacheEtat
+  confirmations : FileConfirmations
+  --
+  executer(cycles) : dict
+  _appel(cle, k, entrees, evenements) : dict
+  _transmettre_reponse(reponse) : str | None
+}
+
+abstract class SousSysteme {
+  nom : str
+  --
+  demarrer(contexte)
+  etape(k, entrees) : dict
+  arreter()
+}
+
+class CacheEtat {
+  taille = 600 cycles
+  --
+  publier(cycle)
+  dernier() : dict | None
+  historique(n) : list[dict]
+  recharger_depuis_journal(chemin) : int
+}
+
+class FileConfirmations {
+  deposer(reponse)
+  prendre_toutes() : list[dict]
+}
+
+class "Fonctions du module" as F <<module>> {
+  modules_par_defaut() : dict
+  consignes_a(scenario, t) : dict
+  entete_essai(scenario) : dict
+  charger(chemin) : dict
+}
+
+class Mesure <<immuable>> {
+  k, t, horodatage_utc
+  variable : Variable
+  valeur : float | None
+  statut : Statut
+}
+
+Orchestrateur "1" o-- "6" SousSysteme : SS-1 à SS-6
+Orchestrateur "1" *-- "1" CacheEtat
+Orchestrateur "1" *-- "1" FileConfirmations
+Orchestrateur ..> F
+Orchestrateur ..> Mesure : crée une mesure absente\nsi SS-2 ne répond pas
+
+CacheEtat -[hidden]right- FileConfirmations
+SousSysteme -[hidden]right- F
+F -[hidden]right- Mesure
+CacheEtat -[hidden]down- SousSysteme
+@enduml

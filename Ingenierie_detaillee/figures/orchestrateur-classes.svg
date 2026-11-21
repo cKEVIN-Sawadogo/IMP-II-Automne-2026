@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="575px" preserveAspectRatio="none" style="width:922px;height:575px;background:#FFFFFF;" version="1.1" viewBox="0 0 922 575" width="922px" zoomAndPan="magnify" xmlns:c2pa="http://c2pa.org/manifest"><defs/><g><!--MD5=[79cfadff20f59a28efbeff006b2cbc93]
+class Orchestrateur--><g id="elem_Orchestrateur"><rect codeLine="15" fill="#FFFFFF" height="199.0244" id="Orchestrateur" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="283" x="400" y="7"/><rect fill="#E6EBF2" height="25.7295" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="283" x="400" y="7"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="283" x="400" y="30.2295"/><rect codeLine="15" fill="none" height="199.0244" id="Orchestrateur" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="283" x="400" y="7"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="86" x="498.5" y="24.5938">Orchestrateur</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="401" x2="682" y1="32.7295" y2="32.7295"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="87" x="406" y="49.3232">scenario : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="74" x="406" y="65.0527">sortie : Path</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="205" x="406" y="80.7822">modules : dict[str, SousSysteme]</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="86" x="406" y="96.5117">tolerant : bool</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="107" x="406" y="112.2412">temps_reel : bool</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="112" x="406" y="127.9707">cache : CacheEtat</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="205" x="406" y="143.7002">confirmations : FileConfirmations</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="401" x2="682" y1="150.8359" y2="150.8359"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="138" x="406" y="167.4297">executer(cycles) : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="258" x="406" y="183.1592">_appel(cle, k, entrees, evenements) : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="271" x="406" y="198.8887">_transmettre_reponse(reponse) : str | None</text></g><!--MD5=[8591c682e8bb444fcbb73ee9bec89eef]
+class SousSysteme--><g id="elem_SousSysteme"><rect codeLine="29" fill="#FFFFFF" height="104.6475" id="SousSysteme" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="154" x="352.5" y="455.5"/><rect fill="#E6EBF2" height="25.7295" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="154" x="352.5" y="455.5"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="154" x="352.5" y="478.7295"/><rect codeLine="29" fill="none" height="104.6475" id="SousSysteme" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="154" x="352.5" y="455.5"/><text fill="#000000" font-family="Arial" font-size="13" font-style="italic" lengthAdjust="spacing" textLength="82" x="388.5" y="473.0938">SousSysteme</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="353.5" x2="505.5" y1="481.2295" y2="481.2295"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="55" x="358.5" y="497.8232">nom : str</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="353.5" x2="505.5" y1="504.959" y2="504.959"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="121" x="358.5" y="521.5527">demarrer(contexte)</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="142" x="358.5" y="537.2822">etape(k, entrees) : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="52" x="358.5" y="553.0117">arreter()</text></g><!--MD5=[bc5e62a5266cd482b4a466aaecd7b274]
+class CacheEtat--><g id="elem_CacheEtat"><rect codeLine="37" fill="#FFFFFF" height="120.377" id="CacheEtat" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="251" x="7" y="267"/><rect fill="#E6EBF2" height="25.7295" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="251" x="7" y="267"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="251" x="7" y="290.2295"/><rect codeLine="37" fill="none" height="120.377" id="CacheEtat" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="251" x="7" y="267"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="63" x="101" y="284.5938">CacheEtat</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="8" x2="257" y1="292.7295" y2="292.7295"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="112" x="13" y="309.3232">taille = 600 cycles</text><line style="stroke:#4A5F7A;stroke-width:1.0;" x1="8" x2="257" y1="316.459" y2="316.459"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="85" x="13" y="333.0527">publier(cycle)</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="135" x="13" y="348.7822">dernier() : dict | None</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="141" x="13" y="364.5117">historique(n) : list[dict]</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="239" x="13" y="380.2412">recharger_depuis_journal(chemin) : int</text></g><!--MD5=[aa03da7faabdf25cbd6c8744a1f8a068]
+class FileConfirmations--><g id="elem_FileConfirmations"><rect codeLine="46" fill="#FFFFFF" height="73.1885" id="FileConfirmations" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="178" x="293.5" y="290.5"/><rect fill="#E6EBF2" height="25.7295" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="178" x="293.5" y="290.5"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="178" x="293.5" y="313.7295"/><rect codeLine="46" fill="none" height="73.1885" id="FileConfirmations" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="178" x="293.5" y="290.5"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="109" x="328" y="308.0938">FileConfirmations</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="294.5" x2="470.5" y1="316.2295" y2="316.2295"/><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="294.5" x2="470.5" y1="324.2295" y2="324.2295"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="114" x="299.5" y="340.8232">deposer(reponse)</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="166" x="299.5" y="356.5527">prendre_toutes() : list[dict]</text></g><!--MD5=[cc7353c6743ff8a5cd46192e652143fd]
+class F--><g id="elem_F"><rect codeLine="51" fill="#FFFFFF" height="120.377" id="F" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="198" x="541.5" y="448"/><rect fill="#E6EBF2" height="41.459" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="198" x="541.5" y="448"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="198" x="541.5" y="486.959"/><rect codeLine="51" fill="none" height="120.377" id="F" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="198" x="541.5" y="448"/><text fill="#000000" font-family="Arial" font-size="13" font-style="italic" lengthAdjust="spacing" textLength="61" x="610" y="465.5938">«module»</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="131" x="575" y="481.3232">Fonctions du module</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="542.5" x2="738.5" y1="489.459" y2="489.459"/><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="542.5" x2="738.5" y1="497.459" y2="497.459"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="169" x="547.5" y="514.0527">modules_par_defaut() : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="186" x="547.5" y="529.7822">consignes_a(scenario, t) : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="175" x="547.5" y="545.5117">entete_essai(scenario) : dict</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="137" x="547.5" y="561.2412">charger(chemin) : dict</text></g><!--MD5=[48346046f9d3e7e7a1529de5a6eac666]
+class Mesure--><g id="elem_Mesure"><rect codeLine="58" fill="#FFFFFF" height="120.377" id="Mesure" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="135" x="775" y="448"/><rect fill="#E6EBF2" height="41.459" rx="2.5" ry="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="135" x="775" y="448"/><rect fill="#E6EBF2" height="2.5" style="stroke:#E6EBF2;stroke-width:0.5;" width="135" x="775" y="486.959"/><rect codeLine="58" fill="none" height="120.377" id="Mesure" rx="2.5" ry="2.5" style="stroke:#4A5F7A;stroke-width:0.5;" width="135" x="775" y="448"/><text fill="#000000" font-family="Arial" font-size="13" font-style="italic" lengthAdjust="spacing" textLength="75" x="805" y="465.5938">«immuable»</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="48" x="818.5" y="481.3232">Mesure</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="776" x2="909" y1="489.459" y2="489.459"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="123" x="781" y="506.0527">k, t, horodatage_utc</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="110" x="781" y="521.7822">variable : Variable</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="123" x="781" y="537.5117">valeur : float | None</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="81" x="781" y="553.2412">statut : Statut</text><line style="stroke:#4A5F7A;stroke-width:0.5;" x1="776" x2="909" y1="560.377" y2="560.377"/></g><!--MD5=[b86f2f812376d999cbcbf7d709362d81]
+reverse link Orchestrateur to SousSysteme--><g id="link_Orchestrateur_SousSysteme"><path codeLine="65" d="M527.39,219.12 C519.06,271 506.52,333.02 488.5,387 C480.74,410.23 469.36,434.7 458.66,455.43 " fill="none" id="Orchestrateur-backto-SousSysteme" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="none" points="529.42,206.16,524.5386,211.4677,527.5606,218.0151,532.442,212.7073,529.42,206.16" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="72" x="519.5" y="332.0938">SS-1 à SS-6</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="5" x="523.3493" y="226.6492">1</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="8" x="454.3554" y="444.2804">6</text></g><!--MD5=[42b272559d2f0233f9ffffba5a6d592f]
+reverse link Orchestrateur to CacheEtat--><g id="link_Orchestrateur_CacheEtat"><path codeLine="66" d="M388.36,189.31 C340.09,215.1 287.73,243.07 243.03,266.95 " fill="none" id="Orchestrateur-backto-CacheEtat" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="399.89,183.15,392.7133,182.446,389.3032,188.7998,396.4799,189.5038,399.89,183.15" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="5" x="387.009" y="184.5447">1</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="5" x="251.8713" y="255.9115">1</text></g><!--MD5=[d0a72f35d034bf7ad75bfab525d27deb]
+reverse link Orchestrateur to FileConfirmations--><g id="link_Orchestrateur_FileConfirmations"><path codeLine="67" d="M461.96,216.81 C442.55,243.48 423.15,270.14 408.37,290.44 " fill="none" id="Orchestrateur-backto-FileConfirmations" style="stroke:#4A5F7A;stroke-width:1.0;"/><polygon fill="#4A5F7A" points="469.68,206.2,462.9166,208.7014,462.6243,215.9065,469.3877,213.4052,469.68,206.2" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="5" x="459.2221" y="226.6921">1</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="5" x="407.971" y="279.4127">1</text></g><!--MD5=[aafdf37e580a3e151c1a859af4691fc8]
+link Orchestrateur to F--><g id="link_Orchestrateur_F"><path codeLine="68" d="M599.99,206.23 C609.34,225.8 617.8,246.61 623.5,267 C639.68,324.83 643.05,393.4 642.89,442.4 " fill="none" id="Orchestrateur-to-F" style="stroke:#4A5F7A;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="642.86,447.68,646.9114,438.703,642.8886,442.6801,638.9115,438.6573,642.86,447.68" style="stroke:#4A5F7A;stroke-width:1.0;"/></g><!--MD5=[d2d55249a3c8ca49c7376136e6e83a24]
+link Orchestrateur to Mesure--><g id="link_Orchestrateur_Mesure"><path codeLine="69" d="M616.76,206 C624.45,216.13 632.14,226.26 639.5,236 C693.13,306.96 754.28,388.71 795.33,443.7 " fill="none" id="Orchestrateur-to-Mesure" style="stroke:#4A5F7A;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#4A5F7A" points="798.49,447.95,796.29,438.35,795.49,443.95,789.89,443.15,798.49,447.95" style="stroke:#4A5F7A;stroke-width:1.0;"/><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="161" x="753.5" y="324.0938">crée une mesure absente</text><text fill="#000000" font-family="Arial" font-size="13" lengthAdjust="spacing" textLength="139" x="764.5" y="339.8232">si SS-2 ne répond pas</text></g><!--MD5=[11737df9ecd643ad5b1c624cb03557ad]
+link CacheEtat to FileConfirmations--><!--MD5=[c94aa8802a0d4f8c4381c0da9aaace12]
+link SousSysteme to F--><!--MD5=[640a1d92ade49439a5851c7bc32b0264]
+link F to Mesure--><!--MD5=[cd3297a1b2dc788f94b712c2fab357be]
+link CacheEtat to SousSysteme--><!--MD5=[1126a444236450f8213cb908e4fcc472]
+@startuml orchestrateur-classes
+' Figure 4.8-1. Diagramme de classes de l'orchestrateur et des informations communes.
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng orchestrateur-classes.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam ArrowColor #4A5F7A
+hide circle
+
+class Orchestrateur {
+  scenario : dict
+  sortie : Path
+  modules : dict[str, SousSysteme]
+  tolerant : bool
+  temps_reel : bool
+  cache : CacheEtat
+  confirmations : FileConfirmations
+  - -
+  executer(cycles) : dict
+  _appel(cle, k, entrees, evenements) : dict
+  _transmettre_reponse(reponse) : str | None
+}
+
+abstract class SousSysteme {
+  nom : str
+  - -
+  demarrer(contexte)
+  etape(k, entrees) : dict
+  arreter()
+}
+
+class CacheEtat {
+  taille = 600 cycles
+  - -
+  publier(cycle)
+  dernier() : dict | None
+  historique(n) : list[dict]
+  recharger_depuis_journal(chemin) : int
+}
+
+class FileConfirmations {
+  deposer(reponse)
+  prendre_toutes() : list[dict]
+}
+
+class "Fonctions du module" as F <<module>> {
+  modules_par_defaut() : dict
+  consignes_a(scenario, t) : dict
+  entete_essai(scenario) : dict
+  charger(chemin) : dict
+}
+
+class Mesure <<immuable>> {
+  k, t, horodatage_utc
+  variable : Variable
+  valeur : float | None
+  statut : Statut
+}
+
+Orchestrateur "1" o- - "6" SousSysteme : SS-1 à SS-6
+Orchestrateur "1" *- - "1" CacheEtat
+Orchestrateur "1" *- - "1" FileConfirmations
+Orchestrateur ..> F
+Orchestrateur ..> Mesure : crée une mesure absente\nsi SS-2 ne répond pas
+
+CacheEtat -[hidden]right- FileConfirmations
+SousSysteme -[hidden]right- F
+F -[hidden]right- Mesure
+CacheEtat -[hidden]down- SousSysteme
+@enduml
+
+@startuml orchestrateur-classes
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam ArrowColor #4A5F7A
+hide circle
+
+class Orchestrateur {
+  scenario : dict
+  sortie : Path
+  modules : dict[str, SousSysteme]
+  tolerant : bool
+  temps_reel : bool
+  cache : CacheEtat
+  confirmations : FileConfirmations
+  - -
+  executer(cycles) : dict
+  _appel(cle, k, entrees, evenements) : dict
+  _transmettre_reponse(reponse) : str | None
+}
+
+abstract class SousSysteme {
+  nom : str
+  - -
+  demarrer(contexte)
+  etape(k, entrees) : dict
+  arreter()
+}
+
+class CacheEtat {
+  taille = 600 cycles
+  - -
+  publier(cycle)
+  dernier() : dict | None
+  historique(n) : list[dict]
+  recharger_depuis_journal(chemin) : int
+}
+
+class FileConfirmations {
+  deposer(reponse)
+  prendre_toutes() : list[dict]
+}
+
+class "Fonctions du module" as F <<module>> {
+  modules_par_defaut() : dict
+  consignes_a(scenario, t) : dict
+  entete_essai(scenario) : dict
+  charger(chemin) : dict
+}
+
+class Mesure <<immuable>> {
+  k, t, horodatage_utc
+  variable : Variable
+  valeur : float | None
+  statut : Statut
+}
+
+Orchestrateur "1" o- - "6" SousSysteme : SS-1 à SS-6
+Orchestrateur "1" *- - "1" CacheEtat
+Orchestrateur "1" *- - "1" FileConfirmations
+Orchestrateur ..> F
+Orchestrateur ..> Mesure : crée une mesure absente\nsi SS-2 ne répond pas
+
+CacheEtat -[hidden]right- FileConfirmations
+SousSysteme -[hidden]right- F
+F -[hidden]right- Mesure
+CacheEtat -[hidden]down- SousSysteme
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 14:12:26 EDT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5Yzk1M2ExMy01ZTU4LTQ1OWItYTVjMi01OTJjOGMyOTQwYzYAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaPq2yhoKTfMC/WZ9eq1ZTakAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0YjlhNmVkYy03ZTM4LTQ0MzYtODEzZC00ZTY5YmM0NDhjMzZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoy455NrDRm4JcRtthyh1GbwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggfQj5CG78dzFmGc2n3mP04rsbvQwSoeUz1z7OUW9RNzmkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaPWO7/ZZmfQwd0CkEU/2yVwAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIOg76U+8Z6N4F6dGsim6AOVCRozNG8yEVHlIkiDfJEzmZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GUgXZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjljOTUzYTEzLTVlNTgtNDU5Yi1hNWMyLTU5MmM4YzI5NDBjNi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmNkMjU5NmM0LTNkYTctNGE0ZS1hNjNmLWI5MjZiZGY5NjBlYnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCB9CPkIbvx3MWYZzafeY/Tiuxu9DBKh5TPXPs5Rb1E3OaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg8DAqbURU9+kjqqZ3beYWpfzI3zvnUInCZq8oIBsz2bWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggVHU6e6QW2l2tnBbkvG9wQEMEwG2LUr36PGfW//PavRN0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQGvecMWw2JJHLGQJiiTuQlam6AtJbnwDLuj1SxvRRNLlRD/YUkpWIRjN2E5Lt7jSOomVvNkm51HwNobrLIFeV04=</c2pa:manifest></metadata></svg>

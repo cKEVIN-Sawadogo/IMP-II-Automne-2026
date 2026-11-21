@@ -7,6 +7,8 @@ Les sources `.puml` font foi. Les fichiers `.png` (pour Word) et `.svg` en sont 
 | `figure-2-1_composants.puml` | Composants du prototype et flux F1 à F9 et E (F7 à F9 en orange) | 3.4, vue logique (reprend la figure 2-1 du rapport 12) |
 | `contrat-de-donnees.puml` | Contrat de données : types communs et contenu de chaque flux | 3.4 et 3.6 (traduit `logiciel/jumeau/contrat.py`) |
 | `vue-execution.puml` | Processus, cache, file des confirmations, scelleur et journal | 3.5, vue d'exécution et de déploiement |
+| `organisation-des-modules.puml` | Organisation des modules : partie commune, un dossier par sous-système, tests | 4.1, figure 4.1-1 |
+| `orchestrateur-classes.puml` | Classes de l'orchestrateur, du cache, de la file et de l'interface commune | 4.8, figure 4.8-1 |
 
 ## Régénérer les images
 
