@@ -305,8 +305,12 @@ def test_chaine_confirmation_de_l_operateur_journalisee(tmp_path):
 
 
 def lancer(*arguments, **options):
+    # Sous Windows, un programme dont la sortie va dans un tube écrit dans la page de code du
+    # système (cp1252), pas en UTF-8 : « INTÈGRE » ne se décoderait pas. On force
+    # l'UTF-8 dans le processus lancé, comme sous Linux.
+    env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8", **options.pop("env", {})}
     return subprocess.run([sys.executable, str(LOGICIEL / "lancer.py"), *map(str, arguments)],
-                          cwd=LOGICIEL, capture_output=True, text=True, encoding="utf-8", **options)
+                          cwd=LOGICIEL, capture_output=True, text=True, encoding="utf-8", env=env, **options)
 
 
 def test_lancer_verifier(essai_nominal):
