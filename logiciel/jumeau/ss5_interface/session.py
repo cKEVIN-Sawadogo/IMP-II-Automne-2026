@@ -26,7 +26,7 @@ from jumeau.interface import SousSysteme
 from jumeau.orchestrateur import Orchestrateur, modules_par_defaut
 from jumeau.scenario import charger
 from jumeau.ss5_interface import libelle_variable
-from jumeau.ss6_journal import verifier_journal
+from jumeau.ss6_journal import verifier, verifier_journal
 
 DOSSIER_SCENARIOS = Path(__file__).resolve().parents[2] / "scenarios"
 
@@ -315,6 +315,12 @@ class Session:
             return str(erreur)
         verbe = "confirmé" if reponse == "confirme" else "refusé"
         return f"Passage en fonctionnement dégradé {verbe}. Réponse journalisée au cycle suivant."
+
+    def rapport_journal(self):
+        """Rapport complet du vérificateur de SS-6, ou None s'il n'y a pas encore de journal."""
+        if self.sortie is None or not (self.sortie / "journal.sqlite").exists():
+            return None
+        return verifier(self.sortie / "journal.sqlite")
 
     def verifier_journal(self) -> tuple[bool, int | None, int] | None:
         if self.sortie is None:

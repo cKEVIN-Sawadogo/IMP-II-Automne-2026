@@ -733,15 +733,22 @@ def _callbacks(app: Dash, session: Session, descriptions: dict) -> None:
                   prevent_initial_call=True)
     def _verifier(_n):
         try:
-            resultat = session.verifier_journal()
+            rapport = session.rapport_journal()
         except Exception as erreur:  # base en cours d'écriture
             return html.Span(f"Vérification impossible pour l'instant : {erreur}", className="ko")
-        if resultat is None:
+        if rapport is None:
             return "Aucun journal à vérifier."
-        integre, fautive, n = resultat
+        n, fautive = rapport.entrees, rapport.premiere_fautive
         heure = f"{_locale(datetime.now(timezone.utc)):%H:%M:%S} {_sigle()}"
-        if integre:
+        if rapport.integre:
             return html.Span(f"Chaîne intègre : {_entier(n)} entrées recalculées, aucune rupture ({heure}).",
+                             className="ok")
+        if session.actif and rapport.en_attente_de_sceau:
+            # Essai en cours : les dernières entrées attendent leur sceau (au plus 60) et le
+            # sceau final n'est posé qu'à l'arrêt. Ce n'est pas une altération.
+            attente = n - fautive if fautive is not None else 0
+            return html.Span(f"Chaîne intègre : {_entier(n)} entrées recalculées, aucune rupture ; "
+                             f"les {_entier(attente)} dernières attendent leur sceau (essai en cours, {heure}).",
                              className="ok")
         return html.Span(f"Journal altéré : chaîne rompue à l'entrée {fautive} sur {_entier(n)} ({heure}).",
                          className="ko")

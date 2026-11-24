@@ -77,6 +77,11 @@ class JournalDonnees(SousSysteme):
         self.cx = None
         self.scelleur = None
 
+    @property
+    def pid_scelleur(self) -> int | None:
+        """Numéro du processus scelleur (sert aux essais d'arrêt brutal)."""
+        return self.scelleur.proc.pid if self.scelleur is not None else None
+
     def demarrer(self, contexte: dict) -> None:
         sortie = Path(contexte["sortie"])
         sortie.mkdir(parents=True, exist_ok=True)
@@ -87,7 +92,8 @@ class JournalDonnees(SousSysteme):
         self.cx = sqlite3.connect(self.chemin)
         # Mode WAL : le scelleur et l'interface peuvent lire pendant qu'on écrit.
         self.cx.execute("PRAGMA journal_mode=WAL")
-        self.cx.execute("PRAGMA synchronous=NORMAL")
+        # FULL : chaque cycle validé est sur le disque, même en cas de coupure de courant (EX-Q-02).
+        self.cx.execute("PRAGMA synchronous=FULL")
         self.cx.execute(
             "CREATE TABLE journal (sequence INTEGER PRIMARY KEY, k INTEGER NOT NULL, "
             "contenu TEXT NOT NULL, empreinte_precedente TEXT NOT NULL, empreinte TEXT NOT NULL)"
@@ -95,11 +101,20 @@ class JournalDonnees(SousSysteme):
         self.cx.commit()
         self.derniere = EMPREINTE_INITIALE
         self.sequence = 0
+        self.k_prec = None
 
         cles = contexte.get("cles") or dossier_cles(sortie)
         self.scelleur = LienScelleur(self.chemin, sortie / NOM_SCEAUX, Path(cles))
 
     def etape(self, k: int, entrees: dict) -> dict:
+        # Une entrée par cycle, dans l'ordre : un cycle en double ou en recul est refusé, et le
+        # numéro de cycle de la base doit être celui du contenu signé (la colonne k n'est pas
+        # couverte par l'empreinte).
+        if self.k_prec is not None and k <= self.k_prec:
+            raise ValueError(f"SS-6 : cycle {k} en double ou en recul (dernier cycle écrit : {self.k_prec})")
+        k_contenu = entrees["contenu"].get("k", k) if isinstance(entrees["contenu"], dict) else k
+        if k_contenu != k:
+            raise ValueError(f"SS-6 : cycle {k} demandé, mais le contenu porte le cycle {k_contenu}")
         contenu = json.dumps(en_json(entrees["contenu"]), ensure_ascii=False, sort_keys=True)
         empreinte = _empreinte(self.derniere, contenu)
         self.cx.execute("INSERT INTO journal VALUES (?, ?, ?, ?, ?)",
@@ -108,6 +123,7 @@ class JournalDonnees(SousSysteme):
         sortie = {"sequence": self.sequence, "empreinte": empreinte}
         self.derniere = empreinte
         self.sequence += 1
+        self.k_prec = k
 
         if self.sequence % self.periode_sceau == 0:
             self.scelleur.demander(sortie["sequence"])
