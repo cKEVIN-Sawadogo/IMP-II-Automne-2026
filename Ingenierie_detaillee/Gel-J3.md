@@ -66,14 +66,29 @@ Ces valeurs ne changent plus. Les modifier invaliderait la campagne statistique 
 |:-:|---|---|:-:|---|---|---|
 | G1 | L'interface Dash appelle SS-5 directement au lieu de déposer la réponse dans la file des confirmations ; la réception (`confirmation_operateur`) n'est pas journalisée | La réponse passe par `orchestrateur.confirmations` (décision 1, point 4) ; le vérificateur compte les confirmations reçues | Non (SS-5) | Jérémie | | |
 | G2 | L'interface affiche les grandeurs vraies de SS-1 (page Analyse, résumé de la chaîne) | Un mode opérateur sans grandeurs vraies, utilisé pour l'essai d'utilisabilité EX-Q-03 | Non (SS-5) | Jérémie | | |
-| G3 | L'essai d'arrêt brutal du scelleur est sauté sous Windows | Arrêt brutal vérifié à la main sous Windows (Ctrl+C, puis `--verifier` : seul le sceau final manque), résultat noté ici | À vérifier | Ibrahima | | |
+| G3 | L'essai d'arrêt brutal du scelleur est sauté sous Windows | Un essai d'arrêt brutal qui tourne sur toutes les plateformes : on tue le processus de l'essai, puis le vérificateur ne trouve que des entrées en attente de sceau (au plus 60) et l'absence du sceau final | Non (contenu du journal inchangé) | Ibrahima | Correctif gel-j3.1 ; à confirmer par `python -m pytest` sur un PC Windows | `gel-j3.1` |
 | G4 | `Decisions-architecture.md` dit que `lancer.py` lance le scelleur | « Lancé par SS-6 au démarrage de l'essai » | Non (document) | Christian | Corrigé avec ce document | sans objet |
+| G5 | La durée de chaque cycle n'est pas journalisée : EX-Q-01 (cycle de moins de 1 s) ne se vérifie pas à partir du journal | Chaque entrée porte `duree_cycle_precedent_ms`, la durée du cycle précédent ; un test vérifie le 99e centile sur 700 cycles | Non (champ ajouté, verdicts inchangés) | Ibrahima | Correctif gel-j3.1 | `gel-j3.1` |
+| G6 | Pendant un essai, le bouton de vérification de l'interface affiche « Journal altéré » parce que les dernières entrées n'ont pas encore leur sceau | Pendant l'essai : « Chaîne intègre … ; les M dernières attendent leur sceau » ; « Journal altéré » seulement pour une vraie rupture | Non (SS-5 et vérificateur) | Ibrahima, Jérémie | Correctif gel-j3.1 | `gel-j3.1` |
+| G7 | L'écrivain accepte deux fois le même numéro de cycle, ou un numéro qui recule ; le vérificateur ne compare pas la colonne `k` de la base au contenu signé | L'écrivain refuse un cycle en double ou en recul et un contenu qui porte un autre numéro ; le vérificateur signale une colonne `k` modifiée | Non (aucun cas dans les essais) | Ibrahima | Correctif gel-j3.1 | `gel-j3.1` |
+
+Les correctifs G3, G5, G6 et G7 viennent de l'intégration de SS-6 préparée par Ibrahima le 19 novembre, en parallèle de celle de Wilson (#123). Son paquet est gardé tel quel dans `Ingenierie_detaillee/references/SS6_Ibrahima_2026-11-19/`, avec une note qui dit ce qui en a été repris. Le même correctif passe aussi l'écrivain en `PRAGMA synchronous=FULL` : chaque entrée est sur le disque avant le cycle suivant, même en cas de coupure de courant.
+
+## 5 bis. Étiquette `gel-j3.1`
+
+**Contenu.** `gel-j3` plus les correctifs G3, G5, G6 et G7. **Tests.** 126 tests réussis (118 + 8 nouveaux).
+
+**Comparaison avec `gel-j3`.** Les cinq scénarios de la section 2 ont été relancés avec leur graine sur les deux versions. Les contenus signés sont identiques, entrée par entrée, sauf l'horodatage, le commit de l'en-tête et le nouveau champ `duree_cycle_precedent_ms`. Les changements d'état, le nombre d'entrées et le nombre de sceaux sont les mêmes que dans la section 2. Les résultats de référence restent donc valables.
+
+**Campagne #84.** Les essais faits sur `gel-j3` le 22 novembre ne sont pas à refaire : SS-1 à SS-4 n'ont pas changé, et le correctif ne modifie ni les mesures, ni les sommes cumulées, ni les états. Les essais faits à partir de maintenant se font sur `gel-j3.1`.
+
+**Durée des cycles (EX-Q-01).** Sur 700 cycles du scénario nominal, sans attente de temps réel : médiane 0,68 ms, 99e centile 2,56 ms, maximum 8,71 ms, bien en dessous de 1 000 ms.
 
 ## 6. Ce qui reste à faire sur la version gelée (sprint 2)
 
 1. Campagne statistique : 20 à 30 essais sains et dérive lente (Rayane, Raouf, #84).
 2. Confirmation de C1 sur la version gelée (Raouf, #79).
-3. Essais E1 à E9 de SS-6 dans la chaîne complète, dont la rapidité (Ibrahima, section 4.7).
+3. Essais E1 à E9 de SS-6 dans la chaîne complète, dont la rapidité (Ibrahima, section 4.7), sur `gel-j3.1` ; la rapidité se lit maintenant dans le journal (G5).
 4. Essai d'endurance de 120 minutes en temps réel (Wilson, #114), analyse (Sidiki, #98).
 5. Essais fonctionnels d'EX-F-02, EX-F-05, EX-F-06, EX-F-09, EX-F-10 et EX-Q-04 (Sidiki, #97).
 6. Essai d'utilisabilité EX-Q-03 après les correctifs G1 et G2 (Jérémie, Ibrahima, Abdramane, #106).

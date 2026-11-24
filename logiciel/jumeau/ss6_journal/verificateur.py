@@ -73,6 +73,13 @@ class Rapport:
         return "INTÈGRE"
 
     @property
+    def en_attente_de_sceau(self) -> bool:
+        """Vrai si les seules anomalies sont celles d'un essai encore en cours : les dernières
+        entrées attendent leur sceau et le sceau final n'est pas encore posé."""
+        return bool(self.anomalies) and all(
+            m.endswith("non scellées") or m == "sceau final absent (arrêt non contrôlé)" for _, m in self.anomalies)
+
+    @property
     def premiere_fautive(self):
         """Plus petit numéro d'entrée qui pose un problème d'intégrité (None s'il n'y en a pas)."""
         seqs = [seq for seq, _ in self.anomalies if seq is not None]
@@ -143,6 +150,11 @@ def verifier(chemin, cle_publique=None, cycles_attendus=None) -> Rapport:
             continue
         if not isinstance(donnees, dict):
             continue
+        # La colonne k de la base n'est pas couverte par l'empreinte : elle doit être celle
+        # du contenu signé, sinon quelqu'un a renuméroté les cycles.
+        if "k" in donnees and donnees["k"] != k:
+            r.anomalies.append((seq, f"seq {seq} : numéro de cycle de la base ({k}) différent "
+                                     f"du contenu signé ({donnees['k']})"))
         evenements = [e for e in donnees.get("evenements") or [] if isinstance(e, dict)]
         types = [e.get("type") for e in evenements]
 

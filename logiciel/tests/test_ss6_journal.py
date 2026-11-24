@@ -377,3 +377,141 @@ def test_chaine_arret_brutal_signale_par_l_absence_du_sceau_final(tmp_path):
     if r.premiere_fautive is not None:
         assert r.entrees - r.premiere_fautive <= 60, "au plus 60 entrées sans sceau"
     assert lancer("--verifier", sortie).returncode == 1
+
+
+# ---------------------------------------------------------------------------
+# Correctifs de gel-j3.1 (repris de l'intégration de SS-6 préparée par Ibrahima le 19 novembre)
+# ---------------------------------------------------------------------------
+
+def test_cycle_en_double_ou_en_recul_refuse(tmp_path):
+    """G7 : une entrée par cycle, dans l'ordre. SS-6 refuse d'écrire un cycle déjà écrit."""
+    ss6 = JournalDonnees()
+    ss6.demarrer({"sortie": tmp_path / "e"})
+    try:
+        ss6.etape(0, {"contenu": {"k": 0, "evenements": []}})
+        ss6.etape(1, {"contenu": {"k": 1, "evenements": []}})
+        with pytest.raises(ValueError, match="en double ou en recul"):
+            ss6.etape(1, {"contenu": {"k": 1, "evenements": []}})
+        with pytest.raises(ValueError, match="en double ou en recul"):
+            ss6.etape(0, {"contenu": {"k": 0, "evenements": []}})
+        with pytest.raises(ValueError, match="le contenu porte le cycle 7"):
+            ss6.etape(2, {"contenu": {"k": 7, "evenements": []}})
+    finally:
+        ss6.arreter()
+    r = verifier(tmp_path / "e")
+    assert r.valide and r.entrees == 2, r.texte()
+
+
+def test_numero_de_cycle_de_la_base_modifie_detecte(tmp_path):
+    """G7 : la colonne k n'est pas couverte par l'empreinte ; la renuméroter est détecté."""
+    d = ecrire_essai(tmp_path / "e")
+    executer_sql(d / "journal.sqlite", "UPDATE journal SET k = 999 WHERE sequence = 40")
+    r = verifier(d)
+    assert not r.integre
+    assert r.premiere_fautive == 40
+    assert any("numéro de cycle de la base (999)" in m for _, m in r.anomalies), r.texte()
+
+
+def test_journal_valide_en_mode_full(tmp_path):
+    """Chaque cycle validé est écrit sur le disque, même en cas de coupure de courant (EX-Q-02)."""
+    ss6 = JournalDonnees()
+    ss6.demarrer({"sortie": tmp_path / "e"})
+    try:
+        assert ss6.cx.execute("PRAGMA journal_mode").fetchone()[0] == "wal"
+        assert ss6.cx.execute("PRAGMA synchronous").fetchone()[0] == 2   # 2 = FULL
+    finally:
+        ss6.arreter()
+
+
+def test_essai_en_cours_n_est_pas_un_journal_altere(tmp_path):
+    """G6 : pendant un essai, les dernières entrées attendent leur sceau et le sceau final
+    n'est pas posé. Le rapport le distingue d'une vraie altération."""
+    ss6 = JournalDonnees()
+    ss6.demarrer({"sortie": tmp_path / "e"})
+    try:
+        for k in range(75):   # un sceau à 60, les 15 suivantes en attente
+            ss6.etape(k, {"contenu": {"k": k, "evenements": []}})
+        limite = time.monotonic() + 10
+        while verifier(tmp_path / "e").sceaux < 1 and time.monotonic() < limite:
+            time.sleep(0.05)
+        r = verifier(tmp_path / "e")
+        assert not r.integre and r.en_attente_de_sceau, r.texte()
+        assert r.entrees - r.premiere_fautive == 15
+
+        modifier_entree(tmp_path / "e", 10)   # une vraie altération n'est jamais « en attente »
+        assert not verifier(tmp_path / "e").en_attente_de_sceau
+    finally:
+        ss6.arreter()
+
+
+def _travailleur(dossier):
+    """Programme lancé à part par l'essai d'arrêt brutal : il écrit des cycles jusqu'à être tué."""
+    ss6 = JournalDonnees()
+    ss6.demarrer({"sortie": dossier})
+    print(ss6.pid_scelleur, flush=True)   # pour que l'essai sache quel scelleur attendre
+    k = 0
+    while True:
+        ss6.etape(k, {"contenu": {"k": k, "evenements": []}})
+        k += 1
+        time.sleep(0.001)
+
+
+def _processus_vivant(pid):
+    if os.name == "nt":
+        # Sous Windows, os.kill(pid, 0) ne sert pas de test de présence.
+        import ctypes
+        from ctypes import wintypes
+        noyau = ctypes.WinDLL("kernel32", use_last_error=True)
+        noyau.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+        noyau.OpenProcess.restype = wintypes.HANDLE
+        noyau.WaitForSingleObject.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+        noyau.WaitForSingleObject.restype = wintypes.DWORD
+        noyau.CloseHandle.argtypes = [wintypes.HANDLE]
+        poignee = noyau.OpenProcess(0x00100000, False, pid)   # SYNCHRONIZE
+        if not poignee:
+            return False
+        try:
+            return noyau.WaitForSingleObject(poignee, 0) == 0x102   # WAIT_TIMEOUT : toujours vivant
+        finally:
+            noyau.CloseHandle(poignee)
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    try:   # sous Linux, un processus zombie est déjà terminé
+        return Path(f"/proc/{pid}/stat").read_text().rsplit(")", 1)[1].split()[0] != "Z"
+    except OSError:
+        return True
+
+
+@pytest.mark.parametrize("duree_s", [0.8, 1.6, 2.5])
+def test_arret_brutal_sur_toutes_les_plateformes(tmp_path, duree_s):
+    """G3 : on tue net l'écrivain, y compris sous Windows. Le scelleur finit les sceaux déjà
+    demandés puis s'arrête ; le vérificateur ne trouve que l'absence du sceau final et, au plus,
+    60 entrées non scellées."""
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(LOGICIEL) + os.pathsep + env.get("PYTHONPATH", "")
+    proc = subprocess.Popen([sys.executable, __file__, "--travailleur", str(tmp_path / "e")],
+                            stdout=subprocess.PIPE, text=True, env=env, cwd=LOGICIEL)
+    pid_scelleur = int(proc.stdout.readline())
+    time.sleep(duree_s)
+    proc.kill()   # arrêt brutal : pas d'arreter(), donc pas de sceau final
+    proc.wait()
+    proc.stdout.close()
+
+    limite = time.monotonic() + 10
+    while _processus_vivant(pid_scelleur) and time.monotonic() < limite:
+        time.sleep(0.05)
+    assert not _processus_vivant(pid_scelleur), "le scelleur ne s'est pas arrêté après la mort de l'écrivain"
+
+    r = verifier(tmp_path / "e")
+    assert r.entrees > 0 and not r.sceau_final
+    assert r.en_attente_de_sceau, r.texte()
+    if r.premiere_fautive is not None:
+        assert r.entrees - r.premiere_fautive <= 60
+
+
+if __name__ == "__main__" and len(sys.argv) == 3 and sys.argv[1] == "--travailleur":
+    _travailleur(Path(sys.argv[2]))

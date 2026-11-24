@@ -157,12 +157,14 @@ class Orchestrateur:
 
         changements_etat = []
         consignes_prec = None
+        duree_prec_ms = None   # durée de calcul du cycle précédent, journal et cache compris (EX-Q-01)
         with open(self.sortie / "verite.csv", "w", newline="", encoding="utf-8") as f_verite:
             verite = csv.writer(f_verite)
             verite.writerow(["k", "t_s", "T_C", "P_MPa", "Q_kg_s"])
             try:
                 for k in range(cycles):
                     debut = time.monotonic()
+                    chrono = time.perf_counter()
                     t = k * T_CYCLE
                     horodatage = datetime.now(timezone.utc).isoformat(timespec="milliseconds")
                     evenements: list = []
@@ -226,6 +228,10 @@ class Orchestrateur:
                         "etat": etat, "confiance": s4.get("confiance", 0.0),
                         "contributrices": s4.get("contributrices", []), "evenements": evenements,
                     })
+                    if duree_prec_ms is not None:
+                        # Le cycle k porte la durée du cycle k-1 : celle du cycle k n'est connue
+                        # qu'après son écriture au journal.
+                        contenu["duree_cycle_precedent_ms"] = duree_prec_ms
                     s6 = self.modules["ss6"].etape(k, {"contenu": contenu})
                     # ... le cache ensuite : l'interface ne montre que ce qui est journalisé.
                     self.cache.publier({**contenu, "sequence": s6.get("sequence"),
@@ -234,6 +240,7 @@ class Orchestrateur:
                                         "affichage": s5.get("affichage", ""),
                                         "demande_en_cours": _serialiser(getattr(self.modules["ss5"], "demande", None))})
 
+                    duree_prec_ms = round((time.perf_counter() - chrono) * 1000, 3)
                     if self.temps_reel:
                         time.sleep(max(0.0, T_CYCLE - (time.monotonic() - debut)))
             finally:
