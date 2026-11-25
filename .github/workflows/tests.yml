@@ -9,9 +9,17 @@ on:
     branches: [main]
     paths: ["logiciel/**", ".github/workflows/tests.yml"]
 
+# Les tests tournent sous Linux et sous Windows : l'équipe et la démonstration sont sous Windows,
+# et certains défauts n'y apparaissent qu'à cet endroit (encodage cp1252 des sorties, arrêt d'un
+# processus, fichiers ouverts). Une plateforme qui échoue n'interrompt pas l'autre.
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    name: Tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     defaults:
       run:
         working-directory: logiciel
@@ -20,7 +28,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - run: pip install -r requirements.txt
+      - run: python -m pip install -r requirements.txt
       - run: python -m pytest -q
       - name: Essai de démonstration
         run: python lancer.py scenarios/derive_lente.json --silencieux
