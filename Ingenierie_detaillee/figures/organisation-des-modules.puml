@@ -1,0 +1,57 @@
+@startuml organisation-des-modules
+' Figure 4.1-1. Organisation des modules du logiciel (version gelée gel-j3).
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng organisation-des-modules.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #4A5F7A
+skinparam package {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+}
+skinparam rectangle {
+  BorderColor #4A5F7A
+  BackgroundColor #E6EBF2
+}
+skinparam file {
+  BorderColor #4A5F7A
+  BackgroundColor #F5F5F5
+}
+
+file "lancer.py" as LANCER
+file "scenarios/*.json" as SCN
+file "tests/\n118 tests" as TESTS
+
+package "jumeau : partie commune\n(modifiée avec l'accord du chargé de projet)" as COMMUN {
+  rectangle "orchestrateur.py\nOrchestrateur" as ORCH
+  rectangle "etat_partage.py\nCacheEtat, FileConfirmations" as ETAT
+  rectangle "scenario.py\ncharger()" as SCENARIO
+  rectangle "interface.py\nSousSysteme" as INTERFACE
+  rectangle "contrat.py\nVariable, Statut, Etat, Mesure" as CONTRAT
+}
+
+package "jumeau : un dossier par sous-système (son responsable)" as SS {
+  rectangle "ss1_boucle" as SS1
+  rectangle "ss2_mesures" as SS2
+  rectangle "ss3_reference" as SS3
+  rectangle "ss4_decision" as SS4
+  rectangle "ss5_interface" as SS5
+  rectangle "ss6_journal" as SS6
+}
+
+LANCER --> ORCH
+LANCER --> SCENARIO
+SCENARIO --> SCN
+ORCH --> ETAT
+ORCH --> INTERFACE
+INTERFACE -[hidden]right- CONTRAT
+ORCH ..> SS : etape(k, entrees)\nSS-1 à SS-6
+SS ..|> INTERFACE : héritent de
+TESTS ..> SS
+TESTS ..> COMMUN
+SS1 -[hidden]right- SS2
+SS2 -[hidden]right- SS3
+SS1 -[hidden]down- SS4
+SS4 -[hidden]right- SS5
+SS5 -[hidden]right- SS6
+@enduml
