@@ -127,3 +127,33 @@ def test_l_axe_du_temps_couvre_tout_le_scenario(tmp_path):
     inst = session.instantane(complet=True)
     for figure in (tableau.figure_grandeurs, tableau.figure_residus, tableau.figure_sommes):
         assert list(figure(inst).layout.xaxis.range) == [0, 300]
+
+
+def _texte(span) -> str:
+    return span.children if isinstance(span.children, str) else str(span.children)
+
+
+def test_un_essai_en_pause_n_est_pas_annonce_comme_altere(tmp_path):
+    # Pendant l'essai, les dernières entrées attendent le prochain sceau (tous les
+    # 60 cycles) : la chaîne est intacte, l'interface ne doit pas crier à l'altération.
+    session = Session(tmp_path)
+    session.lancer(SCENARIOS / "nominal.json", vitesse=None)
+    while len(session.k) < 200:
+        time.sleep(0.01)
+    session.mettre_en_pause()
+    time.sleep(0.2)
+    message = tableau._message_verification(session.rapport_journal(), en_cours=session.actif)
+    session.arreter(attendre=True)
+    assert "intacte" in _texte(message) and message.className == "ok"
+
+
+def test_une_entree_modifiee_est_annoncee_comme_alteree(tmp_path):
+    import sqlite3
+    session = executer(tmp_path, "derive_lente.json", cycles=130)
+    assert "sceau final présent" in _texte(tableau._message_verification(session.rapport_journal(), False))
+    cx = sqlite3.connect(session.sortie / "journal.sqlite")
+    cx.execute("UPDATE journal SET contenu = replace(contenu, 'incertain', 'normal') WHERE sequence = 100")
+    cx.commit()
+    cx.close()
+    message = tableau._message_verification(session.rapport_journal(), en_cours=False)
+    assert "altéré" in _texte(message) and message.className == "ko"

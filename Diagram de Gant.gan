@@ -1,23 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2026-08-31" view-index="0" gantt-divider-location="595" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
-    <description/>
-    <view zooming-state="default:4" id="gantt-chart">
-        <field id="tpd15" name="Notes" width="20" order="0"/>
-        <field id="tpd3" name="Name" width="139" order="0"/>
-        <field id="tpd4" name="Begin date" width="111" order="1"/>
-        <field id="tpd5" name="End date" width="105" order="2"/>
-        <field id="tpd13" name="Resources" width="139" order="3"/>
-        <field id="tpd6" name="Duration" width="85" order="4"/>
+<?xml version="1.0" encoding="UTF-8"?><project name="IMP-II : ingénierie détaillée et rapport 13 (échéancier révisé)" company="UQAC, 6GEN135" webLink="" view-date="2026-11-16" view-index="0" gantt-divider-location="462" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+    <description><![CDATA[Échéancier révisé du rapport 13, état au 26 novembre 2026. Dates telles qu'inscrites sur les tâches du tableau GitHub IMP-II. J3 atteint le 20 novembre ; J5 avancé au jeudi 10 décembre ; le rapport 13 tient lieu de rapport final et se remet le 24 décembre. Tâches rouges : marge nulle (chemin critique). Liens fin-début, jours ouvrables.]]></description>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="290" order="0"/>
+        <field id="tpd4" name="Date de début" width="77" order="1"/>
+        <field id="tpd5" name="Date de fin" width="79" order="2"/>
         <option id="taskLabelUp" value="name"/>
         <option id="taskLabelDown" value="resources"/>
+        <option id="taskLabelRight" value="length"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <option id="color.recent"><![CDATA[#006666 #ff66ff #ff6666 #33ffff #33ff00 #cccc00 #ffcc33 #cc00ff #3300ff #3300cc]]></option>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="199" order="0"/>
-        <field id="1" name="Rôle par défaut" width="82" order="1"/>
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -43,60 +40,310 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="10" uid="daf51a1d3e744d7c97e40ebd9714b738" name="Plan de projet" meeting="false" start="2026-09-04" duration="31" complete="0" expand="true">
-            <task id="0" uid="916f5a36278541b990bdea78527db498" name="1. Analyse des besoin" color="#cc0066" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true">
-                <depend id="11" type="2" difference="0" hardness="Strong"/>
+        <task id="1" uid="e7739338b95245a0ba71128dd1d9d0da" name="Sprint 1 : prototype intégré et gel (J3)" color="#555555" meeting="false" start="2026-11-16" duration="5" complete="100" expand="true">
+            <task id="100" uid="0fda6eddb94c450baa4e043c688ba635" name="#96 SS-2 final fusionné" color="#d32f2f" meeting="false" start="2026-11-16" duration="2" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="101" type="2" difference="0" hardness="Rubber"/>
+                <depend id="110" type="2" difference="0" hardness="Rubber"/>
             </task>
-            <task id="11" uid="59c24b99c3a5423c85373714395160b5" name="11.Création du diagramme UML" color="#ff3333" meeting="false" start="2026-09-25" duration="1" complete="0" expand="true">
-                <depend id="1" type="2" difference="0" hardness="Strong"/>
-                <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <task id="101" uid="5c26bcfae9c349ca8c9b781d4efd87c9" name="#78 SS-3 final et essai de cohérence C1" color="#d32f2f" meeting="false" start="2026-11-18" duration="1" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="102" type="2" difference="0" hardness="Rubber"/>
+                <depend id="110" type="2" difference="0" hardness="Rubber"/>
             </task>
-            <task id="13" uid="480d0c44213a4980b4e6e163314880a2" name="13.Structure du projet" color="#ff0033" meeting="false" start="2026-09-28" duration="1" complete="0" expand="true">
-                <depend id="14" type="2" difference="0" hardness="Strong"/>
+            <task id="102" uid="d2f5d18941ea4057818a4feafbeece48" name="#83 SS-4 : convention S ≥ h et seuil h" color="#d32f2f" meeting="false" start="2026-11-19" duration="1" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="110" type="2" difference="0" hardness="Rubber"/>
             </task>
-            <task id="14" uid="93652f3221b6412681652e5f9e39e1d8" name="14.Réalisation du Gantt" color="#ff3333" meeting="false" start="2026-09-29" duration="1" complete="0" expand="true"/>
-            <task id="15" uid="8ef02f797bb345aca1f3a2bda42bf9d9" name="15.RACI" color="#cccc00" meeting="false" start="2026-09-08" duration="5" complete="0" expand="true"/>
-            <task id="1" uid="83e6620f9c9340b0bef000ea9e630e2e" name="2.Desdription des livrables" color="#669900" meeting="false" start="2026-09-28" duration="15" complete="0" expand="true"/>
-            <task id="2" uid="0c2628f2f6ad43c19639a34e4653f0f9" name="3.Description de l'équipe" color="#3300ff" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
-            <task id="12" uid="357847cb0aca42058304fe1556cffbcc" name="12.Stratégie de contrôle des versions" meeting="false" start="2026-09-23" duration="1" complete="0" expand="true"/>
-            <task id="3" uid="32741bc1ce974fa4a47e3cb347f8c29e" name="4.Revue de l'état de l'art" color="#ffcc33" meeting="false" start="2026-09-04" duration="4" complete="0" expand="true"/>
-            <task id="4" uid="24fc37b2b1424b47a5597f52752801c4" name="5.Normes,codes et standard" color="#cc00ff" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
-            <task id="5" uid="fa40417a36e641d0b608a276ce733c7e" name="6.Impact du projet et gestion de risque" color="#33ff00" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
-            <task id="6" uid="50bc7468551744999fe26b0775e53f5a" name="7.Estimation des ressources nécessaires au projet" color="#33ffff" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
-            <task id="7" uid="250ed0303760440bb0689b3f2b00fc04" name="8.Estimation préliminaire des couts" color="#ff6666" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
-            <task id="8" uid="1795da0009744c6fa327d006233902f4" name="9.Échéancier préliminaire" color="#ff66ff" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
-            <task id="9" uid="dcba4fd0da2d430cbcd5d8069f27cb44" name="10.Références pertinentes au projet" color="#006666" meeting="false" start="2026-09-04" duration="15" complete="0" expand="true"/>
+            <task id="103" uid="523437cc6cb840b08163531456d2a54f" name="#103 SS-5 : interface Plotly Dash" color="#d32f2f" meeting="false" start="2026-11-16" duration="3" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="104" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="104" uid="e253e302103b491495a557d5d05a7b5a" name="#104 SS-5 : demande de confirmation en D2" color="#d32f2f" meeting="false" start="2026-11-19" duration="1" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="110" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="105" uid="b190ab576680478bad08ee3a90ac5e38" name="#113 Remettre le module SS-6 à Ibrahima" color="#d32f2f" meeting="false" start="2026-11-16" duration="1" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="106" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="106" uid="a77d7ccd359145f7a721af2118f5a72e" name="#90 SS-6 : scelleur et vérificateur dans le squelette" color="#d32f2f" meeting="false" start="2026-11-17" duration="3" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="110" type="2" difference="0" hardness="Rubber"/>
+                <depend id="117" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="107" uid="14c70db02ae14ce6a2942532fc862f72" name="#89 SS-1 : essai d’interface et indépendance de SS-2" color="#4a8fd1" meeting="false" start="2026-11-16" duration="2" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 2 jour(s) ouvrable(s)]]></notes>
+                <depend id="110" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="108" uid="d495850b86944e078987ee5b97cf9751" name="#71 Intégration, figure 2-1, document partagé" color="#4a8fd1" meeting="false" start="2026-11-16" duration="4" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="111" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="109" uid="704eca9f9ff14e38be04d50aef5f707a" name="#105 Recruter les 5 participants (utilisabilité)" color="#4a8fd1" meeting="false" start="2026-11-16" duration="5" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 4 jour(s) ouvrable(s)]]></notes>
+                <depend id="119" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="110" uid="82636cf011484afebcb4f2f8be82e371" name="#72 Démonstration du J3 et gel des fonctionnalités" color="#d32f2f" meeting="false" start="2026-11-20" duration="1" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="111" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="111" uid="9ec7b7cfa992478e9d91bc25602dfb96" name="◆ J3 : prototype intégré et gel" color="#000000" meeting="true" start="2026-11-23" duration="0" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="112" type="2" difference="0" hardness="Rubber"/>
+                <depend id="113" type="2" difference="0" hardness="Rubber"/>
+                <depend id="114" type="2" difference="0" hardness="Rubber"/>
+                <depend id="115" type="2" difference="0" hardness="Rubber"/>
+                <depend id="116" type="2" difference="0" hardness="Rubber"/>
+                <depend id="117" type="2" difference="0" hardness="Rubber"/>
+                <depend id="121" type="2" difference="0" hardness="Rubber"/>
+                <depend id="122" type="2" difference="0" hardness="Rubber"/>
+                <depend id="123" type="2" difference="0" hardness="Rubber"/>
+                <depend id="124" type="2" difference="0" hardness="Rubber"/>
+                <depend id="125" type="2" difference="0" hardness="Rubber"/>
+                <depend id="126" type="2" difference="0" hardness="Rubber"/>
+                <depend id="127" type="2" difference="0" hardness="Rubber"/>
+                <depend id="128" type="2" difference="0" hardness="Rubber"/>
+                <depend id="129" type="2" difference="0" hardness="Rubber"/>
+            </task>
+        </task>
+        <task id="2" uid="2631321adf1f489e98395868746b1801" name="Sprint 2 : campagne d’essais (J4)" color="#555555" meeting="false" start="2026-11-23" duration="10" complete="13" expand="true">
+            <task id="112" uid="ca938508f05c49d684e9a29fcdac56f0" name="#127 Correctif G1 : réponse opérateur via la file" color="#4a8fd1" meeting="false" start="2026-11-23" duration="4" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 6 jour(s) ouvrable(s)]]></notes>
+                <depend id="131" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="113" uid="f5b0696ac85c4ac6b09afc4736562327" name="#128 Correctif G2 : mode opérateur sans grandeurs vraies" color="#d32f2f" meeting="false" start="2026-11-23" duration="4" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="119" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="114" uid="bc9723f6ac8b4dec9784f9bb81f1101e" name="#84 Campagne statistique sur la version gelée" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="100" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="120" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="115" uid="2dbe5955f03745429f18b8c0df26a1cc" name="#79 Confirmation de C1 sur la version gelée" color="#d32f2f" meeting="false" start="2026-11-23" duration="9" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="120" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="116" uid="b9daf65c6e444c67816c40053bf4a0ae" name="#97 Essais fonctionnels sur la version gelée" color="#d32f2f" meeting="false" start="2026-11-23" duration="9" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="120" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="117" uid="ae258bbcab7a4189be312128b377bfa5" name="#114 Lancer l’essai d’endurance de 120 min" color="#d32f2f" meeting="false" start="2026-11-27" duration="2" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="118" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="118" uid="4e8a56075aec4fc29977b3fdcd12cd7c" name="#98 Analyse de l’endurance et du temps de cycle" color="#d32f2f" meeting="false" start="2026-12-01" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="120" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="119" uid="d75b0cb9387f40d99466afbfff2cf03b" name="#106 Essai d’utilisabilité EX-Q-03" color="#d32f2f" meeting="false" start="2026-11-27" duration="5" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="120" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="120" uid="810fa5fa1bf5493f827561462f9e7a6d" name="#85 Bilan exigence par exigence (L06)" color="#d32f2f" meeting="false" start="2026-12-04" duration="1" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="131" type="2" difference="0" hardness="Rubber"/>
+                <depend id="140" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="121" uid="0076bef300df4074883461e1faa85e4f" name="#92 Données de calcul pour la section 5.1" color="#d32f2f" meeting="false" start="2026-11-30" duration="5" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="140" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="122" uid="fa20c7e879f94a68be6ccfc6a1cccb3d" name="#91 Annexe des comparaisons expérimentales SS-1" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 12 jour(s) ouvrable(s)]]></notes>
+                <depend id="149" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="123" uid="8b81bee26f364d3da325593ec86f8754" name="#99 Revue de conception : avis des parties prenantes" color="#4a8fd1" meeting="false" start="2026-11-23" duration="10" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 5 jour(s) ouvrable(s)]]></notes>
+                <depend id="139" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="124" uid="24ea5b7a092c43e98dc83001378cbecf" name="#73 Lot A p.1 : sections 3.2, 3.3, 3.4, 4.1, 4.8" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 9 jour(s) ouvrable(s)]]></notes>
+                <depend id="142" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="125" uid="5b6c071416b44f94ba8e6d1aaf42c7c6" name="#80 Lot E p.1 : sections 3.1, 4.4, 4.9" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 9 jour(s) ouvrable(s)]]></notes>
+                <depend id="143" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="126" uid="c287887b99b24aaca41dfb0eca161e97" name="#86 Lot F p.1 : section 4.5 SS-4" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 9 jour(s) ouvrable(s)]]></notes>
+                <depend id="145" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="127" uid="46be8a7a8a0c4728a6320a5f24ce1b6e" name="#93 Lot C : sections 1, 4.2, 4.7" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 10 jour(s) ouvrable(s)]]></notes>
+                <depend id="130" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="128" uid="b780b7cd78a2444b99cc8f41f4785d84" name="#100 Lot D p.1 : sections 3.5, 4.3" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 9 jour(s) ouvrable(s)]]></notes>
+                <depend id="144" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="129" uid="64847523690843ccb9067a5afed07ca3" name="#107 Lot G p.1 : sections 3.6, 4.6" color="#4a8fd1" meeting="false" start="2026-11-23" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 9 jour(s) ouvrable(s)]]></notes>
+                <depend id="146" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="130" uid="c2b7fcfcba564ccda5876d5d517a9e87" name="#102 Révision du lot C d’Ibrahima" color="#4a8fd1" meeting="false" start="2026-12-03" duration="2" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 10 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="131" uid="0bdb9c03a0aa49b59409e2629f66c0b4" name="◆ J4 : campagne d’essais terminée" color="#000000" meeting="true" start="2026-12-07" duration="0" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="132" type="2" difference="0" hardness="Rubber"/>
+                <depend id="134" type="2" difference="0" hardness="Rubber"/>
+                <depend id="136" type="2" difference="0" hardness="Rubber"/>
+                <depend id="137" type="2" difference="0" hardness="Rubber"/>
+                <depend id="138" type="2" difference="0" hardness="Rubber"/>
+            </task>
+        </task>
+        <task id="3" uid="38fe19c946894990b99822c75a26e1cb" name="Sprint 3 : présentation (J5) et rédaction" color="#555555" meeting="false" start="2026-12-07" duration="10" complete="0" expand="true">
+            <task id="132" uid="07d81ef3828f43be8ad7653dbe3f85d7" name="#115 Compiler les heures au 4 décembre" color="#d32f2f" meeting="false" start="2026-12-07" duration="1" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="133" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="133" uid="883993d4d8d5419ca87b9b9ca26f31c3" name="#77 Révision lot H : heures au 4 décembre" color="#d32f2f" meeting="false" start="2026-12-08" duration="1" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="141" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="134" uid="738c5f1b1d114291a91076c64e58cf7c" name="#94 Présentation orale (support, répétition, J5)" color="#4a8fd1" meeting="false" start="2026-12-07" duration="4" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+            </task>
+            <task id="135" uid="89ab4eaf356a4ebe89e0cc29d2b480e4" name="◆ J5 : présentation orale (10 décembre)" color="#7a7a7a" meeting="true" start="2026-12-10" duration="0" complete="0" expand="true">
+                <notes><![CDATA[Présentation orale le jeudi 10 décembre (avancée du 18 décembre), jour où se termine #94 ; date fixée, sans lien entrant.]]></notes>
+                <depend id="139" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="136" uid="876cdaa46d304a7bbf58f9ef681248e0" name="#81 Lot E p.2 : sections 5.2, 7.1" color="#4a8fd1" meeting="false" start="2026-12-07" duration="6" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="143" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="137" uid="efee894d0c1c4658a70baedc210abfa5" name="#108 Lot G p.2 : sections 5.4, 8" color="#4a8fd1" meeting="false" start="2026-12-07" duration="6" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="146" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="138" uid="e20415b415a54c628779ec9e49bea51b" name="#110 Lot B : sections 2, 6.3" color="#4a8fd1" meeting="false" start="2026-12-07" duration="6" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="147" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="139" uid="b523e1461c04453fac2c3dbed88344e5" name="#101 Lot D p.2 : sections 5.5, 6.1" color="#4a8fd1" meeting="false" start="2026-12-11" duration="2" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="144" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="140" uid="0f78be2d9d1f4d57aefd59d99a59fd74" name="#87 Lot F p.2 : sections 5.1, 5.3, 5.6, 11" color="#d32f2f" meeting="false" start="2026-12-07" duration="10" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="149" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="141" uid="4d470e0b0731467b864f3f46fa6834be" name="#75 Lot A p.2 : sections 6.2, 7.2, 9, 10, résumé" color="#d32f2f" meeting="false" start="2026-12-09" duration="8" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="149" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="142" uid="a7c54870b5ac4fd7850c4a1d9f0326ba" name="#116 Révision du lot A de Christian" color="#4a8fd1" meeting="false" start="2026-12-15" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="143" uid="b291fab63a8c46ff91465f4bc5ef25a9" name="#88 Révision du lot E de Raouf" color="#4a8fd1" meeting="false" start="2026-12-15" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="144" uid="13d8960e75c6439db14d54714f919010" name="#82 Révision du lot D de Sidiki" color="#4a8fd1" meeting="false" start="2026-12-15" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="145" uid="fde3b80074534a14975dc40d6331d993" name="#109 Révision du lot F de Rayane" color="#4a8fd1" meeting="false" start="2026-12-15" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="146" uid="0934facd0ddf4f7396eaa6071b13f846" name="#111 Révision du lot G de Jérémie" color="#4a8fd1" meeting="false" start="2026-12-15" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="147" uid="15d7857a7f834ad390f3bd9f7ebf167a" name="#95 Révision du lot B d’Abdramane" color="#4a8fd1" meeting="false" start="2026-12-15" duration="3" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="148" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="148" uid="57eb53044a6045eb9ffb76db23bed9e0" name="◆ Révision des sections 5 à 9 terminée" color="#7a7a7a" meeting="true" start="2026-12-18" duration="0" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 1 jour(s) ouvrable(s)]]></notes>
+                <depend id="149" type="2" difference="0" hardness="Rubber"/>
+            </task>
+        </task>
+        <task id="4" uid="15b6c378446340e994d2c85207b829cd" name="Dépôt du rapport 13" color="#555555" meeting="false" start="2026-12-21" duration="3" complete="0" expand="true">
+            <task id="149" uid="3c511b273bb14f29bd9626be9d3c45f6" name="#76 Intégration et cohérence du rapport 13" color="#d32f2f" meeting="false" start="2026-12-21" duration="1" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="150" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="150" uid="73a0334c5d7f4a3b8199ba80d09beeaa" name="#117 Relecture de la langue" color="#d32f2f" meeting="false" start="2026-12-22" duration="1" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="151" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="151" uid="a7a04859f0b44930b5a08a8f85dc1cd6" name="#112 Mise en forme et export PDF" color="#d32f2f" meeting="false" start="2026-12-23" duration="1" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+                <depend id="152" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="152" uid="fd79ad39f9024823821fad9fc56d16df" name="◆ Dépôt du rapport 13, qui tient lieu de rapport final (24 décembre)" color="#000000" meeting="true" start="2026-12-24" duration="0" complete="0" expand="true">
+                <notes><![CDATA[Marge totale : 0 jour(s) ouvrable(s) (chemin critique)]]></notes>
+            </task>
         </task>
     </tasks>
     <resources>
-        <resource id="0" name="Rayane" function="Default:0" contacts="" phone=""/>
-        <resource id="1" name="Raouf" function="Default:0" contacts="" phone=""/>
-        <resource id="2" name="Christian" function="Default:0" contacts="" phone=""/>
-        <resource id="3" name="Jeremie" function="Default:0" contacts="" phone=""/>
-        <resource id="4" name="Wilson" function="Default:0" contacts="" phone=""/>
-        <resource id="5" name="Abdramane" function="Default:0" contacts="" phone=""/>
-        <resource id="6" name="Ibrahima" function="Default:0" contacts="" phone=""/>
-        <resource id="7" name="Sidiki" function="Default:0" contacts="" phone=""/>
+        <resource id="0" name="Christian Kévin Sawadogo" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Sidiki" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Raouf" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Rayane" function="Default:0" contacts="" phone=""/>
+        <resource id="4" name="Ibrahima" function="Default:0" contacts="" phone=""/>
+        <resource id="5" name="Jérémie" function="Default:0" contacts="" phone=""/>
+        <resource id="6" name="Abdramane" function="Default:0" contacts="" phone=""/>
+        <resource id="7" name="Wilson" function="Default:0" contacts="" phone=""/>
     </resources>
     <allocations>
-        <allocation task-id="3" resource-id="0" function="Default:0" responsible="false" load="40.0"/>
-        <allocation task-id="15" resource-id="0" function="Default:0" responsible="false" load="25.0"/>
-        <allocation task-id="9" resource-id="0" function="Default:0" responsible="false" load="25.0"/>
-        <allocation task-id="4" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="13" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="6" resource-id="2" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="8" resource-id="2" function="Default:0" responsible="true" load="20.0"/>
-        <allocation task-id="14" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="3" resource-id="3" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="3" resource-id="5" function="Default:0" responsible="false" load="40.0"/>
-        <allocation task-id="2" resource-id="5" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="15" resource-id="5" function="Default:0" responsible="true" load="5.0"/>
-        <allocation task-id="9" resource-id="5" function="Default:0" responsible="false" load="25.0"/>
-        <allocation task-id="0" resource-id="6" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="1" resource-id="6" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="11" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="5" resource-id="7" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="7" resource-id="7" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="108" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="110" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="124" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="133" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="141" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="149" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="100" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="110" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="116" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="118" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="123" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="128" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="130" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="139" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="101" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="114" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="115" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="125" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="136" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="144" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="102" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="114" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="120" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="126" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="140" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="143" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="106" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="107" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="119" resource-id="4" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="121" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="122" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="127" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="134" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="147" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="103" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="104" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="112" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="113" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="119" resource-id="5" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="129" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="137" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="145" resource-id="5" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="109" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="119" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="138" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="146" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="151" resource-id="6" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="105" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="117" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="132" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="142" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="150" resource-id="7" function="Default:0" responsible="true" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>

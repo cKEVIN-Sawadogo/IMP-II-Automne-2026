@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "interface-ss5",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["lancer.py", "scenarios/derive_lente.json", "--temps-reel", "--silencieux", "--sans-navigateur", "--port", "8050"],
+      "cwd": "logiciel",
+      "port": 8050
+    }
+  ]
+}

@@ -26,6 +26,7 @@ from jumeau.interface import SousSysteme
 from jumeau.orchestrateur import Orchestrateur, modules_par_defaut
 from jumeau.scenario import charger
 from jumeau.ss5_interface import libelle_variable
+from jumeau.ss6_journal import verifier as verifier_ss6
 from jumeau.ss6_journal import verifier_journal
 
 DOSSIER_SCENARIOS = Path(__file__).resolve().parents[2] / "scenarios"
@@ -323,6 +324,12 @@ class Session:
         if not chemin.exists():
             return None
         return verifier_journal(chemin)
+
+    def rapport_journal(self):
+        """Rapport complet du vérificateur de SS-6 (chaîne, sceaux, complétude), ou None."""
+        if self.sortie is None or not (self.sortie / "journal.sqlite").exists():
+            return None
+        return verifier_ss6(self.sortie)
 
     # ----- Lecture pour l'interface ----------------------------------------
 

@@ -733,18 +733,37 @@ def _callbacks(app: Dash, session: Session, descriptions: dict) -> None:
                   prevent_initial_call=True)
     def _verifier(_n):
         try:
-            resultat = session.verifier_journal()
+            r = session.rapport_journal()
         except Exception as erreur:  # base en cours d'écriture
             return html.Span(f"Vérification impossible pour l'instant : {erreur}", className="ko")
-        if resultat is None:
+        if r is None:
             return "Aucun journal à vérifier."
-        integre, fautive, n = resultat
-        heure = f"{_locale(datetime.now(timezone.utc)):%H:%M:%S} {_sigle()}"
-        if integre:
-            return html.Span(f"Chaîne intègre : {_entier(n)} entrées recalculées, aucune rupture ({heure}).",
-                             className="ok")
-        return html.Span(f"Journal altéré : chaîne rompue à l'entrée {fautive} sur {_entier(n)} ({heure}).",
+        return _message_verification(r, en_cours=session.actif)
+
+
+def _message_verification(r, en_cours: bool) -> html.Span:
+    """Résume le rapport du vérificateur de SS-6 pour l'opérateur.
+
+    Pendant un essai, les dernières entrées attendent le prochain sceau (posé tous
+    les 60 cycles) et le sceau final n'existe pas encore : ce n'est pas une
+    altération. Une entrée modifiée, un maillon rompu ou un sceau invalide en est une.
+    """
+    heure = f"{_locale(datetime.now(timezone.utc)):%H:%M:%S} {_sigle()}"
+    attente = [m for _, m in r.anomalies if m.endswith("non scellées") or m.startswith("sceau final absent")]
+    graves = [m for _, m in r.anomalies if m not in attente]
+    base = f"{_entier(r.entrees)} entrées recalculées, {_entier(r.sceaux)} sceaux valides"
+    if graves:
+        return html.Span(f"Journal altéré : {graves[0]} ({heure}).", className="ko")
+    if attente and en_cours:
+        return html.Span(f"Chaîne SHA-256 intacte : {base}. Essai en cours : les dernières entrées "
+                         f"seront couvertes par le prochain sceau ({heure}).", className="ok")
+    if attente:
+        return html.Span(f"Chaîne SHA-256 intacte ({base}), mais scellement incomplet : "
+                         f"{'; '.join(attente)} ({heure}).", className="ko")
+    if r.manques:
+        return html.Span(f"Journal intègre ({base}), mais incomplet : {r.manques[0][1]} ({heure}).",
                          className="ko")
+    return html.Span(f"Journal intègre : {base}, sceau final présent ({heure}).", className="ok")
 
 
 # ----- Rendu des pages --------------------------------------------------------
