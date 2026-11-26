@@ -1,0 +1,62 @@
+@startuml modes-de-marche
+' Modes de marche du prototype : états du GEMMA et états affichés par SS-5.
+' Rapport 13, figure 3.6-1 et figure 4.6-2 (même diagramme).
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng modes-de-marche.puml
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #4A5F7A
+skinparam state {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  StartColor #4A5F7A
+}
+hide empty description
+
+state "A : arrêt et remise en route" as A {
+  state "A1 Arrêt dans l'état initial\n<i>aucun essai, interface « EN ATTENTE »</i>" as A1
+  state "A2 Arrêt demandé en fin de cycle\n<i>cycle en cours journalisé, journal scellé</i>" as A2
+  state "A5 Préparation de la remise en route\n<i>journal relu et vérifié, cause notée</i>" as A5
+  state "A6 Remise dans l'état initial\n<i>modules réinitialisés, nouveau dossier</i>" as A6
+}
+
+state "F : fonctionnement" as F {
+  state "F2 Marche de préparation\n<b>INCERTAIN</b> (calage 0 à 599)\n<i>scénario contrôlé, en-tête journalisé</i>" as F2
+  state "F1 Surveillance / F6 Marche de test\n<b>NORMAL</b>, confiance 1 - S/h\n<i>F6 : le scénario injecte un défaut</i>" as F1
+  state "F4 Vérification isolée\n<i>SS-5 seul sur états produits à la main,</i>\n<i>ou vérification d'un journal</i>" as F4
+}
+
+state "D : défaillance" as D {
+  state "D2 Diagnostic\n<b>DÉRIVE</b> ou <b>ANOMALIE</b> : variables désignées,\ndemande de confirmation si non critique\n<b>INCERTAIN</b> : mesure absente 3 cycles,\n<i>retour en F1 quand les mesures reviennent</i>" as D2
+  state "D3 Fonctionnement dégradé autorisé\n<b>DÉRIVE</b> ou <b>ANOMALIE</b> maintenu\n<i>confirmation journalisée avec l'instantané</i>" as D3
+  state "D1 Mise en sécurité\n<i>biais ≥ 2,5 % de l'étendue :</i>\n<i>aucune demande, état critique journalisé</i>" as D1
+}
+
+[*] --> A1
+A1 -up-> F2 : Lancer l'essai
+F2 --> F1 : calage terminé (600 cycles)
+F2 --> D2 : composant en défaut\n(mode tolérant)
+F1 --> F4 : vérification demandée
+F4 --> F1 : vérification terminée
+F1 -down-> D2 : S ≥ h ou |r| > 5σ (SS-4),\nou mesure absente 3 cycles
+D2 --> D3 : non critique\net « Confirmer »
+D2 --> D2 : « Refuser » ou\npas de réponse
+D2 --> D1 : sévérité critique
+D1 --> D2 : diagnostic obligatoire
+D3 --> D2 : aggravation
+F1 --> A2 : Arrêter ou\nfin du scénario
+D2 -down-> A2 : Arrêter ou\nfin du scénario
+D3 --> A2 : Arrêter ou\nfin du scénario
+D1 --> A2 : Arrêter
+A2 --> A1 : essai sans défaillance,\nsceau final posé
+A2 --> A5 : essai terminé en D1, D2, D3\nou arrêté sur erreur
+A5 --> A6 : journal intègre,\ncause notée
+A6 --> A1 : état initial confirmé
+
+note bottom of A
+  L'alarme de SS-4 est verrouillée : une fois DÉRIVE
+  ou ANOMALIE affiché, l'essai ne revient pas en NORMAL.
+  Le retour passe par A2 puis A1. Aucune transition
+  n'émet de commande vers l'installation (EX-F-08).
+end note
+@enduml

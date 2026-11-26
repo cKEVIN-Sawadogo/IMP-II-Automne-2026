@@ -1,0 +1,92 @@
+@startuml ss5-composants
+' SS-5 : composants de l'interface et leurs échanges (rapport 13, figure 4.6-1).
+' Rendu : java -jar plantuml.jar -charset UTF-8 -tsvg -tpng ss5-composants.puml
+allowmixing
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam shadowing false
+skinparam ArrowColor #4A5F7A
+skinparam classAttributeIconSize 0
+hide empty members
+skinparam class {
+  BorderColor #4A5F7A
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor #E6EBF2
+}
+skinparam package {
+  BorderColor #8A97A8
+  BackgroundColor #FAFBFC
+}
+
+package "Processus principal (même poste, même processus Python)" {
+
+  class Orchestrateur <<inchangé>> {
+    executer(cycles)
+  }
+
+  package "SS-5 : présentation par état" {
+    class PresentationEtat {
+      etat_affiche, k_entree
+      historique : liste (k, état)
+      ecarts : 60 derniers écarts par variable
+      derniere_valide : horodatage par variable
+      demande, reponse
+      --
+      etape(k, entrées) : affichage, événements
+      vue_permanente() / vue_detail() / ecran()
+      severite(variables) : critique ou non
+      repondre(« confirme » ou « refuse »)
+    }
+
+    class Session {
+      enregistrements par cycle (lecture seule)
+      cadence : 1, 10, 60 cycles/s ou max
+      statut : attente, en cours, pause,
+      terminé, arrêté, erreur
+      --
+      lancer() / mettre_en_pause() / arreter()
+      instantane(complet)
+      repondre(réponse)
+    }
+
+    class "Enveloppe d'enregistrement" as Env {
+      transmet les entrées au module sans les changer
+      garde sa sortie, puis applique la cadence
+      --
+      etape(k, entrées)
+    }
+
+    class "Application Dash" as App {
+      barre d'essai, chaîne de traitement
+      Conduite : vue permanente, bandeau,
+      vue de détail, confirmation, historique
+      Analyse : 4 graphiques
+      Journal : intégrité, événements
+      --
+      _versions() chaque seconde
+      _conduite() / _analyse() / _journal()
+    }
+  }
+
+  class "Modules SS-1 à SS-6" as Mod
+}
+
+actor "Opérateur\n(navigateur)" as Op
+
+Orchestrateur --> Env : etape(k) dans l'ordre\nSS-1 à SS-6
+Env --> Mod : mêmes entrées
+Env --> PresentationEtat : pour SS-5
+Env ..> Session : sortie du cycle,\naprès l'écriture au journal
+Session --> Orchestrateur : fil d'exécution séparé
+App --> Session : instantane() en lecture
+Op --> App : clics : lancer, détail,\nConfirmer, Refuser
+App --> Session : repondre()
+Session --> PresentationEtat : repondre()
+App --> Op : pages HTML, 1 s
+
+note bottom of App
+  Aucun échange avec l'installation :
+  l'application affiche et transmet seulement
+  la réponse de l'opérateur, journalisée par SS-6.
+end note
+@enduml
